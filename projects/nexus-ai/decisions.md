@@ -42,4 +42,29 @@
 
 ---
 
-> Add new entries as decisions are made. Especially: which AI model is finally chosen, how the OS command surface is locked down for safety, whether to migrate to a cloud DB if productizing.
+## 2026-04-09 — Vault integration via local filesystem read, not API
+
+**Context:** Nexus needs to read ObsidianVault data (candidates, backlogs, research reports). Could use: (a) local file reads, (b) a REST API wrapper around vault, (c) git clone from GitHub.
+
+**Decision:** Direct local filesystem reads via `vault_reader.py`.
+
+**Why:** Simplest approach. Bot runs on same machine as vault. No extra service to maintain. vault_reader.py is a pure reader — no writes, no state.
+
+**Consequences:**
+- Only works when bot and vault are on same machine
+- If vault moves to cloud-only (e.g. GitHub), would need to switch to git clone or API
+- Read-only by design — bot cannot corrupt vault data
+
+---
+
+## 2026-04-09 — Gemini intent classification for vault commands (not hardcoded keywords)
+
+**Context:** Could have matched vault commands via regex ("что нового" → vault). Instead, added 3 new intents to Gemini router.
+
+**Decision:** Use Gemini classification (same as all other intents).
+
+**Why:** Consistent with existing architecture. Handles variations in phrasing naturally. Slash commands (/vault, /status, /research) work as direct fallback.
+
+---
+
+> Add new entries as decisions are made. Especially: how the OS command surface is locked down for safety, whether to migrate to a cloud DB if productizing.

@@ -1,58 +1,93 @@
 # Nexus.AI — Architecture
 
-**Last verified:** 2026-04-07 (from interview, NOT yet verified against code — many details below need checking)
+**Last verified:** 2026-04-09 (verified against code, post-refactoring)
 
 ## Language
 
-**Python.** This is the only project of the three that's not Node.js. There is no specific reason — Adil started it in Python. When working on Nexus, do not assume Node patterns transfer.
+**Python.** This is the only project of the three that's not Node.js. When working on Nexus, do not assume Node patterns transfer.
 
 ## Interface
 
-- **Telegram bot** (`bot.py`) — only entry point for commands
-- **Launcher** (`nexus_launcher.pyw`) — Windows-only `.pyw` (silent Python) launcher script that just starts the bot. Not a separate runtime.
+- **Telegram bot** (`bot.py`) — entry point
+- **Launcher** (`nexus_launcher.pyw`) — Windows-only silent launcher
 
-## Components (from file names — to be verified against code)
+## Modular structure (refactored 2026-04-09)
 
-| File | Role (claimed) | Verified? |
+The bot was a 2400-line monolith. Now split into 10 files using aiogram v3 Router pattern:
+
+| File | Lines | Role |
 |---|---|---|
-| `bot.py` | Telegram bot entry point | ✓ confirmed by Adil |
-| `router.py` | Dispatches messages/commands | not yet read |
-| `memory.py` + `assistant_memory.db` | Persistent memory layer (SQLite). Currently stores conversation history, *intended* to be persistent long-term memory. | partial — see TODO below |
-| `job_manager.py` | Background job orchestration | not yet read |
-| `media_generator.py` + `media_providers.py` | Generates images (currently a "weak" model — name TBD), abstracts over providers | not yet read |
-| `os_controller.py` | **Executes OS-level commands on Adil's laptop.** Currently a narrow command set, needs significant expansion. ⚠️ Security-sensitive. | partial — see SECURITY note |
-| `runtime_guard.py` | Runtime safety/limits | not yet read |
-| `web_parser.py` | Web content fetching | not yet read |
-| `api_client.py` | Some external API client (which one?) | not yet read |
-| `config.py` | Env-based config (`os.getenv` for everything, no hardcoded secrets) | ✓ confirmed |
+| `bot.py` | 76 | Entry point — imports routers, starts scheduler + polling |
+| `core.py` | 132 | Shared state: Bot, Dispatcher, Scheduler, user_sessions, is_admin(), genai client, pyautogui sandbox |
+| `states.py` | 43 | All FSM state classes (VideoGenForm, ContactForm, ReminderForm, etc.) |
+| `helpers.py` | 303 | Utility functions: safe_send/edit, format_idea, enhance_prompt, parse_intent_payload, etc. |
+| `keyboards.py` | 172 | All keyboard builders (dashboard, organizer, media, settings, etc.) |
+| `reminders.py` | 76 | APScheduler: schedule_job, send_reminder, restore_reminders |
+| `handlers/commands.py` | 158 | Slash commands: /start, /vault, /status, /research, /clear, /ideas, /dashboard |
+| `handlers/callbacks.py` | 629 | All callback query handlers (action_*, kb_*, video_*, codex_*, confirm_*, rpa_*) |
+| `handlers/forms.py` | 377 | Multi-step forms: Contact, Reminder, Video generation, Image generation |
+| `handlers/messages.py` | 715 | Main intent-dispatch handler (catch-all for text/voice/photo) |
 
-## TODOs to verify against code
+**Router registration order matters:** commands → callbacks → forms → messages (catch-all LAST).
 
-1. **Which AI model is the bot actually using?** Adil said it's a "weak" model but not which one. Check `bot.py` / `media_generator.py` / `config.py`.
-2. **Which image provider(s) are in `media_providers.py`?** Adil didn't specify in the interview.
-3. **Project status check** — which project does it currently report on, and how does it reach it? Check `bot.py` and any project-status logic.
-4. **What does `runtime_guard.py` actually guard against?** This is potentially relevant for safety expansion.
+### Other files (not refactored, standalone)
 
-## Data flow (intended)
+| File | Role |
+|---|---|
+| `router.py` | Intent classification via Gemini 2.5 Flash — 19 intents (16 original + 3 vault) |
+| `vault_reader.py` | Reads ObsidianVault files for /vault, /status, /research |
+| `memory.py` + `assistant_memory.db` | SQLite with WAL mode — contacts, reminders, ideas, global context |
+| `config.py` | Env-based config (dotenv, no hardcoded secrets) |
+| `job_manager.py` | Background job tracking + cleanup_old_jobs() |
+| `media_providers.py` | Image (Gemini) + Video (Veo 3.1, Luma fallback) — synchronous, runs in to_thread |
+| `os_controller.py` | OS commands — execute_bash (validated) + execute_trusted_status (hardcoded allowlist) |
+| `runtime_guard.py` | Prevents duplicate bot processes |
+| `web_parser.py` | URL content parsing (Jina + BeautifulSoup fallback, 2MB limit) |
+| `api_client.py` | External API client (News pipeline, Supabase) |
+| `codex_temp_adapter.py` | Integration with local Codex Temp rendering service |
 
-1. Adil sends a command in Telegram
-2. `bot.py` receives → `router.py` dispatches
-3. Router decides: text reply, image gen, OS command, project status, etc.
-4. Memory is read/written in `memory.py` (SQLite)
-5. Result returned to Telegram
+**Deleted:** `media_generator.py` (was dead code, 227 lines, imported nowhere)
 
-## Security note — `os_controller.py`
+## Vault integration (added 2026-04-09)
 
-This component executes commands on Adil's actual laptop. Current scope is narrow, but the plan is to expand it significantly. Before expanding:
+Nexus reads the local ObsidianVault directly from disk via `vault_reader.py`:
+- `/vault` — fresh candidates, library count, worklog activity
+- `/status` — backlog counts + top items + recent gotchas per project
+- `/research` — latest run report + candidate list for the week
+- Also works via natural language (Gemini classifies into vault intents)
 
-- Confirm there's a whitelist of allowed actions (probably what `runtime_guard.py` is for — verify)
-- Confirm the bot's command source (Telegram chat ID) is locked to Adil only
-- Anything that touches files, deletes, or exfiltrates data needs explicit confirmation in chat
-- Logging of every executed command should be on by default
+Requires `VAULT_PATH` env var (defaults to `C:\Users\User\Desktop\ObsidianVault`).
 
-## How to verify this file is still accurate
+## Security hardening (2026-04-09 audit, 22 issues fixed)
 
-- `cd AbdAdl && ls *.py` — confirm component files still exist with these names
-- `cat config.py` — verify env-based config and no secrets
-- `git log --oneline` — recent activity
-- For specific behaviors: read the relevant `.py` file directly, this whole file is currently from memory not from code
+- `is_admin()` — single unified auth check everywhere (was 3 different patterns)
+- `execute_trusted_status()` — hardcoded allowlist, no `trusted=True` bypass anymore
+- RPA/Computer Use — per-step confirmation buttons (Execute / Skip / Stop) before pyautogui runs
+- SQL filter sanitization in api_client.py
+- Input length limit (4000 chars) before Gemini
+- Web download limit (2MB stream)
+- Generic error messages to user (full details only to log)
+- Screenshot UUID filenames (no race condition)
+- Periodic cleanup: old jobs (24h), stale sessions (>50), media files (>24h)
+
+## Known remaining issues (not fixed)
+
+- `media_providers.py` is synchronous (requests + time.sleep) — works via to_thread but limits concurrency to ~5 threads. Rewrite to aiohttp someday.
+- No rate limiting on Gemini API calls (single user, low risk)
+- Reminder dates stored as "DD.MM.YYYY HH:MM" string, not ISO (fragile but works)
+- `flet` removed from requirements but was never used — check if any UI plans existed
+
+## Data flow
+
+1. Adil sends message in Telegram
+2. `handlers/messages.py` main_handler catches it
+3. `router.py` analyze_intent() classifies via Gemini → one of 19 intents
+4. Handler dispatches to appropriate action (save contact, generate image, OS command, vault read, etc.)
+5. Memory read/written via `memory.py` (SQLite WAL mode)
+6. Result returned to Telegram
+
+## How to verify this file
+
+- `ls *.py handlers/*.py` — confirm file structure matches
+- `git log --oneline -5` — recent activity
+- `python -c "import bot"` — verify imports resolve (needs valid BOT_TOKEN in .env)
