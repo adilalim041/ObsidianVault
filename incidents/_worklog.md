@@ -11,6 +11,52 @@
 
 ---
 
+`2026-04-10 02:06` | **AbdAdl** | `b7fdc5d` (main) | feat: add dashboard link button in vault menu
+
+`2026-04-10 00:58` | **AbdAdl** | `0c354a8` (main) | feat: show last parser run date/time in vault status
+
+`2026-04-10 00:41` | **AbdAdl** | `608bc5e` (main) | fix: configurable Gemini model via GEMINI_MODEL env var
+
+`2026-04-10 00:39` | **AbdAdl** | `3cefb9c` (main) | fix: parse_intent_payload crash when payload is list instead of dict
+
+`2026-04-10 00:35` | **AbdAdl** | `14d126d` (main) | fix: 5 bugs found in final audit
+
+`2026-04-10 00:29` | **AbdAdl** | `68160ee` (main) | fix: full Gemini-compatible normalization for Claude fallback
+
+`2026-04-10 00:29` | **news-project** | `aa589ba` (main) | feat: shadcn/ui dashboard + brain article actions
+
+`2026-04-10 00:26` | **AbdAdl** | `9370cb7` (main) | fix: Claude fallback compatibility for reminders + vault Q&A formatting
+
+`2026-04-10 00:22` | **AbdAdl** | `cdcc97d` (main) | fix: Anthropic fallback now properly parses nested JSON responses
+
+`2026-04-10 00:09` | **AbdAdl** | `fc6e846` (main) | feat: Anthropic Claude fallback when Gemini returns 403
+
+`2026-04-09 23:56` | **AbdAdl** | `b402b0e` (main) | feat: smart vault Q&A + fix Markdown crashes in vault buttons
+
+`2026-04-09 23:46` | **AbdAdl** | `7ba6310` (main) | fix: strip newlines from VAULT_REPO_URL (Railway injects trailing newline)
+
+`2026-04-09 23:33` | **AbdAdl** | `75eaf06` (main) | improve: vault cards always show descriptions now
+
+`2026-04-09 23:09` | **AbdAdl** | `f7f8e24` (main) | fix: runtime_guard type hint crash when psutil not installed (Railway)
+
+`2026-04-09 23:00` | **news-project** | `dbd0c37` (main) | feat: dashboard React migration + brain browse endpoints
+
+`2026-04-09 22:55` | **AbdAdl** | `f06cc76` (main) | improve: vault cards now show descriptions and target project
+
+`2026-04-09 22:50` | **AbdAdl** | `da3e237` (main) | feat: Railway cloud deployment support
+
+`2026-04-09 22:44` | **AbdAdl** | `44d76d6` (main) | feat: add Vault button to dashboard menu
+
+`2026-04-09 22:40` | **AbdAdl** | `c4db0bb` (main) | fix: runtime_guard process scan was too aggressive
+
+`2026-04-09 22:24` | **AbdAdl** | `3fc5426` (main) | refactor: split bot.py monolith (2400 lines) into 10 modular files
+
+`2026-04-09 21:56` | **AbdAdl** | `b7313e3` (main) | security: RPA computer_use now requires confirmation per step
+
+`2026-04-09 21:51` | **AbdAdl** | `a4af4b6` (main) | fix: comprehensive security + stability audit — 22 issues resolved
+
+`2026-04-09 21:40` | **news-project** | `83c5867` (main) | feat: p-retry + p-queue + structured logging across brain, generator, publisher
+
 `2026-04-09 18:44` | **wa-bridge** | `43b41de` (main) | fix: WS timing-safe auth + dialog link retry 3 attempts
 
 `2026-04-09 18:36` | **wa-bridge** | `a5d92ef` (main) | feat: real Omoikiri product catalog + contacts __all__ mode

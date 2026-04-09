@@ -4,6 +4,15 @@
 
 ---
 
+## 2026-04-10
+- When using `replace_all: true` in bulk string replacements, be careful that generic words (like "learnings") may appear in unexpected places like prose sentences, causing partial replacements that produce mixed-language text. Always scope bulk replacements to exact contexts or do them one by one.
+- Parsing timestamps from structured filenames (e.g., `2026-04-09_2230.md`) is more reliable than parsing file metadata via API, since GitHub Contents API doesn't expose file creation/modification timestamps.
+
+## 2026-04-10
+- Two-tier caching (in-memory Map + localStorage with TTL) is an effective pattern for GitHub API rate-limit mitigation on unauthenticated requests (60 req/hr limit). The localStorage layer persists across page reloads while the memory layer avoids JSON parse overhead on repeated reads.
+- When filtering internal notes from research candidates, matching against the parsed display name (after filename-to-title conversion) with regex patterns is more reliable than matching raw filenames, since filenames use kebab-case while the filter criteria are in natural language.
+- Recharts (already a dependency via package.json) integrates well into dark-themed dashboards by passing custom `contentStyle` to Tooltip and using CSS variable colors for axis/tick styling.
+
 ## 2026-04-09
 - Component libraries often extend tailwind-merge to handle custom utility classes, which can be a useful pattern for complex design systems.
 

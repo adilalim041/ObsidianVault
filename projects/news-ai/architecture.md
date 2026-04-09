@@ -1,6 +1,6 @@
 # News.AI (AdilFlow) — Architecture
 
-**Last verified:** 2026-04-07 (from interview, not yet verified against code)
+**Last verified:** 2026-04-10 (verified against code)
 
 ## Microservices
 
@@ -12,7 +12,7 @@ All 6 services are **independent git repos** deployed separately on Railway. The
 | `adilflow_parser` | Source ingestion. Currently RSS-based: pulls news with images, headlines, body. Has a filter for selecting specific articles. | Node | Working |
 | `adilflow_generator` | Generates images (wants Gemini, latest model). Possibly also generates headlines and copy. Searches/composes the right prompts for each piece. | Node | Working, accuracy WIP |
 | `adilflow_publisher` | Publishes finished content to target channels. | Node | Working |
-| `adilflow_dashboard` | Frontend for monitoring and interacting with each service. | Node + UI | Working |
+| `adilflow_dashboard` | React SPA dashboard (shadcn/ui + Tremor + TanStack Table). Pipeline visualization, playbook management, manual actions, template links. | Node + React/Vite | Working, actively developing |
 | `TemplateV1` | **Standalone template engine.** Creates post templates with variables that AI fills in with the right source data. Server + client. | Node + frontend | Working, in active testing |
 
 ## Data flow (high level)
@@ -26,27 +26,55 @@ All 6 services are **independent git repos** deployed separately on Railway. The
 
 ## External services
 
-- **Gemini** (latest available) — image generation (preferred)
-- **OpenAI / GPT-4-mini** — currently used for prompts/headlines (not final, see decisions about per-task LLM specialization)
-- **Supabase** — likely used by `brain` and other services for storage; needs to be confirmed against code
-- **Railway** — hosting for all services
-- **GitHub** — each service has its own repo and CI
+- **Gemini** (`gemini-2.5-flash-image`, want `gemini-3-pro-image-preview` when billing active) — image generation. Requires paid API (free tier limit=0 for image gen).
+- **OpenAI / GPT-4o-mini** — headline/caption generation (via playbook prompts) + article classification (score 1-10)
+- **Supabase** (`advluvxpllxxzjrxeskm.supabase.co`) — PostgreSQL + pgvector for Brain. Tables: `articles`, `niches`, `channel_profiles`, `content_playbooks`, `template_bindings`, `sources`, `api_keys`.
+- **Cloudinary** (`do0zl6hbd`) — image hosting for covers and generated images
+- **Instagram Graph API** (`v24.0`) — publishing to Instagram (via Publisher)
+- **Railway** — hosting for all 6 services. Auto-deploy from GitHub.
+- **GitHub** — each service has its own repo (`adilalim041/adilflow-*`)
 
-## AI model strategy (intent, not yet fully implemented)
+## AI model strategy
 
-Adil's goal is **per-task LLM specialization**: each kind of task uses the LLM that's actually best at that task, not "one model for everything". Currently:
-- Image gen: Gemini (latest)
-- Prompt-writing / headlines: GPT-4-mini (placeholder, will likely change)
-- No final pinning yet — this is an active design space
+Per-task LLM specialization:
+- Image gen: Gemini (waiting for billing to enable Pro)
+- Headline/caption/hashtag generation: GPT-4o-mini (configurable per niche via playbook `system_prompt`)
+- Article classification: GPT-4o-mini (score 1-10)
+- **Prompts are now managed via Brain playbooks**, not hardcoded. Dashboard → Playbooks → AI Prompts tab.
+
+## Reliability layer (added 2026-04-09)
+
+All external API calls across Generator, Publisher, Brain wrapped in:
+- `p-retry@6` — 3 retries, exponential backoff, AbortError on 4xx
+- `p-queue@8` — concurrency control (Gemini×2, OpenAI×3, Cloudinary×3, Instagram×1)
+- Pino structured logging — `{ provider, latencyMs, outcome, articleId }`
+
+## Dashboard (added 2026-04-09/10)
+
+React SPA with 5 pages:
+- **Dashboard** — service status (5 services), pipeline stats, manual actions (Parse RSS, Generate, Publish)
+- **Pipeline** — visual stages (raw→classified→...→published), article table with TanStack Table, article detail Sheet (journey map: Source → Classification → Generation → Visual Assets → Publication)
+- **Templates** — template cards, "Open in Editor" links to TemplateV1
+- **Playbooks** — view/edit AI prompts per niche (system_prompt, image_system_prompt, user_prompt_template) + rules + examples
+- **Settings** — niches, channel profiles, scheduler
+
+Stack: React 18, Vite 5, Tailwind 3, shadcn/ui, Tremor, TanStack Table, lucide-react. Multi-stage Dockerfile (build client → serve).
+
+## Parser — RSS ingestion (12 niches)
+
+48 RSS feeds across 12 niches defined in `adilflow_parser/sources.json`:
+health_medicine (4), technology (5), ai_news (5), sports (5), finance (4), automotive (4), gaming (6), politics (4), world_news (5), good_news (3), kazakhstan (4, ru), kazakhstan_en (2).
+
+Parser filters articles >7 days old (`MAX_ARTICLE_AGE_DAYS`). Dedup by URL hash. Brain does 3-level dedup: url_hash → content_hash → DB constraint.
+
+Currently only `ai_news` and `health_medicine` have playbooks. Other niches have feeds but no generation config.
 
 ## In-repo documentation
 
-The `news-project/` root contains existing docs that are the source of truth — reference them rather than duplicating:
-
+The `news-project/` root contains existing docs:
+- `IMPROVEMENT_BACKLOG.md` — improvement backlog (source of truth for backlog items)
 - `ONE_BRAIN_ARCHITECTURE.md` — architectural design doc for the brain service
-- `OPERATIONS_RUNBOOK.md` — operational procedures
-- `OPS_GUIDE.md` — operational guide
-- `IMPROVEMENT_BACKLOG.md` — improvement backlog (treat as the truth, supersedes anything in this vault's `backlog.md`)
+- `OPERATIONS_RUNBOOK.md` / `OPS_GUIDE.md` — operational procedures
 
 ## How to verify this file is still accurate
 

@@ -96,4 +96,42 @@
 
 ---
 
+## 2026-04-09 — Dashboard migrated from vanilla HTML to React SPA
+
+**Context:** Dashboard was a single 407-line HTML file with inline JS. Needed multi-page navigation, article browsing, playbook editing.
+
+**Decision:** Migrate to React 18 + Vite 5 + Tailwind 3 + shadcn/ui + Tremor + TanStack Table + lucide-react. Multi-stage Dockerfile.
+
+**Alternatives:** Keep vanilla HTML (rejected — unmaintainable at scale), htmx (rejected — not enough for complex forms).
+
+**Why:** Matches TemplateV1 client stack. shadcn/ui is the vault-recommended UI library (score 10/10). Tremor for analytics charts. TanStack Table for sortable data tables.
+
+**Consequences:** Dashboard now has a build step (Vite). Deploy requires multi-stage Dockerfile. But UI quality is production-grade.
+
+---
+
+## 2026-04-10 — Prompts managed via Brain playbooks, not hardcoded
+
+**Context:** All AI prompts (system prompt for headline generation, Gemini image prompt, user prompt template) were hardcoded in Generator's server.js. Changing prompts required code deploy.
+
+**Decision:** Store prompts in Brain's `content_playbooks` table (`system_prompt`, `image_system_prompt`, `user_prompt_template`). Generator loads them via `/api/config/resolve`. Dashboard Playbooks page lets Adil edit them live.
+
+**Alternatives:** .env variables (rejected — too limited), separate prompt service (rejected — overkill).
+
+**Why:** Adil needs to iterate on prompts per niche without code deploys. Different niches need different tones, languages, and styles.
+
+**Consequences:** Generator falls back to hardcoded defaults if playbook prompt is null. Playbooks are per-niche — each niche can have its own editorial style.
+
+---
+
+## 2026-04-10 — p-retry@6 + p-queue@8 (not latest versions)
+
+**Context:** Latest p-retry@8 requires Node>=22, Railway uses Node 18 via Nixpacks.
+
+**Decision:** Use p-retry@6 (Node>=16) + p-queue@8 (Node>=18). Same API, works everywhere.
+
+**Why:** Railway may ignore Dockerfile and use Nixpacks with Node 18. Downgrading avoids the issue entirely.
+
+---
+
 > Add new entries here as decisions are made. Especially important: when the brand name is finalized, when the first publishing target is locked in, when an AI model is changed.
