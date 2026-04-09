@@ -231,3 +231,60 @@
 
 ## 2026-04-09
 - Truncated README excerpts (mid-sentence cutoffs) should flag install_command and example_code as "unknown" rather than inferred; full documentation verification requires repo-root inspection.
+
+## 2026-04-09
+- Deprecated open-source projects with explicit sunset notices and commercial product redirects should be flagged as "stale" activity and marked with a primary red flag; the README itself serves as the deprecation notice, making missing install/example sections secondary concerns.
+
+## 2026-04-09
+- READMEs that pivot from open-source to commercial SaaS (via explicit notices and website redirects) indicate the project is no longer maintained as an open-source artifact, even if the GitHub repo still exists.
+
+## 2026-04-09
+- Observability/monitoring platform READMEs backed by major database vendors (ClickHouse) as core architecture component signal enterprise-grade active maintenance and production readiness, even without explicit commit timestamps in the README itself.
+
+## 2026-04-09
+- Truncated README content (mid-sentence cutoff) should be flagged as a documentation extraction artifact rather than a reflection of project quality; license verification and full feature set may require separate repo inspection.
+
+## 2026-04-09
+- README truncation mid-sentence in the final paragraph is a significant red flag—it suggests incomplete documentation extraction or version drift; this should always be flagged separately from missing install commands, as the full README likely exists elsewhere in the repo.
+
+## 2026-04-09
+- Projects advertising "runs as intercepting proxy" with automatic browser integration but requiring manual NODE environment variable tuning for memory management signal active development with known scalability trade-offs; this is a maintenance signal rather than abandonment.
+
+## 2026-04-09
+- When a README provides multiple install paths (binary, npm, source build, npm start) without timestamps or activity indicators, the presence of detailed installation documentation alone is insufficient to determine maintenance status—explicit commit history or version dates are needed.
+
+## 2026-04-09
+- README truncation mid-sentence is a documentation extraction issue; when combined with missing install commands and code examples, all three should be marked "unknown" rather than inferred—this signals the full README wasn't provided.
+
+## 2026-04-09
+- Y Combinator-backed projects with explicit hiring links and job postings are strong active maintenance signals even without commit timestamps; these indicate runway and team investment.
+
+## 2026-04-09
+- Multi-language README support (8+ languages via readme-i18n) combined with feature-rich implementation signals mature, internationally-targeted open-source projects with active community infrastructure.
+
+## 2026-04-09
+- Enterprise LLM platform READMEs often omit explicit license statements in the README itself; license verification requires separate inspection of repo-root LICENSE files.
+
+## 2026-04-09
+- Truncated README excerpts (especially mid-sentence cutoffs in integration tables) should be flagged as a red flag for incomplete documentation extraction, preventing full feature assessment.
+
+## 2026-04-09
+- Active hiring, GitHub Discussions support, and managed deployment options are strong signals of active maintenance and commercial backing even without explicit commit timestamps in the README.
+
+## 2026-04-09
+- MCP server projects integrating external services (WhatsApp, etc.) often explicitly warn about security risks ("lethal trifecta") in their README; this is a responsible red flag worth noting even when other signals suggest active maintenance.
+
+## 2026-04-09
+- Truncated README sections (mid-sentence cutoffs) combined with missing license statements should flag both `license` and `last_activity_hint` as "unknown" rather than inferred; the incomplete database section suggests extraction or documentation version drift.
+
+## 2026-04-09
+- Multi-platform setup instructions (Windows CGO compilation, MSYS2 integration) in a README signal active maintenance for diverse users but also increased friction for Windows developers—worth noting as a setup complexity red flag.
+
+## 2026-04-09
+- README truncation mid-sentence (particularly in installation/setup sections) is a critical extraction red flag; mark install_command, example_code, and deployment hints as "unknown" rather than inferred, and flag the truncation explicitly in red_flags.
+
+## 2026-04-09
+- Enterprise/partnership projects (especially those co-created by established companies like Directus and NuxtLabs) may omit license statements in README; this should be noted as "unknown" with a flag to check repo-root LICENSE file rather than assumed.
+
+## 2026-04-09
+- Comprehensive feature matrices and architectural descriptions (CRM, invoicing, client portal, dynamic builders) without corresponding install steps or working examples are incomplete documentation signals worth flagging separately from normal missing-info patterns.

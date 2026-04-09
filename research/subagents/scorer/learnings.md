@@ -165,3 +165,45 @@
 
 ## 2026-04-09
 - Native C++ modules in Python chat bot frameworks (like TgCrypto for Telegram encryption) create Railway deployment risks that outweigh the benefits of direct adoption, making pattern extraction the safer approach.
+
+## 2026-04-09
+- Web archiving tools often contain valuable browser automation and process management patterns, but their specialized nature and file-based storage approaches make them poor fits for database-centric web services.
+
+## 2026-04-09
+- Unknown license status becomes particularly problematic when the extractable value is primarily in architectural patterns rather than standalone utilities, as fair use arguments are weaker.
+
+## 2026-04-09
+- Deprecated open-source projects that have pivoted to commercial offerings should be immediately rejected regardless of code quality, as they combine legal uncertainty with zero maintenance guarantees.
+
+## 2026-04-09
+- ML search platforms with multi-gigabyte dependencies (torch, transformers) are fundamentally incompatible with lightweight Node.js microservice architectures, even when the configuration patterns are excellent.
+
+## 2026-04-09
+- MCP (Model Context Protocol) servers often contain valuable domain logic patterns that can be extracted independently of the MCP framework itself.
+
+## 2026-04-09
+- Polyglot architectures with Go bridges for protocol handling create adoption barriers even when the core business logic patterns are transferable.
+
+## 2026-04-09
+- Visual website builders often contain excellent UI component patterns but their commercial/unknown license status makes component extraction risky despite technical quality matches with target stack.
+
+## 2026-04-09
+- YC-backed companies with unknown license status on GitHub repos are particularly high-risk for commercial adoption since they likely have complex proprietary licensing despite appearing open source.
+
+## 2026-04-09
+- Enterprise observability platforms often contain excellent error handling and logging patterns, but their full-stack complexity and infrastructure requirements (ClickHouse, MongoDB, OpenTelemetry) make pattern extraction more valuable than direct adoption for simple Railway-deployed services.
+
+## 2026-04-09
+- Unknown license status is particularly problematic for observability tooling because the error handling and logging patterns being extracted are core business logic rather than peripheral utilities, making fair use arguments weaker.
+
+## 2026-04-09
+- Vue/Nuxt applications with excellent code quality can still score low due to fundamental framework incompatibility with React stacks, regardless of how transferable the architectural patterns might be.
+
+## 2026-04-09
+- Unknown license status from organization labs (directus-labs) combined with commercial CRM use cases creates immediate legal risk that outweighs technical benefits, especially when pattern extraction rather than direct adoption is required anyway.
+
+## 2026-04-09
+- Production LLM platforms often use status code 207 (Multi-Status) for batch operations with partial failures, which is ideal for multi-service content pipelines where some items can succeed while others fail.
+
+## 2026-04-09
+- Feature-based directory organization (features/evals, features/prompts) combined with shared package architecture creates better separation of concerns than traditional controller/service/model patterns in LLM applications.

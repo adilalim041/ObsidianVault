@@ -141,3 +141,36 @@
 
 ## 2026-04-09
 - NLTK data bundled directly in `chatchat/data/nltk_data/` (cmudict, tokenizers, taggers) suggests heavy NLP preprocessing pipeline; subagents should verify whether this bloats Docker images and whether lazy-loading or external data fetching is feasible for text segmentation/tokenization tasks.
+
+## 2026-04-09
+- Fern API definitions (fern/apis/server/definition/*.yml) in a monorepo are the contract source; subagents analyzing backend changes should check whether the Fern definitions are updated before generated SDKs/OpenAPI specs are regenerated.
+
+## 2026-04-09
+- Presence of both web/ (Next.js) and packages/shared/ (SDK) with separate tsconfig.json files indicates a dual-interface pattern—the shared package is both an internal library and a published npm package; subagents should verify exports in packages/shared/package.json align with public API surface.
+
+## 2026-04-09
+- EE module isolation (ee/ directory with separate package.json and tsconfig) alongside fern API definitions suggests license checks are applied at API level; subagents should trace where ee-license-check/index.ts is invoked in the request pipeline.
+
+## 2026-04-09
+- Presence of .env.*.example variants (dev, prod, azure, redis-cluster) indicates the deployment topology is flexible and environment-aware; subagents should cross-reference these with docker-compose.yml and GitHub Actions workflows to understand how config is injected in each stage.
+
+## 2026-04-09
+- Nuxt 3 monoliths with Directus CMS integration typically organize Directus-specific logic in a `.directus/` directory (docker-compose, run-scripts for database hooks, schema validation); subagents analyzing database-layer changes should prioritize files in `.directus/run-scripts/` alongside server A
+
+## 2026-04-09
+- Presence of layered subsystems (layers/portal/, layers/proposals/) with separate README.md files indicates feature-based module organization within a Nuxt monolith; each layer likely has isolated API endpoints and should be analyzed for shared state/schema conflicts.
+
+## 2026-04-09
+- Stripe integration concentrated in `layers/portal/server/api/stripe/` with webhook handling suggests billing/subscription logic is compartmentalized; subagents reviewing payment flows should verify webhook signature validation and idempotency handling in webhooks.post.ts.
+
+## 2026-04-09
+- Minimal test files (3 found, mostly type definitions) combined with linting/typecheck GitHub Actions (no test.yaml workflow) indicates this is a content/marketing-focused CMS project prioritizing type safety over unit tests; deployment readiness may depend on manual QA rather than automated test gat
+
+## 2026-04-09
+- Node.js monoliths with separate `src/` backend modules and minimal `public/` static frontend, combined with `.npmrelease` + `.github/workflows/` patterns, indicate a published CLI tool or daemon package with embedded HTTP server; prioritize src/index.js and src/app.js as entry points.
+
+## 2026-04-09
+- Presence of `test-injection.html` alongside modular backend files (highlighter.js, gem-highlighter.js) suggests dynamic content injection or browser extension testing; subagents should check whether this is used for DOM manipulation or XSS testing scenarios.
+
+## 2026-04-09
+- High unclassified file count (36 of 68) with names like `.npmignore`, `.npmrelease`, `.npm.release`, and `exec.js` indicates npm tooling cruft and shell utilities; verify these against .gitignore to avoid analyzing artifacts as source code.

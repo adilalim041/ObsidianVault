@@ -198,3 +198,75 @@
 
 ## 2026-04-09
 - Firebase Auth integration with custom logout flows that clear multiple stores and trigger analytics demonstrates multi-system state management patterns.
+
+## 2026-04-09
+- Shared package architecture with barrel exports enables type and utility sharing across monorepo packages while maintaining clean feature boundaries.
+
+## 2026-04-09
+- Fern API schema definitions provide automatic OpenAPI spec generation and client SDK generation from YAML specifications.
+
+## 2026-04-09
+- Event envelope pattern for batch ingestion separates event metadata (id, timestamp, type) from trace body data, enabling deduplication and proper event handling.
+
+## 2026-04-09
+- Status code 207 (Multi-Status) for batch operations allows partial success responses with detailed error reporting per item.
+
+## 2026-04-09
+- MCP (Model Context Protocol) tool decorators provide a clean way to expose backend functions as standardized tools with automatic parameter validation and documentation.
+
+## 2026-04-09
+- Message context patterns that fetch surrounding messages (before/after) for search results provide better conversational understanding in chat applications.
+
+## 2026-04-09
+- Composite primary keys (id, chat_jid) enable message deduplication across multiple chat contexts while maintaining referential integrity.
+
+## 2026-04-09
+- Pydantic BaseSettings with field aliases enables clean environment variable mapping while maintaining descriptive internal property names.
+
+## 2026-04-09
+- Conditional service wrapping based on configuration values (cache_size > 0) provides clean feature toggle implementation without complex branching.
+
+## 2026-04-09
+- Custom OpenTelemetry exporters can redirect metrics to logging systems instead of console output for better production observability integration.
+
+## 2026-04-09
+- Settings validation with automatic value normalization (adding s3:// prefix, removing trailing slashes) ensures consistent configuration regardless of input format.
+
+## 2026-04-09
+- Automated database type generation with `supabase gen types` into shared packages enables type-safe database access across monorepo applications.
+
+## 2026-04-09
+- Supabase CLI commands for local development (start/stop/reset/push) provide a complete local-to-production development workflow without custom server setup.
+
+## 2026-04-09
+- cachedEventHandler with maxAge configuration provides automatic response caching at the handler level without external cache dependencies.
+
+## 2026-04-09
+- Mapper functions that transform CMS entities to consistent API responses enable clean separation between internal data structure and public API contracts.
+
+## 2026-04-09
+- Webhook event filtering with predefined relevantEvents arrays prevents unnecessary processing of unhandled webhook types.
+
+## 2026-04-09
+- Centralized SDK configuration with environment-based tokens (staticToken) provides clean authentication setup for headless CMS integration.
+
+## 2026-04-09
+- serializeError library enables consistent error logging across async boundaries by converting error objects to JSON-serializable format.
+
+## 2026-04-09
+- isOperationalError classification pattern distinguishes between expected business logic errors and unexpected system errors for proper error handling decisions.
+
+## 2026-04-09
+- migrate-mongo provides TypeScript migration support with file hash validation and structured changelog tracking for MongoDB schema evolution.
+
+## 2026-04-09
+- OpenTelemetry host metrics collection with MeterProvider and custom readers enables production-grade observability in Node.js applications.
+
+## 2026-04-09
+- Cross-platform browser executable detection using platform-specific executable names, default installation paths, and process pattern matching enables robust browser launching across operating systems.
+
+## 2026-04-09
+- Process spawning with detached mode and unref() allows parent processes to exit independently while keeping child processes (like browsers) running, useful for CLI tools that launch long-running services.
+
+## 2026-04-09
+- Multiple search engine integration (FlexSearch for full-text, NDX for document indexing, Fuzzy for approximate matching) provides comprehensive search capabilities for different query types and use cases.

@@ -84,3 +84,45 @@
 
 ## 2026-04-09
 - The MutationObserver pattern for watching DOM class changes (like 'dndState') provides a way to react to global state changes that exist outside React's component tree.
+
+## 2026-04-09
+- The Google Translate DOM polyfill pattern (monkey-patching removeChild/insertBefore) is a clever solution for preventing React crashes when browser translation tools modify the DOM structure.
+
+## 2026-04-09
+- Intercepting OAuth callback errors before NextAuth processes them allows preserving IdP error_description that would otherwise be stripped, improving user experience during auth failures.
+
+## 2026-04-09
+- The provider composition pattern in Next.js _app.tsx creates a clean hierarchy for context management, though performance implications should be considered with deep nesting.
+
+## 2026-04-09
+- The motion library (successor to framer-motion) with declarative initial/animate props and performance optimizations like willChange and translateZ provides a modern animation pattern for React components.
+
+## 2026-04-09
+- Using window.innerHeight checks with resize listeners to dynamically adjust component rendering based on viewport height is a practical responsive design pattern beyond just CSS media queries.
+
+## 2026-04-09
+- The @onlook/ui pattern of maintaining an internal design system package alongside shadcn/ui components allows for custom extensions while keeping shadcn compatibility.
+
+## 2026-04-09
+- Vue 3's Composition API with `<script setup>` provides a clean pattern for component logic, but the syntax and reactivity system are fundamentally incompatible with React hooks despite conceptual similarities.
+
+## 2026-04-09
+- The dynamic component mapping pattern (`componentMap[block.collection]`) in PageBuilder.vue is a powerful CMS-style approach that could be adapted to React using dynamic imports and component registries.
+
+## 2026-04-09
+- Injecting CSS custom properties through framework head management (useHead in Nuxt, or similar in Next.js) creates a bridge between component theming and global CSS variables.
+
+## 2026-04-09
+- The pattern of separating AppHeadContent and AppContent components to avoid hydration mismatches when using theme providers is a sophisticated Next.js optimization technique.
+
+## 2026-04-09
+- Using Jotai for atomic state management alongside @tanstack/react-query for server state represents a modern, performant state management architecture that avoids provider hell.
+
+## 2026-04-09
+- The crypto.randomUUID polyfill pattern for non-HTTPS environments shows good cross-environment compatibility thinking in production applications.
+
+## 2026-04-09
+- CSS custom properties with comprehensive light/dark mode theming using `prefers-color-scheme` provides a robust theming foundation that could be adapted to work alongside Tailwind's dark mode utilities.
+
+## 2026-04-09
+- The URL validation pattern in redirector.html using `new URL()` constructor in a try-catch block is a clean way to validate URLs before processing them in JavaScript.

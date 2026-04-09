@@ -69,3 +69,45 @@
 
 ## 2026-04-09
 - Multi-package Python workspaces with version skew (root >=3.8 vs. subproject >=3.10) and interdependent constraint management (ormar enforcing pydantic version)
+
+## 2026-04-09
+- Monorepos with pnpm workspace:* interdependencies + preinstall hooks enforcing package manager reduce installation conflicts but require explicit testing on target platforms (Windows dev vs. Linux container); Langfuse mitigates this via docker-compose.yml dev environment.
+
+## 2026-04-09
+- minimumReleaseAge with explicit exclusions (TODO note) indicates past supply chain concerns; projects adopting this pattern should auto-expire exclusions quarterly rather than manually maintaining version lists.
+
+## 2026-04-09
+- Next.js + next-auth version skew (major.minor drift) in SSR/hydration-heavy projects warrants matrix CI testing across React version pairs; Langfuse's deploy.yml lacks explicit Next.js version in CI matrix—recommend adding per-service Node version validation.
+
+## 2026-04-09
+- docker-compose.yml pointing to external pre-built images (docker.io/langfuse/langfuse-worker:3) with no Dockerfile in repo is safe for SaaS deployment but blocks local dev customization; document fallback to building from source if needed.
+
+## 2026-04-09
+- Bun-first monorepos deployed to Docker+Linux CI but developed on Windows need explicit cross-platform testing (Windows runner or WSL2 CI job) to catch path resolution and build tool differences; pinning bun version in Dockerfile to exact tag (not latest) is critical for reproducible deployments.
+
+## 2026-04-09
+- Wildcard workspace dependencies (@onlook/*) in monorepo packages without corresponding `pnpm-workspace.yaml` or explicit peer dependency declarations create silent install-time symbol resolution failures on Windows; enforce root-level workspace configuration and test on target platform before mergin
+
+## 2026-04-09
+- Disabled lint in CI (TODO comment) paired with `--max-warnings 0` enforcement suggests recent linting onboarding; projects in this state should document baseline warning count and explicit re-enablement date to prevent CI drift.
+
+## 2026-04-09
+- Nuxt 3 projects without explicit Dockerfile but deployed to Vercel/Railway should document which platform performs build auto-detection (Vercel Builders, Railway Nixpacks) and ensure CI tests that build scenario locally to catch missing system dependencies early.
+
+## 2026-04-09
+- pnpm workspace projects using extends: [...] and module imports (@nuxt/ui, @formkit auto-animate) should validate lockfile pin format and test `pnpm install` on Windows natively (not WSL2) to catch path resolution or bin shim issues before deployment.
+
+## 2026-04-09
+- Stripe SDK co-existence (stripe@^17.7.0 server + @stripe/stripe-js@^6.1.0 client) with broad semver ranges requires explicit version sync test in CI; recommend matrix test across Stripe SDK versions to catch payment flow regressions.
+
+## 2026-04-09
+- Projects with dual module boundaries (CommonJS entry point + type: module) using 'latest' version pins on ESM-only packages (chalk, inquirer) risk runtime failures on modern Node versions; enforce explicit version constraints and test CommonJS↔ESM interop in CI across the target Node version range (
+
+## 2026-04-09
+- CLI tools spawning external processes (chrome-launcher) on Windows require documented platform-specific prerequisites (Chrome install location, PATH setup) in README and CI matrix testing on Windows runners, not just Linux.
+
+## 2026-04-09
+- Absence of npm audit or supply chain scanning in CI (despite 'latest' pinning) is a red flag for projects handling web archival and library server duties; add `npm audit --audit-level=moderate` to CI workflow and document minimumReleaseAge exclusions if needed.
+
+## 2026-04-09
+- Custom exec.js wrapper invoking shell scripts (scripts/build_only.sh, scripts/parcel.sh) in package.json scripts introduces shell portability risk on Windows; document shebang requirements or migrate to cross-platform Node.js runners (node-glob, node-cross-spawn).

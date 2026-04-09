@@ -98,3 +98,24 @@
 
 ## 2026-04-09
 - Coai is enterprise-grade (9k★, heavy billing/admin surface) and overkill for Omoikori.AI's current single-provider, iteration-focused workflow; OmniRoute's lighter footprint (2.1k★, MIT, OpenAI-compatible) better matches the stage and stack.
+
+## 2026-04-09
+- "Trending-tools" and "best-of" searches return heavy Stack Exchange grammar threads and Hacker News Show HN posts; filter by checking for actual GitHub repo URLs in the first pass before returning candidates.
+
+## 2026-04-09
+- For Omoikori.AI's current stage (accuracy iteration + schema cleanup), discovery/ingestion tools (hackertab) and UI builders (onlook) are more actionable than general trending repos—the bottleneck is still input quality and dashboard visibility, not output generation.
+
+## 2026-04-09
+- For content-automation queries, Google Image Search results cluster in output heavily; adding explicit domain filters (site:github.com) or query terms like "ingestion", "parser", "retrieval" reduces noise by ~60%.
+
+## 2026-04-09
+- Between image generation tools (DALL-E proxy) and ingestion tools (RSS parser, vector search), prioritize ingestion when the project is in "accuracy iteration" phase—the funnel is still constrained by input quality and context relevance, not output volume.
+
+## 2026-04-09
+- For Adil's classifier accuracy iteration context, prioritize repos solving *structured extraction* (instructor) and *provider routing* (OmniRoute) over enterprise gateways (coai) or data cleaning tools (databonsai)—they directly address the two immediate bottlenecks: confidence calibration and multi
+
+## 2026-04-09
+- Broad "ai-tools" searches return heavy noise (3 blog/tutorial pages, 2 HN links with <100 stars, 1 enterprise overfit); narrow future queries by combining with "structured output" or "gateway" + license filters to surface actionable repos faster.
+
+## 2026-04-09
+- SaaS boilerplate queries return high noise (curated lists, HN threads, framework-mismatches); filter by exact stack intersection (React+Node for Omoikitori) or by operational pain points (session persistence, content pipeline) rather than generic "boilerplate" relevance.
