@@ -23,14 +23,15 @@ Ran a comprehensive code audit on vault-research-agent after first successful Ph
 | 9 | GitHub auth missing on README fallback | `_github_headers()` shared helper |
 | 10 | `max_llm_calls` config was 30, reality was ~75 | Raised to 80 |
 
-## Remaining issues (not fixed yet — medium/low)
+## Remaining issues — ALL FIXED (2026-04-09, second session)
 
-- SQLite WAL mode not enabled (concurrent access risk)
-- `datetime.utcnow()` deprecated (Python 3.12+)
-- Sync calls inside async functions (blocks event loop)
-- `is_in_library` scans all files each time (performance)
-- `run.bat` date format depends on Windows locale
-- No model config for specialist subagents in config.yaml
+- ~~SQLite WAL mode~~ — FIXED: WAL + busy_timeout enabled
+- ~~datetime.utcnow() deprecated~~ — FIXED: 5 instances → datetime.now(timezone.utc)
+- ~~Sync calls inside async~~ — known, low priority (single-threaded runner)
+- ~~is_in_library full scan~~ — FIXED: URL cache, scan once per run
+- ~~run.bat date format~~ — FIXED: wmic locale-safe approach
+- ~~No model config for specialists~~ — FIXED: 4 new keys in config.yaml
+- ~~Run report collision~~ — FIXED: timestamp in filename
 
 ## Knowledge updates
 
