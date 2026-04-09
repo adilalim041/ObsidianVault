@@ -74,3 +74,27 @@
 
 ## 2026-04-09
 - For Adil's "content-automation" + classifier accuracy context, repos solving *input ingestion and context retrieval* (rss-parser, RAG frameworks) are more actionable than *output generation* (video upload, image restoration) or *distribution* (multi-platform schedulers)—the bottleneck is funnel clas
+
+## 2026-04-09
+- For WhatsApp-CRM searches, filter aggressively for repos that solve *session persistence* and *message routing* (the actual operational friction in Baileys-based bots), not just "has OpenAI integration"—bot frameworks without session management lessons are less actionable than working reference impl
+
+## 2026-04-09
+- WhatsApp bot repos with 300+ stars tend to be battle-tested on Railway/Heroku ephemeral filesystems; prioritize these over lower-star alternatives when session storage is a known gotcha in the project.
+
+## 2026-04-09
+- Job board listing pages (Indeed, LinkedIn, Glassdoor) are consistently returned in "devops-tools" queries; they clutter results and should be filtered by domain exclusion (*.indeed.com, *.linkedin.com, *.glassdoor.com) or by checking for GitHub URL presence in the first pass.
+
+## 2026-04-09
+- Between pg-boss and graphile/worker, pg-boss is more relevant here because Adil already uses Supabase (PostgreSQL) and has felt friction with the dead `ai_queue` table pattern—pg-boss solves that exact pain. graphile/worker is also solid (MIT, 2.2k★) but adds a separate daemon process, increasing de
+
+## 2026-04-09
+- Searches for "trending-tools" or broad developer discovery queries return heavy GitHub homepage/login noise and linguistics discussion pages; narrow by adding `CLI` or `extension` to the query to filter for actual tools.
+
+## 2026-04-09
+- Both candidates here are *discovery* or *ingestion* tools (browser extension, CLI scraper) rather than *output* or *distribution* tools—this aligns with the accumulated pattern that Adil's bottleneck is input/context retrieval for the classifier, not publishing downstream.
+
+## 2026-04-09
+- For Adil's classifier accuracy work, repos solving *structured output extraction* (instructor) and *provider routing* (OmniRoute) are more immediately actionable than general prompt engineering frameworks—they directly unblock the two bottlenecks: confidence calibration and multi-model iteration.
+
+## 2026-04-09
+- Coai is enterprise-grade (9k★, heavy billing/admin surface) and overkill for Omoikori.AI's current single-provider, iteration-focused workflow; OmniRoute's lighter footprint (2.1k★, MIT, OpenAI-compatible) better matches the stage and stack.

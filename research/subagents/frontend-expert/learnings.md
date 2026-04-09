@@ -51,3 +51,27 @@
 
 ## 2026-04-09
 - React Router's useRouteLoaderData provides a clean pattern for sharing server-loaded data between parent and child components without prop drilling.
+
+## 2026-04-09
+- Next.js server actions with Zod validation and Clerk auth checks provide a robust pattern for type-safe API endpoints with proper authorization.
+
+## 2026-04-09
+- The provider composition pattern in Next.js layout.tsx (ThemeProvider > TooltipProvider > AppProviders) creates a clean hierarchy for context management.
+
+## 2026-04-09
+- Using Geist font variables with cn() utility for consistent font loading is becoming a standard pattern in modern Next.js apps.
+
+## 2026-04-09
+- Legacy JavaScript libraries using UMD builds and browser globals (window.RSSParser) are fundamentally incompatible with modern component-based frontend architectures and should be distinguished from actual frontend framework code during analysis.
+
+## 2026-04-09
+- Streamlit applications use Python for both backend and frontend logic, creating web UIs through Python APIs rather than JavaScript frameworks - they're incompatible with modern React/Vue/Svelte component architectures.
+
+## 2026-04-09
+- The lazyImport utility pattern with named exports allows for clean code splitting while maintaining TypeScript safety and avoiding default import issues.
+
+## 2026-04-09
+- Using CSS custom properties (--user-cards-count) set via React for dynamic styling creates a bridge between component state and CSS without full CSS-in-JS adoption.
+
+## 2026-04-09
+- The MutationObserver pattern for watching DOM class changes (like 'dndState') provides a way to react to global state changes that exist outside React's component tree.

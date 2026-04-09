@@ -36,3 +36,9 @@
 
 ## 2026-04-09
 - Speech-to-speech pipelines offer transformative UX for AI assistants but require careful dependency management due to heavy ML requirements and platform-specific audio processing limitations.
+
+## 2026-04-09
+- RSS parsing libraries with unknown licenses create commercial adoption risks that often favor hosted API alternatives despite higher operational costs.
+
+## 2026-04-09
+- Developer news aggregation tools provide excellent multi-source API patterns that transfer directly to commercial news platforms, but version conflicts in query libraries can create adoption friction that requires immediate resolution.

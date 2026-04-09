@@ -132,3 +132,69 @@
 
 ## 2026-04-09
 - Supervision interval patterns with graceful shutdown (waiting for #maintaining state) ensure clean resource cleanup in long-running processes.
+
+## 2026-04-09
+- Bun's native HTTP server with manual URL pattern matching can be an alternative to Express for simple APIs, avoiding framework overhead.
+
+## 2026-04-09
+- CORS origin validation combining static allowed origins with dynamic local domain detection (isLocalDomain) provides flexible development/production security.
+
+## 2026-04-09
+- Cloudflare R2 can be accessed using AWS SDK by setting a custom endpoint, providing S3-compatible object storage.
+
+## 2026-04-09
+- Temporary project creation with guaranteed cleanup in finally blocks is essential for file processing APIs that create filesystem artifacts.
+
+## 2026-04-09
+- Message object extension pattern (attaching reply/react/download methods to message instances) provides clean API for chat bot interactions.
+
+## 2026-04-09
+- WhatsApp bot architecture with automatic reconnection and session persistence shows resilient long-running process patterns for real-time messaging.
+
+## 2026-04-09
+- Command parsing with prefix detection and argument splitting is a common pattern in chat bots that could apply to slash command APIs.
+
+## 2026-04-09
+- WhatsApp bot session management using multi-file auth state with environment variable restoration provides resilient authentication for messaging bots.
+
+## 2026-04-09
+- Plugin architecture with regex command matching and standardized execute() methods enables modular command handling in chat applications.
+
+## 2026-04-09
+- Message serialization layers that normalize different message formats (text, media, interactive responses) into consistent objects simplify bot logic.
+
+## 2026-04-09
+- Dual callback/promise APIs using a maybePromisify utility function enables backward compatibility while supporting modern async patterns.
+
+## 2026-04-09
+- Field mapping systems using array configurations with [source, dest, options] tuples provide flexible data transformation for XML/API parsing.
+
+## 2026-04-09
+- HTTP caching implementation storing ETags and Last-Modified headers in class instance properties enables efficient feed polling with conditional requests.
+
+## 2026-04-09
+- CLI initialization patterns with settings auto-reload toggles (development vs production) provide clean configuration management for complex applications.
+
+## 2026-04-09
+- Click command grouping with separate imported commands (main.add_command(startup_main, "start")) enables modular CLI architecture.
+
+## 2026-04-09
+- Conditional feature initialization based on flags (recreate_kb) with different success messages guides users through multi-step setup processes.
+
+## 2026-04-09
+- Rate limiting decorators combined with availability checks (@available(rate_limit)) provide clean middleware-like functionality for bot command handlers.
+
+## 2026-04-09
+- Context dictionary persistence across handler invocations enables stateful conversation management in event-driven systems.
+
+## 2026-04-09
+- Chainable handler methods that return self enable conversation flow continuation while maintaining clean separation of concerns.
+
+## 2026-04-09
+- React Query hook factory pattern with config spreading (...config, queryKey, queryFn) provides consistent API client architecture across features.
+
+## 2026-04-09
+- Query key versioning with arrays like ['ad', 'v2', keywords] enables cache invalidation strategies and API evolution tracking.
+
+## 2026-04-09
+- Firebase Auth integration with custom logout flows that clear multiple stores and trigger analytics demonstrates multi-system state management patterns.

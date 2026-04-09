@@ -54,3 +54,18 @@
 
 ## 2026-04-09
 - Native module projects on Windows dev machines require explicit guidance (build tools, Python, WSL2 fallback) in README or CI setup docs; silence on platform-specific build requirements leads to "works on my Mac" failures cascading to new contributors.
+
+## 2026-04-09
+- Monorepo packages with fake npm stubs (fs, ffmpeg, micro) paired with system-level requirements in nixpacks.toml create silent Railway deployment failures; always audit dependencies for zero-functionality shims and cross-reference against CI/Dockerfile declarations.
+
+## 2026-04-09
+- React version drift (19.0.0 vs 19.1.0) between backend and web in an SSR monorepo causes hydration mismatches; enforce single React version at workspace root via pnpm-workspace.yaml + lockfile pinning, not per-package.
+
+## 2026-04-09
+- Missing explicit Dockerfile for Node monorepos using Prisma + system binaries (ffmpeg) on Railway means Nixpacks auto-detection becomes a
+
+## 2026-04-09
+- Python projects with native C++ modules (TgCrypto, ormar[sqlite]) paired with broad semver ranges (>=3, >=23) and no Dockerfile + no Python test CI are high-risk for Railway deployments; Nixpacks auto-detection silently fails on missing system headers—always add explicit Dockerfile + matrix CI (Linu
+
+## 2026-04-09
+- Multi-package Python workspaces with version skew (root >=3.8 vs. subproject >=3.10) and interdependent constraint management (ormar enforcing pydantic version)

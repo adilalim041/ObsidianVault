@@ -153,3 +153,81 @@
 
 ## 2026-04-09
 - Version-specific feature comparison tables (0.2.x vs 0.3.x) with dated improvements (Agent optimization, multimodal support) are a strong "active maintenance" signal even without explicit commit timestamps.
+
+## 2026-04-09
+- Personal hobby/utility projects from 2022 with minimal README content, no license statements, and single-author copyright notices are strong indicators of potentially abandoned or unmaintained status; absence of dependency lists and version pinning compounds this concern.
+
+## 2026-04-09
+- WhatsApp automation bots built on third-party libraries (Baileys) may face operational fragility due to WhatsApp API changes; lack of maintenance documentation is a red flag for such projects.
+
+## 2026-04-09
+- READMEs lacking explicit license statements in the body should be marked "unknown" rather than inferred; license verification requires checking the repo root LICENSE file separately.
+
+## 2026-04-09
+- Breaking change documentation (v2→v3 migration) in a README signals ongoing active maintenance and user-facing API evolution, even without explicit commit timestamps.
+
+## 2026-04-09
+- Browser-specific limitations (CORS proxy requirement) should be flagged as a red flag rather than a highlight, as they represent deployment friction.
+
+## 2026-04-09
+- WhatsApp bot READMEs with heavy legal disclaimers about account bans and explicit warnings against reuse/resale are typically educational/hobby projects with elevated risk profiles; absence of license, version history, and install commands combined with poor documentation quality are strong indicato
+
+## 2026-04-09
+- README quality (spelling, grammar, clarity) can be a proxy signal for project maturity; fragmented deployment instructions without versioned steps or troubleshooting suggest rushed or community-driven documentation rather than professional maintenance.
+
+## 2026-04-09
+- Browser extension READMEs describing "daily updated content" and new features signal active maintenance even without explicit commit timestamps; these updates imply ongoing backend data refresh and feature deployment cycles.
+
+## 2026-04-09
+- READMEs that reference `.env` file requirements without documenting the required variables are a usability red flag—developers may face setup friction without external documentation.
+
+## 2026-04-09
+- Multi-source data aggregation projects (news/content feeds) inherently signal maintenance activity through their content freshness claims, even when git commit history is not visible in the README.
+
+## 2026-04-09
+- READMEs showcasing unified multi-provider LLM gateway patterns with explicit provider fallback examples (OpenAI, Anthropic, Google, Ollama, Groq in one snippet) signal active ecosystem maintenance and broad provider support consciousness.
+
+## 2026-04-09
+- Comparison tables juxtaposing "Without Library" vs "With Library" code patterns are strong UX/documentation signals but do not themselves indicate commit recency; cross-reference repo root for license and commit timestamps.
+
+## 2026-04-09
+- README sections mentioning sibling/related official projects from the same organization (e.g., PydanticAI from Pydantic team) indicate mature ecosystem thinking but may reflect documentation freshness rather than core project activity.
+
+## 2026-04-09
+- Component registry/marketplace READMEs may omit traditional code examples and instead showcase architectural patterns, curation workflows, and publish-to-discover journeys; absence of example_code does not indicate quality concerns but reflects the platform-as-service nature.
+
+## 2026-04-09
+- Projects with personal curator review (one human explicitly named) signal active maintenance even without commit timestamps, and when coupled with clear submission states (on_review → posted → featured), indicate structured quality control.
+
+## 2026-04-09
+- README truncation mid-sentence (Sandpack section) is a red flag worth calling out separately from missing install commands, as it may indicate incomplete documentation extraction or version drift.
+
+## 2026-04-09
+- Multi-provider API gateway READMEs with 20+ language localizations and references to high-star dependent projects (100K+ stars) signal mature, actively-maintained ecosystem projects targeting enterprise adoption, even without explicit commit timestamps.
+
+## 2026-04-09
+- Truncated README content lacking installation commands and code examples should be flagged as "unknown" rather than inferred; full documentation typically resides in separate sections or repo root that weren't provided.
+
+## 2026-04-09
+- Enterprise/commercial API gateway projects (especially those advertising cloud versions alongside open-source) often omit license statements in the README itself; license status requires separate verification of the repo root LICENSE file.
+
+## 2026-04-09
+- Chinese-language READMEs for bot/framework projects may omit explicit license declarations; license verification requires separate repo-root file inspection.
+
+## 2026-04-09
+- Frameworks advertising "待实现" (pending implementation) for major backend providers signal active development with architectural roadmap but also partial feature completion—this is a maintenance signal rather than a red flag when paired with mature core features.
+
+## 2026-04-09
+- READMEs emphasizing meta-programming, AST-based linting, and pre-startup error detection signal framework maturity and developer experience focus beyond basic functionality.
+
+## 2026-04-09
+- Chinese-language ML/LLM project READMEs frequently omit explicit license statements in the README itself and rely on repo-root LICENSE files; this is common for mature community projects from Hugging Face ecosystem contributors.
+
+## 2026-04-09
+- Version-specific feature comparison tables (0.2.x vs 0.3.x) with dated capability matrices are strong active maintenance signals; in this case showing Agent stability improvements, multimodal support addition, and new dialogue modes (database, ARXIV, Wolfram).
+
+## 2026-04-09
+- Multi-framework model deployment gateway projects listing extensive feature matrices across Xinference, Ollama, LocalAI, and FastChat with version-specific engine support (GPTQ, GGML, vLLM, TensorRT) signal mature architecture but also potential dependency resolution friction for end users.
+
+## 2026-04-09
+- Truncated README excerpts (mid-sentence cutoffs) should flag install_command and example_code as "unknown" rather than inferred; full documentation verification requires repo-root inspection.

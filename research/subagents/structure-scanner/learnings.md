@@ -117,3 +117,27 @@
 
 ## 2026-04-09
 - Job queue libraries (like pg-boss) with both CLI (src/cli.ts) and library (src/boss.ts) entry points typically expose a dual-interface pattern; the proxy/ package suggests REST-over-HTTP capability was added later as an optional deployment topology—subagents should verify whether the proxy merely wr
+
+## 2026-04-09
+- Minimal Node.js integration projects (WhatsApp + OpenAI bridges) typically use a flat structure with a single entry point (index.js), message abstraction layer (lib/messages.js), and credential file (key.json); lack of tests/infra suggests these are often proof-of-concept or personal automation tool
+
+## 2026-04-09
+- Presence of key.json in repo root is a security anti-pattern; subagents should flag this and recommend .env + .gitignore exclusion before analyzing the actual bot logic.
+
+## 2026-04-09
+- WhatsApp bot repositories (Baileys MD variants) follow a consistent plugin-loader pattern where `index.js` initializes the Baileys socket, `handler.js` routes incoming messages to plugin files, and `config.js` + `.env` manage bot settings/credentials—subagents analyzing these should prioritize verif
+
+## 2026-04-09
+- Presence of both `config.js` and `.env` in a Node.js bot suggests dual-layer configuration (static defaults + runtime secrets); subagents should flag if `.env` is tracked in git and verify that sensitive fields (session tokens, API keys) are never hardcoded in config.js or plugins.
+
+## 2026-04-09
+- Minimal/missing test and infra directories in WhatsApp bot repos is typical for hobby/personal-automation projects; this signals that code quality gates (linting, unit tests, Docker packaging) may not be enforced—subagents should note this when assessing deployment readiness.
+
+## 2026-04-09
+- Python Langchain-based projects with `webui_pages/` directories use Streamlit for frontend; the dual-layer structure (CLI entry + API server + webui) suggests the service supports both programmatic (SDK) and interactive (web) interfaces—subagents should verify that the Streamlit pages are properly i
+
+## 2026-04-09
+- Presence of `.env` at repo root alongside `pyproject.toml` in a monorepo with `libs/` subdirectories indicates shared environment configuration; subagents should check whether `.env` is gitignored and whether each `libs/*/` subdirectory (chatchat-server, python-sdk) has its own dotenv loading logic 
+
+## 2026-04-09
+- NLTK data bundled directly in `chatchat/data/nltk_data/` (cmudict, tokenizers, taggers) suggests heavy NLP preprocessing pipeline; subagents should verify whether this bloats Docker images and whether lazy-loading or external data fetching is feasible for text segmentation/tokenization tasks.

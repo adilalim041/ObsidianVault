@@ -111,3 +111,57 @@
 
 ## 2026-04-09
 - Job queue libraries that include production-ready monitoring dashboards using the same UI stack (React + Tailwind + shadcn/ui) score higher because they provide both infrastructure and reusable frontend patterns.
+
+## 2026-04-09
+- WhatsApp bot repositories often contain valuable messaging patterns but are frequently blocked by deployment infrastructure mismatches (native modules, missing Docker configs) and unclear licensing for commercial API integration use cases.
+
+## 2026-04-09
+- Repositories that explicitly warn against using them as a base ('Don't Use This Script As Your Bot Base') should be treated as reference-only, regardless of technical merit.
+
+## 2026-04-09
+- RSS parsing libraries with built-in HTTP caching (ETag/If-Modified-Since) score highly for Railway deployments because they prevent redundant API calls across ephemeral container restarts.
+
+## 2026-04-09
+- Unknown license status is particularly problematic for AI service integrations where commercial API usage costs make license compliance critical for business operations.
+
+## 2026-04-09
+- WhatsApp bot repositories often have unknown license status which blocks direct adoption, but their message processing patterns (extended message objects, command routing) can be valuable for extraction into commercial CRM applications.
+
+## 2026-04-09
+- Baileys-based WhatsApp integrations frequently have security anti-patterns like disabled TLS verification and plaintext credential storage that make them unsuitable for production use without significant refactoring.
+
+## 2026-04-09
+- Python libraries with excellent architectural patterns for LLM reliability often score lower due to language barriers, but their retry logic and provider abstraction patterns remain valuable for translation to Node.js equivalents.
+
+## 2026-04-09
+- Unknown license status from commercial AI tooling companies (567-labs) is particularly high-risk for content generation businesses where legal compliance around AI tooling is critical.
+
+## 2026-04-09
+- Browser extensions with multi-source aggregation often contain valuable API client patterns and caching strategies that can be extracted for backend microservices, even when the UI components aren't directly reusable.
+
+## 2026-04-09
+- Version mismatches in the TanStack Query ecosystem (v4 vs v5) are becoming common in actively maintained projects and should be flagged as immediate adoption risks requiring dependency resolution.
+
+## 2026-04-09
+- Python version upper bounds (<3.12) are immediate blockers regardless of code quality, especially when combined with unknown license status from organizations that likely have complex licensing.
+
+## 2026-04-09
+- RAG applications with 80+ ML dependencies and native bindings (OpenCV, FAISS, ONNX) are fundamentally incompatible with Node.js web service architectures, requiring pattern extraction rather than integration.
+
+## 2026-04-09
+- Component registries with unknown license status are particularly risky for commercial applications because the UI patterns being extracted are the primary value proposition, making fair use arguments weaker than for infrastructure code.
+
+## 2026-04-09
+- React version mismatches within monorepos (19.0.0 vs 19.1.0) indicate poor dependency management and create hydration risks when extracting frontend patterns.
+
+## 2026-04-09
+- Repos with impressive feature claims but no detectable source code in structure analysis should be immediately flagged as documentation-only or incomplete, regardless of stated capabilities.
+
+## 2026-04-09
+- Unknown license status combined with missing source code suggests either a private/commercial product masquerading as open source or an incomplete repository publish.
+
+## 2026-04-09
+- Cross-platform messaging frameworks often contain valuable abstraction patterns (unified bot interfaces, rate limiting, context management) that can be extracted without adopting the full dependency stack, but unknown license status becomes critical for commercial AI services.
+
+## 2026-04-09
+- Native C++ modules in Python chat bot frameworks (like TgCrypto for Telegram encryption) create Railway deployment risks that outweigh the benefits of direct adoption, making pattern extraction the safer approach.
