@@ -5,6 +5,13 @@
 ---
 
 ## 2026-04-10
+- Brain API response shapes are endpoint-specific: `{channel_profiles:[...]}`, `{playbooks:[...]}`, `{niches:[...]}` — never assume `{data:[...]}`. Always normalize with `data?.channel_profiles || data?.data || (Array.isArray(data) ? data : [])`.
+- When a form creates two linked resources (channel_profile + playbook) in sequence, handle errors per-step and show the user which step failed. Do NOT wrap both POSTs in a single try/catch that hides partial success.
+- The eye toggle pattern for password inputs (useState showToken + absolute-positioned icon button inside relative div) is cleaner than using a separate wrapper component in small forms.
+- Pure CSS funnel visualizations using width-percentage divs with Tailwind color utilities are a clean substitute for charting libraries (D3/Recharts) in dashboards where heavy deps cause issues. Intensity-based background opacity (bg-accent/20, /10) maps numeric data to visual heat without any JS charting overhead.
+- Run report markdown parsing: regex-based section extraction (`## Niches searched\n([\s\S]*?)(?:\n##|$)`) is reliable for structured markdown files with consistent formatting. Always handle both filename formats (with and without time component) for robustness.
+
+## 2026-04-10
 - When using `replace_all: true` in bulk string replacements, be careful that generic words (like "learnings") may appear in unexpected places like prose sentences, causing partial replacements that produce mixed-language text. Always scope bulk replacements to exact contexts or do them one by one.
 - Parsing timestamps from structured filenames (e.g., `2026-04-09_2230.md`) is more reliable than parsing file metadata via API, since GitHub Contents API doesn't expose file creation/modification timestamps.
 

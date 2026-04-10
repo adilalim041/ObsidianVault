@@ -56,7 +56,8 @@
 
 ## Priority Order
 
-1. Research Dashboard — visual, portfolio piece, useful daily
+1. **Research Map Visualization** — interactive graph/map showing explored areas of GitHub. Nodes = repos, clusters = niches, size = score, color = analysis depth. Like a "map of discovered territory". Use react-force-graph or vis-network (NOT Recharts — crashes). Needs separate page with proper error boundary.
 2. Expert Consultants — makes coding sessions smarter
 3. Recommender subagent — automated project-specific advice
-4. New sources — more data volume
+4. New sources (Reddit, YouTube) — more data volume
+5. Dashboard polish — better candidate detail pages, startup ideas section

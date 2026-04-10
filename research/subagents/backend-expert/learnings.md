@@ -5,6 +5,8 @@
 ---
 
 ## 2026-04-10
+- Per-channel credential resolution pattern: store `ig_user_id`/`ig_access_token` on a channel_profiles row; the publisher fetches them via a dedicated `/credentials` endpoint before the batch, then passes a `creds` object through the call chain (`graphRequest`, `getMediaInfo`, etc.) with `resolveCredentials(creds)` falling back to env vars when null. One Brain query per publish batch, not per article.
+- `maybeSingle()` in Supabase JS SDK returns `null` in `.data` when no row is found — use it instead of `.single()` which throws on missing rows.
 - Dual-backend pattern (Supabase prod / SQLite local fallback) via `_use_supabase()` flag keeps the same public API for both backends — callers are backend-agnostic.
 - Supabase Python SDK `.delete()` requires at least one filter; use `.gt("id", 0)` as a safe "delete all rows" workaround when no WHERE clause is needed (e.g. `clear_global_context`).
 - `maybe_single()` in supabase-py returns `None` in `.data` when no row is found — cleaner than `.single()` which raises on missing rows.
