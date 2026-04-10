@@ -306,3 +306,54 @@
 
 ## 2026-04-10
 - Enterprise AI tools with one-line installation (npx commands) that abstract complex multi-database connectivity represent a new category of infrastructure-as-a-service that could inspire wrapper businesses for non-technical teams.
+
+## 2026-04-10
+- Unknown license status from individual developers creates higher risk than from organizations, as there's less likelihood of retroactive clarification and the entire component architecture becomes legally questionable rather than just extractable utility patterns.
+
+## 2026-04-10
+- High-quality terminal libraries demonstrate excellent architectural patterns (protocols, lazy singletons, type safety) but have limited startup potential as infrastructure tools rather than end-user products.
+
+## 2026-04-10
+- Unknown license status from popular repositories with 47k+ stars still creates critical legal risk that significantly impacts commercial viability scoring, regardless of code quality or community adoption.
+
+## 2026-04-10
+- FFmpeg handbooks and media processing documentation can inspire SaaS wrapper businesses, as video automation represents a complex technical domain that many non-technical users need simplified access to.
+
+## 2026-04-10
+- Documentation repositories with unknown licenses still face commercial adoption barriers even when the content could inspire rather than be directly copied, as the boundary between inspiration and derivative work becomes legally ambiguous.
+
+## 2026-04-10
+- Abandoned projects with unknown licenses should be rejected regardless of technical merit, as the combination of legal uncertainty and maintenance burden outweighs any code extraction value.
+
+## 2026-04-10
+- Legacy React class component libraries from 2017-2019 era often demonstrate excellent architectural patterns but require complete modernization (hooks, TypeScript, updated build tools) making them poor adoption candidates despite educational value.
+
+## 2026-04-10
+- Microsoft-backed AI utilities with unknown licenses still pose significant legal risk despite institutional credibility, as enterprise adoption requires clear licensing terms regardless of code quality.
+
+## 2026-04-10
+- Document-to-Markdown conversion represents a growing market need as businesses increasingly want to process legacy documents through LLM pipelines, creating opportunities for wrapper services.
+
+## 2026-04-10
+- Live chat systems with commercial use restrictions in their README create immediate legal blocking issues for entrepreneurs, regardless of technical completeness or market demand for such solutions.
+
+## 2026-04-10
+- Go projects with dependencies from 2019-2020 should be flagged as high security risk, as the Go ecosystem moved rapidly during this period and older packages often have unpatched vulnerabilities.
+
+## 2026-04-10
+- Production-ready RAG systems with comprehensive multimodal support represent high-value SaaS opportunities, but unknown license status from technical projects can completely negate commercial potential regardless of code quality.
+
+## 2026-04-10
+- The combination of lightweight installation (pip) with full production deployment (Docker) in AI infrastructure tools shows strong product-market fit for both prototyping and scaling use cases.
+
+## 2026-04-10
+- Chrome extensions with sophisticated AI agent architectures can demonstrate excellent technical patterns but face commercialization challenges due to platform constraints and app store distribution limitations compared to web-based SaaS alternatives.
+
+## 2026-04-10
+- Unknown license status becomes especially problematic for complete AI applications rather than utility libraries, as the core business logic and multi-agent orchestration patterns cannot be safely extracted or commercialized without clear licensing terms.
+
+## 2026-04-10
+- Production-ready AI agent templates with comprehensive monitoring and evaluation frameworks represent high-value startup opportunities, even when licensing uncertainty limits direct forking potential.
+
+## 2026-04-10
+- LangGraph-based agent architectures with built-in observability (Langfuse + Prometheus) are becoming the new standard for production LLM applications, creating opportunities for managed service offerings.

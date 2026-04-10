@@ -412,3 +412,75 @@
 
 ## 2026-04-10
 - String formatting SQL queries (`.format()`) creates SQL injection vulnerabilities - parameterized queries or ORMs should always be used instead.
+
+## 2026-04-10
+- Reducer pattern with immutable state updates and typed actions provides a scalable approach for managing complex component state that could be adapted for frontend state management in full-stack applications.
+
+## 2026-04-10
+- Theme inheritance using deep merge allows for flexible customization while maintaining base theme defaults, a pattern applicable to any configuration system.
+
+## 2026-04-10
+- CLI-based server startup with cobra command structure and daemon mode support provides a professional deployment pattern for self-hosted applications.
+
+## 2026-04-10
+- Background service initialization pattern (queue, cleanup, WebSocket server) before HTTP server start ensures all dependencies are ready before accepting requests.
+
+## 2026-04-10
+- Pipe-delimited SQL file execution for installation/migration shows a simple approach to schema setup, though parameterized queries would be safer.
+
+## 2026-04-10
+- Environment-specific .env file loading with priority fallback (.env.{env}.local → .env.{env} → .env.local → .env) provides flexible configuration management across deployment environments.
+
+## 2026-04-10
+- Structured logging with contextual field parameters instead of string interpolation enables better log aggregation and filtering in production monitoring.
+
+## 2026-04-10
+- Custom FastAPI validation exception handler can transform Pydantic validation errors into user-friendly API responses while maintaining detailed server-side logging.
+
+## 2026-04-10
+- AsyncContextManager lifespan pattern in FastAPI provides clean application startup/shutdown hooks for resource initialization and cleanup.
+
+## 2026-04-10
+- Rate limiting per endpoint with configurable limits dictionary allows fine-grained control over API usage patterns without hardcoding limits.
+
+## 2026-04-10
+- Zod schema validation with transform functions for boolean strings enables flexible AI output parsing while maintaining type safety.
+
+## 2026-04-10
+- Security guardrails system with threat detection, content sanitization, and strictness modes provides a robust defense against prompt injection and sensitive data exposure.
+
+## 2026-04-10
+- Agent-based architecture with context objects, event managers, and message history provides a scalable pattern for complex AI workflows that could be adapted for API-based AI services.
+
+## 2026-04-10
+- Action builder pattern with schema-driven validation allows for dynamic tool registration while maintaining type safety and input validation.
+
+## 2026-04-10
+- Modular client SDK architecture with domain-separated sub-clients (users, documents, conversations) provides clean separation of concerns and better maintainability than monolithic API clients.
+
+## 2026-04-10
+- Automatic JWT refresh with callback hooks for token persistence allows SDKs to handle auth transparently while letting applications control how tokens are stored (localStorage, cookies, etc.).
+
+## 2026-04-10
+- Environment-aware conditional imports using `typeof window === "undefined"` enables universal TypeScript packages that work in both Node.js and browser environments.
+
+## 2026-04-10
+- Protocol-based architecture with abstract base classes enables extensible plugin systems while maintaining type safety and clear contracts.
+
+## 2026-04-10
+- Lazy singleton initialization with global state and None checks provides clean API surface while deferring expensive object creation until needed.
+
+## 2026-04-10
+- TYPE_CHECKING conditional imports solve circular dependency issues in complex Python codebases without runtime overhead.
+
+## 2026-04-10
+- NamedTuple for immutable data containers provides better performance and safety than regular tuples while maintaining structural typing benefits.
+
+## 2026-04-10
+- Structured result dataclasses with optional error fields provide a clean alternative to exception-based error handling for service layer responses.
+
+## 2026-04-10
+- Multiple transport layer support (STDIO, SSE, HTTP) in a single server codebase enables flexible deployment options without code duplication.
+
+## 2026-04-10
+- MCP (Model Context Protocol) framework pattern shows how to build AI tool servers with standardized interfaces for LLM integration.

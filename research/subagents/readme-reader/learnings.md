@@ -402,3 +402,69 @@
 
 ## 2026-04-10
 - Offline-first infrastructure projects (on-device inference, encrypted storage, no cloud) should explicitly flag device compatibility and operational overhead as red flags even with strong features, since deployment complexity varies by hardware target.
+
+## 2026-04-10
+- Table component READMEs that emphasize "out of the box" features and include funding/donation links (OpenCollective, sponsorship) signal active maintenance even without explicit commit timestamps or version info in the README text.
+
+## 2026-04-10
+- README sections describing feature lists (sorting, pagination, expandable rows) without corresponding code examples should flag `example_code` as "unknown" rather than inferring from feature descriptions.
+
+## 2026-04-10
+- Projects with explicit "no longer under active development" + "seeking new maintainers" statements in the README opening should be flagged as `stale` activity status, even if examples and features are documented—this is a direct maintenance signal from the original author.
+
+## 2026-04-10
+- README truncation mid-sentence combined with missing license statement should flag both as separate red flags: extraction incompleteness and legal/licensing uncertainty.
+
+## 2026-04-10
+- README truncation mid-sentence combined with missing license statement (even when the project is clearly open-source and widely-used) should flag both `license` as "unknown" and truncation as a red flag—extraction completeness and legal clarity are separate concerns.
+
+## 2026-04-10
+- High-signal active maintenance indicators for mature libraries include: extensive multi-language README translations, documented Jupyter integration, cross-platform support claims, and referenced community content (blogs, videos, tweets)—even without explicit commit dates in the README excerpt.
+
+## 2026-04-10
+- Technical cheatsheet/handbook READMEs that are truncated mid-command mid-sentence should flag both extraction incompleteness and potential source document issues rather than inferring project state; absence of license statement + truncation = both fields warrant "unknown" designations.
+
+## 2026-04-10
+- Handbook-style repositories without commit timestamps, contributor lists, or maintenance indicators in the README should report `last_activity_hint` as "unknown" rather than inferring staleness from lack of visible signals.
+
+## 2026-04-10
+- Production-grade RAG/AI infrastructure projects often omit explicit license statements in README despite claiming open-source status; always flag as "unknown" and do not assume license type without a LICENSE file reference.
+
+## 2026-04-10
+- AI systems requiring external API keys (OpenAI, Claude, etc.) for core functionality should flag API dependency as a red flag even when local-first alternatives exist, since cost and rate limits become operational concerns.
+
+## 2026-04-10
+- Multi-SDK projects (Python + JavaScript) with both lightweight and containerized deployment paths signal mature, production-focused development even without explicit commit timestamps in the README.
+
+## 2026-04-10
+- Projects with explicit "personal use only / no commercial use" clauses combined with missing license statements should be flagged as having unclear legal status—these are often indicators of restrictive intent despite open-source code availability.
+
+## 2026-04-10
+- Multiple paragraphs of legal disclaimers and misuse prohibitions in a README (viruses, fraud, gambling, etc.) suggest either prior misuse incidents or defensive legal positioning; flag as a pattern worth noting for future similar projects.
+
+## 2026-04-10
+- Outdated dependency requirements (MySQL ≥5.5 from 2009) without modern minimum versions warrant flagging as potential legacy/unmaintained code, even without explicit deprecation statements.
+
+## 2026-04-10
+- README truncation mid-list (optional dependencies section ending with `[pdf, docx, pptx]`) combined with missing explicit license statement should flag both as extraction incompleteness and legal uncertainty separately; Microsoft-backed projects should not assume Apache 2.0 without explicit statemen
+
+## 2026-04-10
+- Major version breaking changes (0.0.1→0.1.0) documented prominently in README are upgrade red flags warranting explicit mention, especially signature changes to core methods like `convert_stream()` that affect plugin maintainers.
+
+## 2026-04-10
+- MCP server integration mention in tip/note section is a strong active maintenance signal for LLM-adjacent tools, indicating recent feature additions and ecosystem alignment with Claude/LLM tooling.
+
+## 2026-04-10
+- Project templates that claim "production-ready" status but omit explicit license statements combined with README truncation should flag both legal uncertainty and extraction incompleteness; the absence of a LICENSE field or SPDX identifier in the README warrants "unknown" even if the repo may have a
+
+## 2026-04-10
+- AI/LLM application templates with integrated observability stacks (Langfuse + Prometheus + Grafana) and external model dependencies (GPT-4o, GPT-5) should flag operational complexity and cost exposure as red flags, not just as neutral feature descriptions.
+
+## 2026-04-10
+- Browser extension READMEs that explicitly state "100% Free" but require users to supply external API keys should flag API cost exposure as a red flag, even though the extension itself is free—the TCO is hidden in third-party provider pricing.
+
+## 2026-04-10
+- Chrome extension READMEs with truncation in the final section (Upgrading, Configuration) combined with missing license statement warrant flagging both extraction incompleteness and legal uncertainty; README truncation may indicate the source document itself is incomplete or was cut off during extrac
+
+## 2026-04-10
+- Multi-browser support statements with explicit "Not Supported" sections (Firefox, Safari, Chromium variants) should be noted as deployment red flags even when the primary platforms (Chrome, Edge) are well-supported, as user environment compatibility is narrower than typical web projects.

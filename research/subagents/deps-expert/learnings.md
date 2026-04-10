@@ -138,3 +138,24 @@
 
 ## 2026-04-10
 - ESLint 7.32.0 (EOL 2021) in a modern monorepo (Turbo 2.x, TypeScript 5.5) signals linting toolchain drift; enforce ESLint major version bounds in root package.json and run `eslint --fix` in CI to catch compatibility regressions with TS rules.
+
+## 2026-04-10
+- Go projects with `go.mod` outdate Node/Python stacks faster; libraries released 2019–2020 are now 4–5 years old and often EOL—enforce annual major-version audits in go.mod CI gates (e.g., `go list -u -m all | grep -i indirect` in CI matrix).
+
+## 2026-04-10
+- Hardcoded credentials in committed JSON config files (mysql.json, database.yml) are a systemic issue across monorepos; enforce pre-commit hook scanning for secrets patterns and migrate to 12-factor env-var injection before production deployment.
+
+## 2026-04-10
+- Go projects without `go mod verify` + `go vet` in CI hide supply chain issues silently; add baseline gates: `go mod tidy --check`, `go mod verify`, and `go vet ./...` as non-negotiable CI jobs.
+
+## 2026-04-10
+- Documentation-only repositories (handbooks, wikis, guides) without build tooling have zero dependency risk; confirm project scope (docs vs. application) before requesting dependency audit.
+
+## 2026-04-10
+- Hybrid monorepos (Python + JavaScript) with no CI/CD matrix testing hide platform-specific failures in native extension packages (bcrypt, psycopg-binary, pillow-heif)—Windows 10 developers encounter unpacker failures post-clone; enforce `npm install && pip install -e .[core]` validation in windows-l
+
+## 2026-04-10
+- Pinned transitive versions (==0.47.0, ==0.34.0, ==0.19) in production dependencies signal either vendor lock-in (hatchet-sdk) or unstable upstreams (tokenizers, unstructured-client); audit annual major-version updates and replace hardcoded pins with `>=X.Y.Z,<(X+1).0.0` ranges unless API stability i
+
+## 2026-04-10
+- @jest/globals in production dependencies (not devDependencies) is a categorization error; audit package.json scripts and test config to separate test-only packages (jest, ts-jest, @types/jest) from runtime deps; misclassification inflates bundle size and obscures security audit scope.

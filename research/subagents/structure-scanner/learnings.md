@@ -276,3 +276,75 @@
 
 ## 2026-04-10
 - Presence of `.gitignore`, `LICENSE`, `README.md`, and `pyproject.toml` with no CI/CD files suggests a manually-maintained PyPI package; check the README for installation instructions and example usage to understand the intended deployment model.
+
+## 2026-04-10
+- React component libraries follow a src/lib dual-folder pattern where src/ contains authored TypeScript/JSX and lib/ contains the transpiled npm distribution; prioritize examining src/ for logic and patterns, then lib/ to understand the build output. The presence of .d.ts files alongside lib/ confirm
+
+## 2026-04-10
+- npm packages with docs/ folders containing example apps (docs/src/examples/*.js, docs/src/app.js) are typically published libraries demonstrating usage; these example files are valuable for understanding the API surface and intended patterns, not backend code.
+
+## 2026-04-10
+- Unclassified files like .codeclimate.yml, .travis.yml, and .npmignore should be reclassified as infra (CI/CD and publishing config) rather than left unclassified, as they reveal deployment and quality gates.
+
+## 2026-04-10
+- React component libraries with `.storybook/` configuration and `__tests__/` co-located with components indicate Storybook-driven component development; prioritize examining the root component (DataTable.tsx), its type definitions, and .storybook/main.ts to understand the component API surface and do
+
+## 2026-04-10
+- Unclassified files like `.babelrc.json`, `.npmignore`, `.prettierrc.js`, and `.editorconfig` are actually infra files that reveal transpilation strategy, publishing filters, and code style enforcement—these should be reclassified from "unclassified" to "infra" as they define the library's build and 
+
+## 2026-04-10
+- The presence of `tableReducer.ts` and `useColumns.ts` hooks alongside UI components suggests this library uses React Hooks + Redux-like state management patterns for complex table state; these should be prioritized as "backend" logic files even though they're co-located with components, as they defi
+
+## 2026-04-10
+- Go monoliths with `/static` folders containing HTML templates and vendored frontend libraries (Element UI, Layui) are server-rendered or static-served SPAs; prioritize examining `cmd/server.go` for HTTP route registration and middleware setup to understand how frontend assets and API endpoints are w
+
+## 2026-04-10
+- Presence of `config/GeoLite2-City.mmdb` (MaxMind geo IP database) alongside `tools/geo_test.go` and controller modules suggests this live chat system includes location-based features (user geolocation, analytics); this should be noted as a key business logic pattern.
+
+## 2026-04-10
+- Go projects without CI/CD configuration files (no `.travis.yml`, `.github/workflows/`, `Dockerfile`) but with `cmd/install.go` entry point suggest manual deployment or single-binary distribution model; inspect `cmd/install.go` to understand setup/initialization logic.
+
+## 2026-04-10
+- Unclassified files like `.gitignore`, `LICENSE`, `go.sum`, and data assets (`import.sql`, `.mmdb` files) should be reclassified: `.gitignore` and `LICENSE` → infra, `go.sum` → config, `import.sql` → data/docs, `.mmdb` → config/data—this cleanup prevents losing important deployment and initialization
+
+## 2026-04-10
+- Documentation-only repositories (no code, no config, only `.md` files and LICENSE) should be classified as `docs` architecture with `entry_point: README.md`; these represent educational handbooks, guides, or specifications rather than software projects, and should not have frontend/backend/config ca
+
+## 2026-04-10
+- The presence of a structured `docs/` folder with topic subdirectories (`fundamentals/`, `advanced/`, `audio/`, `automation/`) indicates a progressive learning path; prioritize README.md as the entry point and the `fundamentals/` files as the foundational layer for understanding the handbook's scope.
+
+## 2026-04-10
+- Chrome extensions with autonomous agent systems should prioritize examining the executor orchestrator (executor.ts), agent base classes (base.ts), action schema definitions (schemas.ts), and IPC message service (service.ts) to understand the control flow, capability boundaries, and inter-process com
+
+## 2026-04-10
+- Monorepo Chrome extensions with separate frontend (options/content UI) and backend (background service worker) should classify files in `chrome-extension/src/background/` as backend business logic even though they're TypeScript, as they represent autonomous agents, not UI rendering—this distinction 
+
+## 2026-04-10
+- Unclassified files like `.env.example`, `.eslintrc`, `.npmrc`, `.nvmrc`, `.husky/pre-commit`, and `.gitattributes` belong in infra category as they define build environment, code style enforcement, package management, and pre-commit hooks—not leaving them unclassified prevents losing deployment and 
+
+## 2026-04-10
+- Monorepo Python + TypeScript projects with `/deployment/k8s/` folder containing Helm values, Kustomize configurations, and externalsecret manifests indicate Kubernetes-native infrastructure-as-code; prioritize examining `pyproject.toml` for Python service dependencies, `helm-values_*.yaml` for micro
+
+## 2026-04-10
+- SDK-focused monorepos with `/js/sdk/src/v3/clients/` subdirectories suggest versioned API client libraries; the presence of parallel test suites (`__tests__/*IntegrationSuperUser.test.ts` vs `IntegrationUser.test.ts`) indicates role-based API testing strategy—prioritize examining `baseClient.ts` (au
+
+## 2026-04-10
+- Presence of `.env.example`, `deployment/k8s/kustomizations/helm-values_*.yaml`, and `Dockerfile` without explicit `.github/workflows/*.yml` file mention suggests this repo uses GitHub Actions (inferred from `.github/actions/` folder structure) with reusable custom actions for environment setup; insp
+
+## 2026-04-10
+- Pure Python libraries like `rich` should prioritize examining `__init__.py` for public API surface, followed by core module files (console.py, text.py, table.py) rather than following typical backend patterns; the entry point reveals what consumers actually import.
+
+## 2026-04-10
+- Unclassified files in this Python library context include `.coveragerc`, `.readthedocs.yml`, and `asv.conf.json` which belong in infra as they define testing coverage thresholds, documentation build config, and benchmarking parameters—critical for CI/CD and release quality gates.
+
+## 2026-04-10
+- Logo assets (`logo.ai`, `logo.svg`, `logo.txt`) in a documentation-heavy library should be reclassified to docs rather than left unclassified, as they support README rendering and branding across documentation sites.
+
+## 2026-04-10
+- Python monorepos with parallel `packages/*/pyproject.toml` structures indicate multi-package library distributions; prioritize examining the root package's `__init__.py` for public API surface first, then plugin architecture files (`_plugin.py`) to understand extensibility patterns.
+
+## 2026-04-10
+- Presence of both `Dockerfile` and `packages/*/Dockerfile` in a Python monorepo suggests selective containerization—the root Dockerfile likely serves all packages while package-specific Dockerfiles indicate standalone service deployments (e.g., MCP server); inspect both to identify deployment topolog
+
+## 2026-04-10
+- Files like `py.typed`, `.pre-commit-config.yaml`, and `.devcontainer/devcontainer.json` should be classified as infra rather than left unclassified, as they define type checking compliance, code style gates, and reproducible development environments—critical for monorepo standards enforcement.

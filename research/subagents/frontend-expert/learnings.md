@@ -220,3 +220,39 @@
 
 ## 2026-04-10
 - Jetpack Compose's state management patterns (mutableStateOf, collectAsState) are conceptually similar to React hooks but use different APIs and aren't transferable.
+
+## 2026-04-10
+- The double `.bind(this).bind(this)` pattern in class components is a bug that creates unnecessary function calls and should be avoided.
+
+## 2026-04-10
+- Legacy React datasheet libraries often implement complex keyboard navigation and clipboard operations that could be extracted as custom hooks in modern React.
+
+## 2026-04-10
+- The `attributesRenderer` prop pattern allows external customization of DOM attributes, similar to modern render prop patterns but applied to HTML attributes.
+
+## 2026-04-10
+- The compound component pattern (Table, Head, Body, Row, Column as separate components) provides excellent composition flexibility and could be adapted to Tailwind-based table components.
+
+## 2026-04-10
+- Using a reducer pattern with custom actions (SortAction, AllRowsAction, SingleRowAction) provides type-safe state management for complex component interactions.
+
+## 2026-04-10
+- The generic component pattern `DataTable<T>` with typed props `TableProps<T>` shows how to build reusable components that work with any data shape while maintaining type safety.
+
+## 2026-04-10
+- Vue 2.x + Element UI projects often use CDN loading instead of bundled dependencies, making them incompatible with modern React toolchains but their CSS patterns can sometimes be adapted to Tailwind equivalents.
+
+## 2026-04-10
+- Floating chat widget CSS patterns with fixed positioning, tooltips, and notification badges are framework-agnostic and can be recreated in any modern CSS framework.
+
+## 2026-04-10
+- The `matchMedia` API with change event listeners provides a robust way to detect and respond to system dark mode changes, superior to static detection methods.
+
+## 2026-04-10
+- Browser extension projects often use HOC patterns like `withErrorBoundary` and `withSuspense` to handle the unique error conditions that can occur in extension contexts.
+
+## 2026-04-10
+- The conditional background pattern switching between image backgrounds in light mode and solid colors in dark mode (`bg-[url('/bg.jpg')] bg-cover` vs `bg-slate-900`) creates polished theme transitions.
+
+## 2026-04-10
+- Using external link detection in tab handlers (`if (tabId === 'help') { window.open(...) }`) prevents navigation state changes for documentation links while maintaining the tab interface pattern.

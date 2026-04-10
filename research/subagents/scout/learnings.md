@@ -155,3 +155,21 @@
 
 ## 2026-04-10
 - BoundaryML/baml (7951★) is overweight for Omoikitori's current scope (single-provider workflow with Zod already in place); save it for multi-provider routing or TypeScript-to-Python bridging phases.
+
+## 2026-04-10
+- Show HN entries with 100–400 points cluster into two buckets: (1) niche infrastructure (pipecat, R2R) with direct operational relevance despite lower absolute star counts, and (2) generic AI assistant templates (AnythingLLM, DenchClaw, off-grid-mobile) that are feature-rich but misaligned with Omoik
+
+## 2026-04-10
+- Haystack (24k stars) remains high-relevance because it solves the exact next-phase problem (confidence calibration, routing logic, memory design) even though it's overweight for single-provider workflows; it should be revisited when multi-provider or multi-model routing becomes the bottleneck.
+
+## 2026-04-10
+- Devops-infra searches return heavy noise (blog posts, generic boilerplate); filter future batches by requiring **explicit operational pain point intersection** (session persistence, schema safety, CI/CD reproducibility) rather than relying on star count alone.
+
+## 2026-04-10
+- Show HN posts at <100 points in this batch (vhpc, keep) are too early-stage or niche (HPC, alerting) and don't map to Omoikitori's immediate bottlenecks; prioritize infrastructure repos that solve *current blocking problems* (stateful session management, safe schema iteration) over generic DevOps to
+
+## 2026-04-10
+- WhatsApp-bot searches continue to return high noise (generic XLICON variants); prioritize repos that demonstrate **session persistence patterns** (Supabase-backed or explicit state management) over feature-rich bot templates—Wa-OpenAI's lower star count (518) is offset by direct stack intersection (
+
+## 2026-04-10
+- When evaluating infrastructure tools (goflylivechat), prefer **working solutions with multi-tenant session handling** over single-provider bots, especially during schema-cleanup phases—this shifts focus from prompt accuracy to operational durability.
