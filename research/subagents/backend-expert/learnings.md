@@ -4,6 +4,11 @@
 
 ---
 
+## 2026-04-10
+- Dual-backend pattern (Supabase prod / SQLite local fallback) via `_use_supabase()` flag keeps the same public API for both backends — callers are backend-agnostic.
+- Supabase Python SDK `.delete()` requires at least one filter; use `.gt("id", 0)` as a safe "delete all rows" workaround when no WHERE clause is needed (e.g. `clear_global_context`).
+- `maybe_single()` in supabase-py returns `None` in `.data` when no row is found — cleaner than `.single()` which raises on missing rows.
+
 ## 2026-04-09
 - RSS parser libraries often implement HTTP caching with ETags and If-Modified-Since headers to avoid re-parsing unchanged feeds.
 
@@ -270,3 +275,66 @@
 
 ## 2026-04-09
 - Multiple search engine integration (FlexSearch for full-text, NDX for document indexing, Fuzzy for approximate matching) provides comprehensive search capabilities for different query types and use cases.
+
+## 2026-04-10
+- Validation with error accumulation (collecting all validation errors in an array before reporting) provides better developer experience than failing on first error.
+
+## 2026-04-10
+- Transformation caching with composite cache keys enables efficient reprocessing of expensive operations like file parsing and AST analysis.
+
+## 2026-04-10
+- TypeScript AST parsing with ts-morph library provides more reliable code analysis than regex-based parsing for import/dependency extraction.
+
+## 2026-04-10
+- Adapter pattern with platform-specific worker class extensions enables consistent API across multiple integrations while providing specialized functionality per platform.
+
+## 2026-04-10
+- Multi-tenancy support through callback functions (like getAccessTokenForPage) provides flexible token management without hardcoding credentials in the adapter configuration.
+
+## 2026-04-10
+- Namespaced debug logging with platform-specific loggers (botkit:slack, botkit:facebook) enables granular debugging control across different service integrations.
+
+## 2026-04-10
+- Stream-based HTML parsing with early binary file detection prevents unnecessary processing and memory issues when scraping unknown URL content types.
+
+## 2026-04-10
+- Configurable response size limits in stream transforms provide protection against memory exhaustion from large responses while maintaining processing flexibility.
+
+## 2026-04-10
+- Error transformation pattern that converts library-specific errors (like got.HTTPError) to standard Error objects with preserved metadata enables cleaner error handling across application boundaries.
+
+## 2026-04-10
+- Two-pass tree building pattern (first pass creates all nodes in Map, second pass establishes parent-child relationships) prevents ordering dependencies when constructing hierarchical data structures.
+
+## 2026-04-10
+- Generic adapter interfaces with SpanAdapter<TDocument, TSpan> enable consistent APIs across different telemetry formats while maintaining type safety for format-specific operations.
+
+## 2026-04-10
+- Nano-timestamp conversion utilities and percentage-based timeline calculations are essential patterns for telemetry visualization and time-series data processing.
+
+## 2026-04-10
+- Retry decorators with specific exception targeting (stamina.retry on ValidationError only) provide more precise failure recovery than blanket retry logic.
+
+## 2026-04-10
+- Stream response validation pattern that accumulates chunks and validates the final complete response enables real-time streaming with schema guarantees.
+
+## 2026-04-10
+- Namespaced logger creation using class name (f"ollama_instructor.{self.__class__.__name__}") provides better debugging granularity in library code.
+
+## 2026-04-10
+- Async context managers with automatic resource cleanup (`async with Sandbox.ephemeral()`) provide excellent patterns for managing ephemeral compute resources like VMs or containers.
+
+## 2026-04-10
+- Sequential connection phase followed by concurrent execution phase improves debugging experience while maintaining performance for batch operations.
+
+## 2026-04-10
+- Fluent API design with method chaining (Image.android().apk_install()) creates intuitive configuration interfaces for complex resource provisioning.
+
+## 2026-04-10
+- Multi-provider database abstraction using Enum types enables type-safe database driver selection while maintaining consistent interfaces across different backend implementations.
+
+## 2026-04-10
+- Environment variable configuration with fallback defaults for database index names provides deployment flexibility while maintaining sensible development defaults.
+
+## 2026-04-10
+- TYPE_CHECKING conditional imports prevent circular dependencies and improve startup performance by only importing type annotations during static analysis.

@@ -174,3 +174,54 @@
 
 ## 2026-04-09
 - High unclassified file count (36 of 68) with names like `.npmignore`, `.npmrelease`, `.npm.release`, and `exec.js` indicates npm tooling cruft and shell utilities; verify these against .gitignore to avoid analyzing artifacts as source code.
+
+## 2026-04-10
+- Monorepos with `.changeset/` directory + `.github/changeset-version.js` use automated changelog and version management; subagents analyzing release workflows should prioritize .changeset/config.json and release.yml to understand the publish pipeline and coordination between multiple apps/ packages.
+
+## 2026-04-10
+- High proportion of .mdx and .tsx files in apps/docs/content/ and apps/docs/src/components/preview/ indicates this is a component library or design system documentation site—these are frontend showcase files, not test files; classification should filter by file naming patterns (*.test.ts, *.spec.ts, 
+
+## 2026-04-10
+- Absence of src/, server/, or backend directories combined with 484 docs files and only 2 config files suggests a static-site or framework-driven documentation site with no independent backend; deployment likely depends on the frontend build system (Vercel, Netlify, or npm run build).
+
+## 2026-04-10
+- Monorepo with Lerna orchestration using `lerna.json` + per-package `package.json` and `tsconfig.json` files; adapter pattern where each platform (Facebook, Slack, Twilio, Hangouts, Webex, Web) is isolated in its own package with shared `botworker.ts` interface and adapter base class.
+
+## 2026-04-10
+- Generator-based scaffolding (Yeoman) in `packages/generator-botkit/` produces boilerplate bot files (bot.js, sample features) suggesting developers use this tool to initialize new bot projects; subagents reviewing onboarding should examine generator templates and index.js logic.
+
+## 2026-04-10
+- Frontend appears minimal (mostly adapter-specific embed CSS and web client) rather than a dashboard/UI; primary deliverable is backend SDK/adapters; web client is for embedding chat widgets, not a standalone app.
+
+## 2026-04-10
+- Test coverage is substantial (54 test files across all packages) using `.tests.js` naming pattern (not `.test.ts`); suggests compiled JavaScript tests despite TypeScript source—subagents should check build configuration in tsconfig.json files for test output handling.
+
+## 2026-04-10
+- Travis CI configuration present (`.travis.yml`) alongside minimal GitHub infra files; this predates GitHub Actions workflows, suggesting older CI/CD pipeline—check if migration to Actions is in progress by looking for workflow files.
+
+## 2026-04-10
+- Minimal 8-file repositories with `index.js`, `test.js`, `package.json`, and `readme.md` are typically utility/helper libraries published to npm; the presence of `.npmignore` confirms distribution focus—subagents should examine `package.json` for `main` and `exports` fields to understand module entry
+
+## 2026-04-10
+- When a repo has zero frontend/infra/docs files beyond a single README and only one test file, prioritize examining `index.js` for API surface and `package.json` for dependency analysis (npm package size, peer dependencies, Node version constraints) to assess code quality and maintainability.
+
+## 2026-04-10
+- Monorepos with packages/data, packages/types, and packages/{demo-app,saas} pattern indicate a published SDK + multiple consumer applications; the adapter pattern (Langfuse + OpenTelemetry) in packages/data/src/ suggests the core IP is data transformation/normalization rather than UI—subagents should
+
+## 2026-04-10
+- Firebase config presence (.firebaserc, firebase.json) combined with Vite and Next.js frontends indicates deployment likely uses Firebase Hosting for static assets and Vercel/other platforms for Next.js SaaS; check CI workflow for distinct build/deploy stages per package.
+
+## 2026-04-10
+- JSON agent config files (quo_tav_agent.json, rag_earnings_agent.json, smol_deep_research_agent.json) in demo-app/src/data/ are not test fixtures but sample agent definitions used by the demo UI to showcase the visualization layer—these should be inspected to understand the expected trace/span schema
+
+## 2026-04-10
+- Repos with 339 docs files and only 2 backend demo files are likely developer platforms or SDKs with heavy documentation/blog focus rather than traditional applications; prioritize examining pyproject.toml for dependency/version info, GitHub workflows for deployment patterns, and blog files to unders
+
+## 2026-04-10
+- Multiple workflow files targeting different containers (cd-container-cuabot.yml, cd-container-kasm.yml, cd-container-lumier.yml) suggest a platform orchestrating multiple isolated execution environments; cross-reference these with demo/ and examples/ to understand the architecture's multi-target dep
+
+## 2026-04-10
+- Presence of conftest.py files in examples/sandboxes-cli/ alongside test_* files indicates pytest fixtures for parameterized sandbox testing (cloud VMs, local VMs, CDP, containers); this pattern is common for infrastructure-heavy SDKs—check conftest.py first to understand the test harness before exam
+
+## 2026-04-10
+- TypeScript examples (examples/computer-example-ts/) alongside Python backend suggests the primary SDK is Python but language bindings or integration patterns exist; examine package.json exports and tsconfig.json to understand if this is a thin wrapper or full reimplementation.

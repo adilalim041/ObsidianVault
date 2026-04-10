@@ -111,3 +111,21 @@
 
 ## 2026-04-09
 - Custom exec.js wrapper invoking shell scripts (scripts/build_only.sh, scripts/parcel.sh) in package.json scripts introduces shell portability risk on Windows; document shebang requirements or migrate to cross-platform Node.js runners (node-glob, node-cross-spawn).
+
+## 2026-04-10
+- Minimal npm packages without CI pipelines are underestimated security risks; absence of GitHub Actions + npm audit means supply chain vulns silently accumulate—enforce CI as a baseline requirement even for single-purpose libraries.
+
+## 2026-04-10
+- ESM-only dependencies (got@11.8.0, file-type@16.0.0) without explicit `engines.node` in package.json create silent runtime failures on older Node; always pair ESM-only transitive deps with documented minimum Node constraint.
+
+## 2026-04-10
+- Test tooling drift (ava@3.0.0 → 6.x, nyc@15.0.0 → 17.x) undetected without CI; projects should enforce locked test dependency updates in CI matrix testing across Node LTS versions.
+
+## 2026-04-10
+- pnpm monorepos with `workspace:^` intra-package links must validate `pnpm install --frozen-lockfile` on Windows natively (not WSL2) in local dev before committing; CI-only Linux testing masks bin shim and path resolution bugs that surface on Windows.
+
+## 2026-04-10
+- Projects deploying to Firebase Hosting (public storybook + saas SPA) without npm audit or supply chain scanning in CI silently accumulate transitive vulns in dev dependencies (eslint, prettier plugins, vite); add `pnpm audit --audit-level=moderate` as a baseline CI gate for any public-facing artifac
+
+## 2026-04-10
+- Vite 7.0.4 + React 19.1.0 is a cutting-edge pairing released late 2024; absence of Windows runner in CI matrix (only ubuntu-latest) means potential incompatibilities with Adil's Windows 10 setup go undetected—recommend adding `windows-latest` matrix job for build-only validation on pull requests.

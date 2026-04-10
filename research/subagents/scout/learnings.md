@@ -119,3 +119,18 @@
 
 ## 2026-04-09
 - SaaS boilerplate queries return high noise (curated lists, HN threads, framework-mismatches); filter by exact stack intersection (React+Node for Omoikitori) or by operational pain points (session persistence, content pipeline) rather than generic "boilerplate" relevance.
+
+## 2026-04-10
+- WhatsApp-specific tool searches return heavy noise (Chinese Q&A sites, e-commerce listings, liqueur brand results); filter by adding explicit terms like "MCP", "server", "integration", or "API" to surface actual developer repos.
+
+## 2026-04-10
+- The b2b-sdr-agent-template (36★) is low-star but high-context-fit because it solves the exact stack intersection (Node.js, WhatsApp via Baileys pattern, multi-channel memory) that Omoikori.AI is building; relevance > star count for niche multi-channel agents.
+
+## 2026-04-10
+- Observability and tracing tools (openlit, agent-prism) are more immediately actionable than agent frameworks (VoltAgent, agent-squad) when the project is in "accuracy iteration + schema cleanup" phase—the bottleneck is visibility into what the classifier is deciding and why, not orchestration of mul
+
+## 2026-04-10
+- Structured output libraries (ollama-instructor, valai) cluster at <100 stars but have high relevance to confidence calibration and edge-case handling; they should be prioritized over enterprise-grade platforms (RagaAI-Catalyst at 16k stars, which is overkill for a single-provider workflow).
+
+## 2026-04-10
+- Show HN posts and low-star repos in this batch are largely either mobile-specific (SwiftAI), discontinued (semantix), or too early-stage (<100 stars with unclear production readiness)—filter future "ai-tools" searches by requiring either 500+ stars OR explicit relevance to the current pain point (ac

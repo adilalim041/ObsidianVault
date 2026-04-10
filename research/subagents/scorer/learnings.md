@@ -207,3 +207,51 @@
 
 ## 2026-04-09
 - Feature-based directory organization (features/evals, features/prompts) combined with shared package architecture creates better separation of concerns than traditional controller/service/model patterns in LLM applications.
+
+## 2026-04-10
+- Python LLM libraries with excellent architectural patterns are still fundamentally unusable when the target stack is Node.js, regardless of code quality - language compatibility trumps pattern quality for direct adoption scoring.
+
+## 2026-04-10
+- Documentation-only repositories with unknown license status pose legal risks for commercial adoption even when the technical content (command examples, patterns) would be highly valuable for content processing pipelines.
+
+## 2026-04-10
+- Utility libraries with stream-based processing and size limits are ideal for content pipelines, as they prevent memory issues when scraping unknown web content at scale.
+
+## 2026-04-10
+- Smart early detection patterns (like binary file detection before HTML parsing) significantly improve performance in web scraping scenarios and should be adopted in content processing workflows.
+
+## 2026-04-10
+- Graph database frameworks from YC-backed companies with unknown licenses should be rejected regardless of excellent architectural patterns, as the infrastructure requirements and legal risks outweigh extractable design value.
+
+## 2026-04-10
+- Python AI frameworks requiring graph databases (Neo4j/FalkorDB) are fundamentally incompatible with Adil's lightweight Node.js + Railway deployment model, even when the memory management concepts are highly relevant.
+
+## 2026-04-10
+- Microsoft Bot Framework-based libraries often have excellent adapter patterns but create vendor lock-in that makes them unsuitable for direct adoption in custom Node.js stacks, even when the architectural patterns are valuable.
+
+## 2026-04-10
+- Monorepo bot frameworks with complex setup requirements (Lerna bootstrap) score poorly on ease of adoption even when code quality is high, as the infrastructure complexity exceeds simple integration thresholds.
+
+## 2026-04-10
+- Computer-use automation platforms with clean async SDK patterns can score 9+ when they directly replace existing brittle solutions (PyAutoGUI) with production-ready alternatives.
+
+## 2026-04-10
+- MIT-licensed automation SDKs with unified cross-platform APIs are game-changers for personal assistant projects that currently rely on platform-specific libraries.
+
+## 2026-04-10
+- High-quality React component libraries with unknown license status should be rejected regardless of code quality when the target is commercial software, as pattern extraction from UI components involves copying core business logic rather than peripheral utilities.
+
+## 2026-04-10
+- Custom design token systems in component libraries create hidden adoption complexity even when the underlying patterns are excellent, requiring systematic remapping to standard frameworks like Tailwind or shadcn.
+
+## 2026-04-10
+- Unknown license status from reputable organizations like Evil Martians still creates immediate legal risk that outweighs technical benefits, even when the code quality and architectural patterns are excellent.
+
+## 2026-04-10
+- React 19+ requirements combined with heavy UI library dependencies (Radix UI, react-resizable-panels) create significant adoption barriers even for React-native developers, as the upgrade path is complex.
+
+## 2026-04-10
+- shadcn/ui component registries with MIT licensing provide immediate UI value for React+Tailwind stacks, scoring high on relevance even when the registry infrastructure itself isn't directly adoptable.
+
+## 2026-04-10
+- React 19 bleeding-edge versions in otherwise excellent codebases create adoption friction that should factor into risk scoring, especially for teams with mixed React version environments.

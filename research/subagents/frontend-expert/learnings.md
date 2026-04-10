@@ -126,3 +126,39 @@
 
 ## 2026-04-09
 - The URL validation pattern in redirector.html using `new URL()` constructor in a try-catch block is a clean way to validate URLs before processing them in JavaScript.
+
+## 2026-04-10
+- The pattern of conditional provider wrapping based on environment variables (returning just children when conditions aren't met) is cleaner than conditional JSX rendering within the provider.
+
+## 2026-04-10
+- Using `defaults: '2025-11-30'` in PostHog config suggests a feature flag or configuration versioning system that could be useful for gradual rollouts.
+
+## 2026-04-10
+- The `generateStaticParams` pattern using `blocksMetadata.map()` to create all possible route combinations is an efficient static generation approach for content-driven sites.
+
+## 2026-04-10
+- Custom design token naming patterns like `title-50`, `background-soft-400`, and `color-base-100` suggest a systematic approach to color scales that could be adapted to work with Tailwind's numeric scale system.
+
+## 2026-04-10
+- The compound component pattern for Carousel (separate CarouselContent, CarouselItem, CarouselNext, CarouselPrevious) provides better composability than monolithic carousel components.
+
+## 2026-04-10
+- Using react-aria-components alongside custom Tailwind design systems shows how to maintain accessibility while building custom component libraries.
+
+## 2026-04-10
+- The embedded messenger positioning pattern using fixed positioning with bottom transitions creates a smooth slide-up chat widget effect that could be adapted to modern React chat components.
+
+## 2026-04-10
+- Legacy chat UI implementations often use Handlebars for message templating, but this pattern translates well to React component props for message rendering.
+
+## 2026-04-10
+- The typing indicator animation using three spans with CSS animations is a classic pattern that remains effective in modern implementations.
+
+## 2026-04-10
+- The pattern of importing theme CSS from shared UI packages (`@evilmartians/agent-prism-ui/theme.css`) in both Vite and Next.js apps shows how to maintain consistent theming across different framework implementations in a monorepo.
+
+## 2026-04-10
+- Using `openTelemetrySpanAdapter.convertRawDocumentsToSpans()` pattern shows how to create clean data transformation layers when working with complex external data formats like OpenTelemetry traces.
+
+## 2026-04-10
+- The Layout component's sidebar structure with grouped navigation sections (Workspace/Tools) and sticky footer navigation represents a professional dashboard pattern that works well with Tailwind utilities.

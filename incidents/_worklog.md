@@ -11,6 +11,8 @@
 
 ---
 
+`2026-04-10 11:54` | **AbdAdl** | `23ace6b` (main) | feat: migrate Nexus memory from SQLite to Supabase
+
 `2026-04-10 02:06` | **AbdAdl** | `b7fdc5d` (main) | feat: add dashboard link button in vault menu
 
 `2026-04-10 00:58` | **AbdAdl** | `0c354a8` (main) | feat: show last parser run date/time in vault status

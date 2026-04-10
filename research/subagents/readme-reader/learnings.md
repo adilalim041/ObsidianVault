@@ -288,3 +288,60 @@
 
 ## 2026-04-09
 - Comprehensive feature matrices and architectural descriptions (CRM, invoicing, client portal, dynamic builders) without corresponding install steps or working examples are incomplete documentation signals worth flagging separately from normal missing-info patterns.
+
+## 2026-04-10
+- Simple, utility-focused READMEs without timestamps, release notes, or maintenance badges should be marked `last_activity_hint: "unknown"` rather than inferred—absence of activity signals is itself a signal worth preserving honestly.
+
+## 2026-04-10
+- Minimal READMEs for npm packages that omit dependency version constraints, test coverage, or changelog links are reasonable candidates for "unknown" maintenance status even if the code appears stable and functional.
+
+## 2026-04-10
+- Component registry projects that delegate to external tools (shadcn CLI) and hosted previews (blocks.so) should be evaluated on maintained-service signals (live registry availability, CLI compatibility) rather than commit dates alone.
+
+## 2026-04-10
+- README examples showing multiple CLI invocation patterns (both scoped and direct URL) indicate user-friendly documentation and flexibility but don't substitute for last-activity metadata.
+
+## 2026-04-10
+- Single-author personal projects with explicit contact email, issue/discussion support links, and recent major version releases are strong active-maintenance signals even without commit timestamps in the README.
+
+## 2026-04-10
+- Breaking changes explicitly documented in README (version history section) should be flagged as red flags for users upgrading, even if the project is actively maintained.
+
+## 2026-04-10
+- Y Combinator-backed open-source projects with active hiring pages and peer-reviewed publications in README are strong maintenance signals even without commit timestamps; the combination of explicit team investment, published research, and enterprise backing indicates maturity and runway.
+
+## 2026-04-10
+- README truncation mid-sentence (especially in developer tools/features section) should always flag install_command, example_code, and license as "unknown" rather than inferred—this signals incomplete documentation extraction and prevents confident analysis of deployment readiness.
+
+## 2026-04-10
+- Projects positioning themselves as the "open-source engine" behind a commercial platform (Graphiti → Zep) should have license explicitly stated or flagged for checking repo-root LICENSE separately; enterprise partnerships often omit license in README body.
+
+## 2026-04-10
+- Botkit README provides comprehensive monorepo setup instructions (Lerna + TypeScript + multi-package bootstrap) but lacks explicit last commit/activity signals and end-user code examples; Microsoft Bot Framework affiliation is a strong maintenance indicator even without commit timestamps.
+
+## 2026-04-10
+- READMEs with platform adapter matrices that truncate mid-table (Web, Slack, Webex, Hangouts, SMS, Facebook, generator, CMS plugin) should still be analyzed for what's present rather than flagged as truncated—the content provided is complete, just organized as package links rather than traditional do
+
+## 2026-04-10
+- README truncation in component enumeration (mid-sentence at "Native Select") combined with missing license statement should be flagged as extraction incompleteness; this pattern indicates the full README was not provided to the analyzer, preventing full feature and legal assessment.
+
+## 2026-04-10
+- Component library READMEs with CLI-driven installation (`npx @scope/cli init`) and explicit version references (v3) are strong activity signals even without commit timestamps, indicating active maintenance and framework iteration.
+
+## 2026-04-10
+- README truncation mid-sentence (especially in middle of filter chains or command sequences) is a strong extraction red flag; when combined with missing license and no activity timestamps, mark `license` and `last_activity_hint` as "unknown" and explicitly flag the truncation in red_flags rather than
+
+## 2026-04-10
+- Educational/reference repositories (handbooks, cheatsheets) may intentionally omit license statements and have no commit activity signals in the README itself; this is distinct from abandoned projects and should be flagged separately as "documentation repo with unknown maintenance status" rather tha
+
+## 2026-04-10
+- README truncation mid-sentence ("All adapters implement the") combined with missing license statement should flag both `license` and the truncation in `red_flags` as documentation extraction issues; Evil Martians backing and live demo/storybook links are strong active maintenance signals even withou
+
+## 2026-04-10
+- Commercial AI agent platforms with cloud infrastructure backends (cua.ai) often embed licensing complexity (AGPL-3.0 optional dependencies) in their optional feature sets; this should be flagged separately from core MIT licensing to warn commercial users about conditional license obligations.
+
+## 2026-04-10
+- Conference-driven launch signals (ClawCon mention) combined with active community infrastructure (Discord, GitHub Issues) and ongoing feature roadmaps ("soon" features) are strong maintained-status indicators even without explicit commit timestamps in the README.
+
+## 2026-04-10
+- Multi-runtime sandboxing platforms that abstract away platform complexity (QEMU, Apple Virtualization.Framework, cloud) should have setup complexity flagged as a red flag despite good API documentation, as operational overhead varies significantly by deployment target.
