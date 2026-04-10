@@ -162,3 +162,54 @@
 
 ## 2026-04-10
 - The Layout component's sidebar structure with grouped navigation sections (Workspace/Tools) and sticky footer navigation represents a professional dashboard pattern that works well with Tailwind utilities.
+
+## 2026-04-10
+- The ComponentConfig pattern with fields, defaultProps, and render functions creates a powerful way to define configurable components that could be adapted for any component library system.
+
+## 2026-04-10
+- The hydration-safe pattern using useState(false) + useEffect(() => setIsClient(true)) prevents SSR mismatches when accessing browser APIs like window.location.
+
+## 2026-04-10
+- The `refAutoReset(markRaw(IconCopy), 3000)` pattern in Vue provides automatic icon switching with timeout that could be adapted to React with useState + useEffect + setTimeout for copy feedback UX.
+
+## 2026-04-10
+- The Tauri event listening pattern with `listen("event-name", callback)` in onMounted shows how to handle cross-process communication in desktop apps, which could be adapted for Electron or other desktop frameworks.
+
+## 2026-04-10
+- Using `markRaw()` around icon components in Vue prevents reactivity overhead for static assets, similar to how React.memo or useMemo can optimize icon rendering.
+
+## 2026-04-10
+- The table slot pattern `<template #registered_at="{ item }">` for customizing cell rendering is equivalent to React's render props or children-as-function patterns for flexible table components.
+
+## 2026-04-10
+- The PageBuilder component's `componentMap` pattern with `resolveComponent()` creates a clean dynamic component system that could be adapted to React using dynamic imports or component registries.
+
+## 2026-04-10
+- Vue's `defineShortcuts` composable for keyboard shortcuts (meta_k handler) shows a clean pattern that could be replicated in React with custom hooks using addEventListener.
+
+## 2026-04-10
+- The CSS custom properties injection pattern in `useHead()` provides runtime theming that's more flexible than static Tailwind configurations.
+
+## 2026-04-10
+- The GlobalSearch component's validator function on collections prop demonstrates type-safe runtime validation that could be adapted to React with PropTypes or runtime schema validation.
+
+## 2026-04-10
+- Hugo template partials with conditional rendering ({{ if .Site.Params.versions }}) provide a clean way to handle optional UI components that could inspire conditional rendering patterns in React components.
+
+## 2026-04-10
+- The version dropdown's path manipulation logic for deep-linking across versions demonstrates a useful pattern for maintaining navigation context when switching between different app versions.
+
+## 2026-04-10
+- The environment variable fallback pattern `env[key] || apiKeys[key] || undefined` provides a clean hierarchy for API key management across server/client boundaries.
+
+## 2026-04-10
+- Using `useCallback` with form submission handlers that depend on input state prevents unnecessary re-renders while maintaining proper dependency arrays.
+
+## 2026-04-10
+- The conditional layout pattern switching between welcome state and chat state (`messages.length === 0 ? <Welcome/> : <ChatView/>`) creates clean UX transitions for chat applications.
+
+## 2026-04-10
+- When analyzing repositories, check file extensions first - .kt files indicate Android/Kotlin code, not web frontend code.
+
+## 2026-04-10
+- Jetpack Compose's state management patterns (mutableStateOf, collectAsState) are conceptually similar to React hooks but use different APIs and aren't transferable.

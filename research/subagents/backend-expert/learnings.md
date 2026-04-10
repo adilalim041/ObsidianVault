@@ -338,3 +338,75 @@
 
 ## 2026-04-10
 - TYPE_CHECKING conditional imports prevent circular dependencies and improve startup performance by only importing type annotations during static analysis.
+
+## 2026-04-10
+- Generic type constraints with default fallbacks (UserConfig extends Config = Config) enable flexible APIs while maintaining type safety and backwards compatibility.
+
+## 2026-04-10
+- Progress tracking pattern using optional callback functions (onResolveStart/onResolveEnd) provides clean observability hooks without coupling core logic to monitoring concerns.
+
+## 2026-04-10
+- Concurrent async processing with Promise.all for independent operations (resolving slots and zones separately) maximizes performance in tree-walking data transformation scenarios.
+
+## 2026-04-10
+- WhatsApp bot architecture using Baileys library demonstrates event-driven message processing with command parsing patterns that could inspire chat-like features in web applications.
+
+## 2026-04-10
+- Session persistence pattern using periodic file writes (setInterval + writeToFile) provides simple durability for stateful applications without database complexity.
+
+## 2026-04-10
+- Message serialization with method chaining (m.reply, m.react, m.download) creates intuitive APIs for interactive messaging systems.
+
+## 2026-04-10
+- Tracing instrumentation with selective parameter skipping (#[tracing::instrument(skip(state))]) provides comprehensive observability while protecting sensitive data from logs.
+
+## 2026-04-10
+- CancellationToken pattern enables coordinated graceful shutdown across multiple async components (server, UI, background tasks).
+
+## 2026-04-10
+- Cross-platform path resolution that matches framework conventions (following Tauri's desktop path approach) ensures consistent user experience across operating systems.
+
+## 2026-04-10
+- OTP-based device registration with hashed auth keys provides a secure alternative to traditional session-based authentication for desktop applications.
+
+## 2026-04-10
+- Entity mapping with URL pattern replacement (`:slug`, `:id`) provides a clean way to generate frontend routes from backend data structures.
+
+## 2026-04-10
+- Directus SDK with typed schemas offers a CMS-agnostic backend pattern that could be adapted for other headless CMS integrations alongside Supabase.
+
+## 2026-04-10
+- Stripe webhook event filtering using a `relevantEvents` array prevents unnecessary processing and improves webhook handler performance.
+
+## 2026-04-10
+- Environment variable interpolation with default values using ${VAR:default} syntax in YAML configs provides flexible deployment configuration without breaking local development.
+
+## 2026-04-10
+- Resource manager pattern that centralizes access to all application resources (tools, auth, embeddings) through a single interface simplifies dependency management and testing.
+
+## 2026-04-10
+- Dual serving modes (stdio for protocol clients, HTTP for web UI) in the same application enables both programmatic and human interfaces without code duplication.
+
+## 2026-04-10
+- Handler pattern using template literal types for routing (`${urlType}::${owner}/${repo}`) enables type-safe, hierarchical handler selection with automatic fallbacks.
+
+## 2026-04-10
+- MCP (Model Context Protocol) tool pattern with Zod schema validation and callback structure provides a clean interface for AI-consumable APIs.
+
+## 2026-04-10
+- Rate limiting pattern that tracks GitHub API headers (x-ratelimit-remaining, x-ratelimit-reset) and implements automatic delays prevents API quota exhaustion.
+
+## 2026-04-10
+- Global singleton pattern with lazy initialization using a getter function provides thread-safe access while deferring expensive object creation until needed.
+
+## 2026-04-10
+- TYPE_CHECKING import guards enable comprehensive type hints while avoiding circular dependencies and runtime import costs.
+
+## 2026-04-10
+- Protocol-based architecture allows for extensible plugin systems where components implement specific interfaces without tight coupling to concrete classes.
+
+## 2026-04-10
+- Bundled SQLite reference databases in packages can provide offline lookup capabilities, but require secure query building to avoid SQL injection.
+
+## 2026-04-10
+- String formatting SQL queries (`.format()`) creates SQL injection vulnerabilities - parameterized queries or ORMs should always be used instead.

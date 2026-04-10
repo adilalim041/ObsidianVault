@@ -129,3 +129,12 @@
 
 ## 2026-04-10
 - Vite 7.0.4 + React 19.1.0 is a cutting-edge pairing released late 2024; absence of Windows runner in CI matrix (only ubuntu-latest) means potential incompatibilities with Adil's Windows 10 setup go undetected—recommend adding `windows-latest` matrix job for build-only validation on pull requests.
+
+## 2026-04-10
+- Monorepo projects using Yarn 1.x + Turbo/Lerna without npm audit or Windows CI matrix testing hide supply chain vulns and platform-specific shell script failures (publish.sh, smoke.mjs); add yarn audit gates and cross-platform matrix jobs even for internal tooling workflows.
+
+## 2026-04-10
+- Next.js 16 + React 19 (late 2024) + Puppeteer headless browser for E2E tests requires explicit Windows runner validation in CI; absence of windows-latest matrix job means smoke test failures on developer machines (Windows 10) surface post-merge, not pre-commit.
+
+## 2026-04-10
+- ESLint 7.32.0 (EOL 2021) in a modern monorepo (Turbo 2.x, TypeScript 5.5) signals linting toolchain drift; enforce ESLint major version bounds in root package.json and run `eslint --fix` in CI to catch compatibility regressions with TS rules.

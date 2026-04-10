@@ -134,3 +134,24 @@
 
 ## 2026-04-10
 - Show HN posts and low-star repos in this batch are largely either mobile-specific (SwiftAI), discontinued (semantix), or too early-stage (<100 stars with unclear production readiness)—filter future "ai-tools" searches by requiring either 500+ stars OR explicit relevance to the current pain point (ac
+
+## 2026-04-10
+- WhatsApp-specific tool searches continue to return heavy noise (XLICON, ELITE-PRO are feature-rich bots but not relevant to Adil's accuracy-iteration phase); prioritize repos that solve infrastructure pain points (session persistence, multi-channel routing, MCP patterns) over generic bot templates.
+
+## 2026-04-10
+- The b2b-sdr-agent-template remains high-relevance despite 36★ because it solves the exact operational problem Omoikitori faces (stateful multi-channel memory + classifier routing); star count is a poor signal for niche agent stacks—context fit > popularity for this domain.
+
+## 2026-04-10
+- SaaS boilerplate searches continue to return heavy noise (Open University pages, HN threads, keyboard repos); filter future runs by requiring either **explicit stack intersection** (Nuxt/React/Node) **OR** operational relevance to current bottleneck (session persistence, schema cleanup, multi-channe
+
+## 2026-04-10
+- The Telegram bot repo (331★) is lower-star but higher-context-fit than enterprise ERP tools because it directly addresses Omoikitori's immediate pain: multi-channel message routing + stateful session management across platform redeploys—prioritize this pattern over generic CRM/boilerplate relevance.
+
+## 2026-04-10
+- For accuracy iteration phases, prioritize *validation* (ollama-instructor, valai) and *observability* (openlit) over prompt engineering tools (YiVal, Pipelex)—the funnel is constrained by confidence calibration and debugging classifier decisions, not by orchestration or prompt optimization.
+
+## 2026-04-10
+- Show HN posts and <50★ repos in this batch (SwiftAI, extractor, spelltest, rag-demystified, ArchGW) are either platform-mismatched (mobile, generic docs), too early-stage, or solved problems; filter future "ai-tools" batches by requiring explicit stack intersection (Node/TypeScript) + current pain p
+
+## 2026-04-10
+- BoundaryML/baml (7951★) is overweight for Omoikitori's current scope (single-provider workflow with Zod already in place); save it for multi-provider routing or TypeScript-to-Python bridging phases.

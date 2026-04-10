@@ -225,3 +225,54 @@
 
 ## 2026-04-10
 - TypeScript examples (examples/computer-example-ts/) alongside Python backend suggests the primary SDK is Python but language bindings or integration patterns exist; examine package.json exports and tsconfig.json to understand if this is a thin wrapper or full reimplementation.
+
+## 2026-04-10
+- Puck is a visual page builder SDK with a clear separation: `packages/core/` contains the reusable editor component and data transformation logic, while `apps/demo/` and `apps/docs/` are consumer applications—the core IP lies in the data layer (`flatten-data.ts`, `insert.ts`, `resolve-all-data.ts`) w
+
+## 2026-04-10
+- The presence of `[...puckPath]` catch-all route in Next.js alongside separate `/custom-ui/` and `/rsc/` pages suggests the demo showcases multiple editor integration patterns (dynamic routing, custom UI composition, React Server Components); subagents should examine these page variants to understand
+
+## 2026-04-10
+- With 17 test files concentrated in `__tests__/` directories and snapshot testing for the main Puck component, this library prioritizes data transformation correctness over UI coverage—focus on `insert-component.spec.tsx`, `move-component.spec.tsx`, and `resolve-all-data.spec.tsx` to understand immut
+
+## 2026-04-10
+- Repos with ≤10 files and no test directory are typically prototype bots or CLI wrappers; prioritize examining the entry point and any auxiliary service files (sansekai.js pattern) to understand orchestration logic, then cross-reference package.json dependencies to infer the external API integrations
+
+## 2026-04-10
+- Presence of `key.json` in a minimal repo suggests credential injection via local file rather than environment variables—check if this is gitignored and document the expected schema (API keys, phone numbers, auth tokens) for security auditing.
+
+## 2026-04-10
+- Nuxt 3 applications with Directus CMS integration are becoming common; the presence of `.directus/run-scripts/` indicates custom Directus automation hooks (calculate-invoice.ts, handle-trigger.js, validate-schema.js)—prioritize examining these scripts and docker-compose.yaml to understand the CMS ex
+
+## 2026-04-10
+- Layered Nuxt architecture (layers/portal, layers/proposals) suggests feature-based modularization; subagents should examine nuxt.config.ts and each layer's app.vue to understand how layers are composed and whether they have isolated stores, middleware, or API routes.
+
+## 2026-04-10
+- Unclassified files (109) in this repo are predominantly Directus automation scripts, Nuxt layer configurations, and utility functions—the initial classifier may have struggled with `.directus/run-scripts/` pattern; these should be reclassified as backend/infra depending on whether they're database h
+
+## 2026-04-10
+- Repositories with embedded documentation examples (docs/en/*/package.json, docs/en/*/requirements.txt) alongside a primary language (Go) are typically CLI tools or SDKs with polyglot support; classify example configs as docs, not backend dependencies.
+
+## 2026-04-10
+- .ci/*.cloudbuild.yaml files with language-specific test variants (go.integration, js.integration, py.integration) indicate the repo validates code generation or multi-language code paths; prioritize examining the corresponding cmd/ entry points and generator.go to understand the code generation logi
+
+## 2026-04-10
+- Hugo static site configuration (.hugo/ directory with its own go.mod) suggests the docs build system is itself a Go application; examine .hugo/go.mod and .hugo/package.json to understand whether docs are built with custom Hugo modules or standard Hugo + Node.js plugins.
+
+## 2026-04-10
+- Repositories with `.react-router/types/` generated directories and `vite.config.ts` indicate React Router v7+ with Vite; prioritize examining `app/root.tsx` and route files (`app/routes/**/*.tsx`) as entry points rather than traditional index files, and check `vite.config.ts` for server API proxying
+
+## 2026-04-10
+- Pluggable handler patterns (`repoHandlers/{Default,Generic,ReactRouter,Threejs}RepoHandler.ts` extending `RepoHandler.ts`) combined with `static-mapping.json` suggest a framework for repository-specific parsing logic; examine the base `RepoHandler` interface and handlers.ts orchestration to understa
+
+## 2026-04-10
+- Presence of `app/chat/ai/providers.server.ts` and `providers.shared.ts` split indicates client-server provider abstraction typical of LLM/AI applications; these files likely contain API key injection, model selection logic, and streaming configuration—critical for understanding security boundaries a
+
+## 2026-04-10
+- `.env.example` without corresponding `.env` in file listing, combined with API key manager components (`api-key-manager.tsx`, `api-keys-provider.tsx`), suggests runtime credential injection rather than build-time secrets—inspect the providers and key manager to understand the credential storage stra
+
+## 2026-04-10
+- Minimal Python libraries with embedded data files (SQLite, JSON, CSV) often hide significant logic in the `__init__.py` entry point; prioritize examining that file for class definitions, data loading patterns, and API surface before diving into dependencies.
+
+## 2026-04-10
+- Presence of `.gitignore`, `LICENSE`, `README.md`, and `pyproject.toml` with no CI/CD files suggests a manually-maintained PyPI package; check the README for installation instructions and example usage to understand the intended deployment model.

@@ -345,3 +345,60 @@
 
 ## 2026-04-10
 - Multi-runtime sandboxing platforms that abstract away platform complexity (QEMU, Apple Virtualization.Framework, cloud) should have setup complexity flagged as a red flag despite good API documentation, as operational overhead varies significantly by deployment target.
+
+## 2026-04-10
+- Active community infrastructure (Discord, GitHub issues, awesome-puck repo, discovery calls) combined with multiple framework recipes and a live demo are strong signals of ongoing maintenance even without explicit commit timestamps in README.
+
+## 2026-04-10
+- README truncation mid-sentence combined with missing license statement should be flagged in red_flags as documentation extraction incompleteness; the presence of extensive translations and linked documentation are strong active maintenance signals even without explicit commit timestamps in the READM
+
+## 2026-04-10
+- Python libraries showing cross-platform support, Jupyter integration, and extensive linked documentation (readthedocs) are strong indicators of active maintenance and community investment regardless of commit recency visible in README.
+
+## 2026-04-10
+- Educational/hobbyist AI integration projects often omit license statements and activity signals; absence of these does not necessarily indicate abandonment, but combined with reverse-engineered library dependencies (Baileys) should flag potential ToS and maintenance risks for users.
+
+## 2026-04-10
+- Enterprise partnership-backed projects (Directus + NuxtLabs) with clear use-case positioning and comprehensive feature enumeration signal active maintenance even when README is truncated and lacks explicit commit timestamps.
+
+## 2026-04-10
+- README truncation mid-sentence during installation/deployment sections is a critical extraction blocker for setup assessment; flag both the missing content and the incomplete instructions separately.
+
+## 2026-04-10
+- News scraping/aggregation packages should flag author disclaimers against production use as a significant red flag, as this indicates known limitations in reliability or legal/stability concerns.
+
+## 2026-04-10
+- Absence of license statement in a well-documented package README (with code examples and API docs) should be flagged separately from truncation—it may indicate deliberate omission rather than incomplete documentation.
+
+## 2026-04-10
+- Packages that explicitly state they work "out of the box" without external dependencies but depend on scraping third-party websites should flag potential fragility from upstream changes as a red flag.
+
+## 2026-04-10
+- API testing tool READMEs often focus on feature matrices and capabilities rather than code examples; truncation mid-sentence in feature enumeration combined with missing license statement should flag both as extraction incompleteness rather than inferring project state from incomplete data.
+
+## 2026-04-10
+- PWA-based web tools with documented cloud sync, teams features, and official documentation links signal active maintenance even without explicit commit timestamps in the README.
+
+## 2026-04-10
+- MCP server READMEs that provide multi-IDE integration instructions (Cursor, Claude Desktop, Windsurf, VSCode) with cloud-hosted backends and privacy-first messaging are strong active maintenance signals even without explicit commit timestamps, especially when truncation occurs mid-configuration bloc
+
+## 2026-04-10
+- Missing explicit license statement combined with README truncation mid-configuration should flag both `license` as "unknown" and truncation in `red_flags`, even when the project claims to be "open-source"—the specific license type must be stated or extracted from LICENSE file.
+
+## 2026-04-10
+- README truncation in the final URL/reference (mid-link) combined with missing license statement should be flagged as extraction incompleteness; when a Google-backed project lacks explicit licensing in README, this warrants an "unknown" designation rather than assuming Apache 2.0.
+
+## 2026-04-10
+- Multi-database platform READMEs that list 20+ supported systems should still be treated factually; avoid over-flagging as "incomplete" when the enumeration is genuinely comprehensive—truncation only applies when a sentence or feature list is cut mid-way.
+
+## 2026-04-10
+- Recent repository renames (genai-toolbox → mcp-toolbox) visible in README are organizational/branding signals, not maintenance red flags, but warrant noting as migration complexity for users with existing clones.
+
+## 2026-04-10
+- Mobile app READMEs with feature matrices, device requirement tables, and in-app store mechanics (rather than CLI/package manager installs) should still be analyzed for activity signals via community channels (Discord, GitHub Issues) and feature roadmap status ("pending" models indicate active develo
+
+## 2026-04-10
+- README truncation mid-sentence at the end combined with missing license statement should flag both extraction incompleteness and legal uncertainty separately; this pattern suggests the full README was provided but the source document itself may be incomplete.
+
+## 2026-04-10
+- Offline-first infrastructure projects (on-device inference, encrypted storage, no cloud) should explicitly flag device compatibility and operational overhead as red flags even with strong features, since deployment complexity varies by hardware target.

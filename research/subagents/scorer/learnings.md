@@ -255,3 +255,54 @@
 
 ## 2026-04-10
 - React 19 bleeding-edge versions in otherwise excellent codebases create adoption friction that should factor into risk scoring, especially for teams with mixed React version environments.
+
+## 2026-04-10
+- Unlicensed WhatsApp bots using reverse-engineered libraries should be rejected regardless of functional completeness, as the legal and ToS violation risks are unacceptable for commercial applications.
+
+## 2026-04-10
+- Node.js projects that include polyfill packages for built-in modules (crypto, fs, util) indicate poor dependency management and should factor into risk assessment.
+
+## 2026-04-10
+- Libraries with explicit "not for production" disclaimers from authors should be heavily penalized on startup potential and ease of use, regardless of concept quality.
+
+## 2026-04-10
+- Python news scraping libraries from 2019-2020 era typically carry unpatched CVEs in requests/feedparser dependencies and should trigger security concern flags.
+
+## 2026-04-10
+- High-quality developer libraries with missing license information should be penalized significantly on license safety even when code quality is excellent, as legal uncertainty outweighs technical merit for commercial applications.
+
+## 2026-04-10
+- Terminal/CLI libraries score lower on startup potential since they're infrastructure tools rather than end-user applications, even when they demonstrate exceptional technical quality and architectural patterns.
+
+## 2026-04-10
+- Unknown license status from popular open-source projects still creates immediate legal blocking issues regardless of code quality, especially for tools that would require significant architectural adoption rather than simple utility extraction.
+
+## 2026-04-10
+- Visual page builders with strong TypeScript architecture and plugin systems score highly on wow factor even when styling doesn't match target frameworks, as the core editing experience and data ownership model create genuine business value.
+
+## 2026-04-10
+- MIT-licensed page builders with framework-agnostic design have high startup potential for white-label SaaS offerings, especially when they solve vendor lock-in problems that plague proprietary alternatives.
+
+## 2026-04-10
+- Model Context Protocol (MCP) represents a powerful new category of AI tooling that bridges external data sources with AI assistants, creating opportunities for specialized data integration services.
+
+## 2026-04-10
+- Zero-setup cloud services that integrate with AI IDEs through simple URL configuration demonstrate excellent product-market fit patterns for developer tools.
+
+## 2026-04-10
+- Unknown license status from reputable organizations like Directus Labs still creates immediate legal risk that outweighs technical benefits, even when the codebase represents a comprehensive business solution rather than a simple utility library.
+
+## 2026-04-10
+- Complete agency management platforms with excellent architecture can score low on startup potential when the licensing uncertainty prevents safe commercial forking, despite having all the technical components for a successful SaaS business.
+
+## 2026-04-10
+- Android-native AI applications with impressive technical features should be rejected for web-focused builders due to complete platform incompatibility, even when the underlying AI concepts are highly relevant.
+
+## 2026-04-10
+- Unknown license status becomes a critical blocking factor for complete applications (vs. extractable utilities), as the entire business logic and architecture become legally questionable rather than just peripheral code patterns.
+
+## 2026-04-10
+- Google-backed MCP protocol implementations can be game-changers for AI infrastructure even with unknown licenses, as the Model Context Protocol represents a new standard for AI-database connectivity that's worth monitoring regardless of direct adoption feasibility.
+
+## 2026-04-10
+- Enterprise AI tools with one-line installation (npx commands) that abstract complex multi-database connectivity represent a new category of infrastructure-as-a-service that could inspire wrapper businesses for non-technical teams.
