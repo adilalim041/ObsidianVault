@@ -159,3 +159,6 @@
 
 ## 2026-04-10
 - @jest/globals in production dependencies (not devDependencies) is a categorization error; audit package.json scripts and test config to separate test-only packages (jest, ts-jest, @types/jest) from runtime deps; misclassification inflates bundle size and obscures security audit scope.
+
+## 2026-04-11
+- GitHub silently disables scheduled (`schedule:`) workflows when the repository has had no push/PR activity for 60 days; to re-enable, push any commit to the default branch or use the "Enable workflow" button in the Actions UI. The cron syntax itself does not change — the trigger is suspended at the GitHub platform level. Always verify repo last-commit date when diagnosing missing nightly runs before debugging the YAML.
