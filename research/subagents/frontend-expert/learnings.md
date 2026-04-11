@@ -256,3 +256,42 @@
 
 ## 2026-04-10
 - Using external link detection in tab handlers (`if (tabId === 'help') { window.open(...) }`) prevents navigation state changes for documentation links while maintaining the tab interface pattern.
+
+## 2026-04-11
+- Admin dashboard projects often use nested route layouts with a shared AppLayout component wrapping protected routes, while auth routes remain outside the layout wrapper.
+
+## 2026-04-11
+- The custom useModal hook pattern with openModal/closeModal/isOpen returns provides a cleaner API than raw useState for modal management.
+
+## 2026-04-11
+- ApexCharts integration with TypeScript requires importing ApexOptions type for proper chart configuration typing.
+
+## 2026-04-11
+- The `'use client'` directive placement at the top of components using browser APIs (like posthog, clipboard) is essential for Next.js 13+ app router server/client component separation.
+
+## 2026-04-11
+- Conditional provider rendering based on environment variables (`if (!(POSTHOG_KEY && IS_PRODUCTION)) return children`) prevents analytics/tracking code from running in development.
+
+## 2026-04-11
+- The pattern of generating static params with `generateStaticParams()` and dynamic metadata with `generateMetadata()` enables SEO-optimized dynamic routes in Next.js 13+.
+
+## 2026-04-11
+- Using `next/font/local` with variable fonts and comprehensive fallback arrays provides better font loading performance than web fonts.
+
+## 2026-04-11
+- Reflex is a Python framework that generates web UIs using Python syntax instead of React/JS, making projects built with it incompatible with React toolchains despite similar component patterns.
+
+## 2026-04-11
+- Custom toast styling with CSS selectors like `[data-sonner-toast]` and theme-specific color variables can be adapted to any toast library regardless of the underlying framework.
+
+## 2026-04-11
+- Platform-specific character limit validation using a limits dictionary and computed properties pattern is framework-agnostic and useful for social media scheduling applications.
+
+## 2026-04-11
+- Supabase realtime channel management requires careful cleanup using `supabase.removeChannel()` in useEffect returns to prevent memory leaks when switching rooms or unmounting.
+
+## 2026-04-11
+- The pattern of storing channel references in `useRef` allows for imperative operations like sending messages while maintaining the channel across re-renders.
+
+## 2026-04-11
+- Presence tracking with Supabase realtime uses `channel.presenceState()` and `Object.values(state).flat()` to extract active users from the presence state object.

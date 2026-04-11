@@ -173,3 +173,18 @@
 
 ## 2026-04-10
 - When evaluating infrastructure tools (goflylivechat), prefer **working solutions with multi-tenant session handling** over single-provider bots, especially during schema-cleanup phases—this shifts focus from prompt accuracy to operational durability.
+
+## 2026-04-11
+- Document-processing + self-hosted backends cluster (Insights LM, Supabase, n8n alternatives) is the immediate operational pattern for Omoikitori's next phase—prioritize repos that solve **session durability + multi-provider state handoff** over generic assistant frameworks.
+
+## 2026-04-11
+- Devops-infra searches still return heavy noise (blog posts dominate); filter by requiring **explicit operational pain intersection** (session persistence, queue durability, schema safety during redeploys) rather than generic GitHub tooling—this batch's signal came from matching Omoikitori's known go
+
+## 2026-04-11
+- Show HN entries <100 points (DBOS transact, ElatoAI, support.dev) deserve inclusion if they solve *specific blocking problems* (durable execution, state safety) even at early stage—star count is a poor proxy for operational relevance during schema-cleanup and accuracy-iteration phases.
+
+## 2026-04-11
+- Show HN batches at <150 points (DenchClaw, S.A.T.U.R.D.A.Y, Gdańsk AI, Off-Grid, Grov, LLMFeeder, vmprint) are template-heavy or niche-platform (mobile, generic assistants) and don't solve Omoikitori's *operational* bottlenecks (session persistence, schema safety, accuracy calibration); deprioritize
+
+## 2026-04-11
+- AnythingLLM (368 HN points, 8.6k stars) remains feature-rich but overweight—it's a finished product, not a building block for Omoikitori's confidence-calibration + multi-channel routing phases; skip unless evaluating competitive landscape.

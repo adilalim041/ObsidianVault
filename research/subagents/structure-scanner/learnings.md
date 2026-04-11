@@ -348,3 +348,30 @@
 
 ## 2026-04-10
 - Files like `py.typed`, `.pre-commit-config.yaml`, and `.devcontainer/devcontainer.json` should be classified as infra rather than left unclassified, as they define type checking compliance, code style gates, and reproducible development environments—critical for monorepo standards enforcement.
+
+## 2026-04-11
+- React/Vite admin dashboard templates should be classified as pure frontend SPAs with zero backend files; hooks and type utilities (`.d.ts`) belong to frontend, not backend categories.
+
+## 2026-04-11
+- Image assets (`.svg`, `.png`) in `public/images/brand/` and banner files should remain unclassified or grouped as "assets" rather than docs, as they are runtime resources, not documentation.
+
+## 2026-04-11
+- ESLint and PostCSS configs in frontend-only projects belong in infra, not unclassified, as they define code quality gates and CSS processing pipelines critical to the build pipeline.
+
+## 2026-04-11
+- Next.js component library/registry projects with `/scripts/lib/` directories containing `registry-builder.ts`, `metadata-loader.ts`, and `import-transformer.ts` are build-time code generators, not backend services; classify these build utilities as backend only for understanding dependency chains, n
+
+## 2026-04-11
+- Presence of `components.json` alongside `biome.jsonc` and `commitlint.config.ts` in a TypeScript monorepo indicates a structured component registry system with enforced code quality gates—prioritize examining `components.json` and the registry-builder script to understand the block/component catalog
+
+## 2026-04-11
+- Next.js apps using `/content/markdown/*.mdx` and `/content/blocks-metadata.ts` follow a content-driven architecture where documentation and metadata are co-located and generated into the registry at build time; these files should be treated as backend schema definitions, not frontend code.
+
+## 2026-04-11
+- TypeScript monorepos with `packages/core/*/src/index.ts` entry points and parallel `packages/*/example/*` directories indicate a multi-client library distribution pattern; the root-level `turbo.json` and multiple `package.json` files signal workspace orchestration—prioritize examining each package's
+
+## 2026-04-11
+- Presence of both `.agents/` and `.claude/` skill directories alongside `.cursor/` configuration suggests this is an AI-augmented development repository with multiple agent runtimes; these should be classified as infra/config rather than docs, as they define tool interoperability contracts.
+
+## 2026-04-11
+- React example apps co-located in `packages/core/auth-js/example/react/` and `packages/core/realtime-js/example/app/` within library packages are runnable integration tests and reference implementations—classify them separately from the core library backend files, but prioritize examining them after 

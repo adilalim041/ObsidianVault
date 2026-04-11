@@ -162,3 +162,12 @@
 
 ## 2026-04-11
 - GitHub silently disables scheduled (`schedule:`) workflows when the repository has had no push/PR activity for 60 days; to re-enable, push any commit to the default branch or use the "Enable workflow" button in the Actions UI. The cron syntax itself does not change — the trigger is suspended at the GitHub platform level. Always verify repo last-commit date when diagnosing missing nightly runs before debugging the YAML.
+
+## 2026-04-11
+- React 19 + react-router v7 + TypeScript ~5.7.2 form a modern, stable trio; however, absence of CI/CD in a public dashboard template is a red flag—recommend enforcing pre-commit ESLint/TSC gates and a GitHub Actions matrix job for Windows 10 validation, mirroring Adil's local env.
+
+## 2026-04-11
+- tailwindcss@^4.0.8 (CSS-first config) is new as of late 2024; projects migrating from v3 often have misconfigured postcss.config.js or lingering @tailwind directives; audit generated CSS bundle size if post-upgrade build output grows unexpectedly on Railway deployment.
+
+## 2026-04-11
+- Vite@^6.1.0 on Windows 10 can experience file-watcher hangs during rapid saves in dev mode; document npm run dev troubleshooting step (--no-cache or chokidar polling) for developers to avoid confusion during onboarding.

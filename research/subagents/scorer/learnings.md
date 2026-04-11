@@ -357,3 +357,33 @@
 
 ## 2026-04-10
 - LangGraph-based agent architectures with built-in observability (Langfuse + Prometheus) are becoming the new standard for production LLM applications, creating opportunities for managed service offerings.
+
+## 2026-04-11
+- Admin dashboard templates with unknown licenses pose high commercial risk even when technically excellent, as entrepreneurs cannot safely deploy them in revenue-generating applications without clear licensing terms.
+
+## 2026-04-11
+- React 19 + Tailwind v4 combinations in actively maintained projects indicate strong long-term viability, as these represent the latest stable versions with active community support.
+
+## 2026-04-11
+- Multi-platform social media schedulers represent strong SaaS opportunities but require careful API credential management and robust error handling patterns to prevent posting failures across different platform APIs.
+
+## 2026-04-11
+- Publisher service patterns that return structured {status, message} responses enable clean error handling in multi-platform integrations and are highly reusable across different API-dependent applications.
+
+## 2026-04-11
+- Official SDK repositories from major platforms (Supabase, AWS, etc.) sometimes have unclear license extraction in analysis but are typically safe for commercial use - worth flagging for manual verification rather than automatic rejection.
+
+## 2026-04-11
+- Monorepo SDKs with comprehensive example applications provide higher value than simple libraries, as they demonstrate complete integration patterns and real-world usage scenarios.
+
+## 2026-04-11
+- Enterprise-grade Python libraries with sophisticated architectural patterns but unknown licenses represent high technical value but complete commercial risk—the combination of advanced workflow orchestration patterns with legal uncertainty creates a pure learning-only opportunity.
+
+## 2026-04-11
+- Decorator-based durability frameworks like DBOS represent a significant improvement over traditional workflow orchestrators by making reliability transparent to business logic rather than requiring architectural restructuring.
+
+## 2026-04-11
+- Component registries with CLI integration represent a scalable business model - the technical architecture here could be replicated for industry-specific UI libraries (CRM components, e-commerce blocks, etc.) with higher pricing potential than generic components.
+
+## 2026-04-11
+- Live preview websites paired with one-command installation (npx) create excellent developer experience and reduce adoption friction significantly compared to traditional npm packages.

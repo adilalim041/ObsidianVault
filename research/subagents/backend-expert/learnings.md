@@ -484,3 +484,42 @@
 
 ## 2026-04-10
 - MCP (Model Context Protocol) framework pattern shows how to build AI tool servers with standardized interfaces for LLM integration.
+
+## 2026-04-11
+- Builder pattern with dependency-injected specialized classes (MetadataLoader, FileScanner, DependencyExtractor) provides excellent separation of concerns for complex data processing pipelines.
+
+## 2026-04-11
+- Transformation cache with composite keys enables efficient content processing for registry/component systems that could be adapted for API response transformation.
+
+## 2026-04-11
+- Error accumulation pattern that collects all validation errors before throwing provides better developer experience than failing on first error.
+
+## 2026-04-11
+- Publisher service pattern with platform-specific controllers returning structured {status, message, platform_post_id} responses provides clean abstraction for multi-platform posting APIs.
+
+## 2026-04-11
+- Beanie ODM field validators with @classmethod decorators enable automatic data transformation (lowercase, timezone conversion) at the model level, reducing boilerplate in route handlers.
+
+## 2026-04-11
+- TimestampMixin with @before_event decorators in Beanie provides automatic timestamp management without manual intervention in business logic.
+
+## 2026-04-11
+- API grouping pattern using object composition in constructors (this.mfa = { listFactors: this._listFactors.bind(this) }) provides clean namespace organization while maintaining proper `this` binding.
+
+## 2026-04-11
+- Comprehensive error taxonomy with specific error classes for each failure mode (AuthPKCECodeVerifierMissingError, AuthInvalidJwtError, etc.) provides better debugging experience than generic error messages.
+
+## 2026-04-11
+- Modular client SDK with domain-separated classes (GoTrueClient for auth, RealtimeClient for WebSockets, PostgrestClient for database) enables tree-shaking and clear separation of concerns in client applications.
+
+## 2026-04-11
+- ContextVar-based request context isolation enables clean state management across async operations without manual context passing through function parameters.
+
+## 2026-04-11
+- Abstract factory pattern with database-specific implementations (PostgresApplicationDatabase, SQLiteApplicationDatabase) provides seamless multi-database support while maintaining unified interface.
+
+## 2026-04-11
+- Outcome pattern with explicit Pending/NoResult states provides better control flow than exceptions for workflow orchestration systems where intermediate states matter.
+
+## 2026-04-11
+- Custom exception hierarchies with specific error classes (DBOSMaxStepRetriesExceeded, DBOSWorkflowConflictIDError) enable precise error handling and better debugging experience than generic exceptions.

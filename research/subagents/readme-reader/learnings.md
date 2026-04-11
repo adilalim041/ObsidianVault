@@ -468,3 +468,39 @@
 
 ## 2026-04-10
 - Multi-browser support statements with explicit "Not Supported" sections (Firefox, Safari, Chromium variants) should be noted as deployment red flags even when the primary platforms (Chrome, Edge) are well-supported, as user environment compatibility is narrower than typical web projects.
+
+## 2026-04-11
+- README truncation mid-sentence at the end (ending with 'Find all workflows that errored between 3:00 and') combined with missing explicit license statement should flag both extraction incompleteness and legal uncertainty separately; the absence of an SPDX identifier or LICENSE mention in the visible
+
+## 2026-04-11
+- Postgres-dependent projects should flag the requirement for external database infrastructure as a deployment red flag in the context of "no additional infrastructure," since Postgres setup and operation is non-trivial operational burden despite the library claiming to eliminate orchestration service
+
+## 2026-04-11
+- Self-hosted multi-platform social media posting tools should flag credential/key management complexity (five external APIs) and single-point-of-failure database design as operational red flags, even when the feature set is strong.
+
+## 2026-04-11
+- README truncation in module links or final sections combined with missing explicit last-activity dates should be flagged as extraction incompleteness and maintenance-status uncertainty separately.
+
+## 2026-04-11
+- "No VC funding. No tracking." statements paired with "your keys, your server, your data" positioning are strong privacy-first signals worth highlighting as trust differentiators, especially for credential-handling projects.
+
+## 2026-04-11
+- Monorepo READMEs that document runtime version deprecation policies with explicit version numbers and cutoff dates (Node.js 18 → v2.79.0, April 30 2025) are strong signals of active maintenance and transparent breaking change communication, even when targeting multiple environments.
+
+## 2026-04-11
+- README truncation in contributing/setup sections combined with missing license statement should be flagged separately as extraction incompleteness and legal uncertainty; the absence of any SPDX identifier or LICENSE mention in the provided README warrants "unknown" even for well-known projects like 
+
+## 2026-04-11
+- Component registry projects that integrate tightly with ecosystem tooling (shadcn CLI in this case) without explicit version compatibility statements in the README may carry hidden coupling risk; future similar projects should flag this as a maintenance dependency concern.
+
+## 2026-04-11
+- Presence of a dedicated external documentation site (blocks.so) alongside the README is an active maintenance signal for component/template projects, suggesting ongoing UI/UX investment beyond the repository itself.
+
+## 2026-04-11
+- Dashboard/admin template READMEs with README truncation in changelog/roadmap sections combined with missing explicit license statements should flag both extraction incompleteness and legal uncertainty separately—the incomplete changelog may indicate source document truncation rather than intentional
+
+## 2026-04-11
+- Freemium SaaS templates claiming "free and open-source" should explicitly flag the feature parity gap (35+ components free vs. 500+ paid, 1 dashboard free vs. 7 paid) as a red flag for scope expectations, not just note the commercial upsell neutrally.
+
+## 2026-04-11
+- Recent major version upgrades (React 18→19, Tailwind CSS v3→v4, charting library migrations) documented prominently in README are active maintenance signals but also constitute breaking-change red flags for existing users—both should be flagged separately.
