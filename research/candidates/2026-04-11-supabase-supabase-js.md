@@ -7,6 +7,7 @@
 **For project:** Omoikiri.AI
 **Found by:** vault-research-agent, niche: devops-infra
 **Date:** 2026-04-11
+**Status:** studied
 
 ## What it does
 The official JavaScript client for Supabase that handles authentication, real-time database subscriptions, file storage, and serverless functions. It's what connects your frontend apps to Supabase's backend services across browsers, Node.js, React Native, and other JavaScript environments.

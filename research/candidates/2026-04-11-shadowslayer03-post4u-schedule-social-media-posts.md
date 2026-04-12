@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-11
+**Status:** studied
 
 ## What it does
 A self-hosted dashboard that lets you compose and schedule posts across five social platforms (X/Twitter, Reddit, Telegram, Discord, Bluesky) from one interface. Think Hootsuite but you own the data and don't pay monthly fees.

@@ -7,6 +7,7 @@
 **For project:** Omoikiri.AI
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 TailAdmin is a comprehensive admin dashboard template built with React 19 and Tailwind CSS v4. It provides 35+ pre-built components like charts, tables, forms, and authentication pages that developers can copy-paste into their projects. Think of it as a design system specifically for data-heavy admin interfaces.
