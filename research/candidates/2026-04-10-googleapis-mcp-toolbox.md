@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: ai-new
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Google's official MCP Toolbox instantly connects AI agents like Claude to 20+ databases with a single command line. It provides secure, production-ready tools for AI systems to explore data, run SQL queries, and build custom database interactions without writing database code.

@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-10
+**Status:** skipped
 
 ## What it does
 This is a comprehensive command reference guide for FFmpeg, the Swiss Army knife of video processing. It provides ready-to-use commands for trimming videos, converting formats, resizing for social media platforms, and automating batch video operations without needing to understand complex video encoding theory.

@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: ai-new
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 GitMCP transforms any GitHub repository into a smart documentation hub that AI coding assistants can access in real-time. Instead of AI tools working with outdated or incomplete code knowledge, they get fresh, accurate context from actual repositories to write better code with fewer hallucinations.

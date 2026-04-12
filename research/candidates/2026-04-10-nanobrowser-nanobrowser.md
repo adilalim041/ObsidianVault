@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: saas-boilerplate
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Nanobrowser is a Chrome extension that lets you automate websites using AI agents that can click, type, and navigate web pages just like a human would. Instead of writing scripts, you chat with AI agents that figure out how to complete complex web tasks across multiple sites.

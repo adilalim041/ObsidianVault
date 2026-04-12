@@ -7,6 +7,7 @@
 **For project:** Omoikiri.AI
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 A React table library that handles messy data display without requiring deep HTML table knowledge. Gives you sorting, pagination, row selection, and expandable rows out of the box, plus theming and mobile responsiveness.

@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: trending-tools
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 Hackertab is a browser extension that replaces your new tab page with a dashboard showing curated developer news from 12+ sources like GitHub Trending, Hacker News, DevTo, and Product Hunt. Users can filter content by programming language and topic, bookmark articles, and get AI recommendations.

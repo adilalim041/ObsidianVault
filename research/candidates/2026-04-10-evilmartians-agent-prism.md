@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: ai-tools
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 AgentPrism transforms messy AI debugging logs into clean visual timelines. Instead of scrolling through JSON dumps when your AI agents break, you get interactive diagrams showing exactly which LLM calls failed, how long each step took, and where your workflow went wrong.
