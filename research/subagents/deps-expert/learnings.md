@@ -171,3 +171,13 @@
 
 ## 2026-04-11
 - Vite@^6.1.0 on Windows 10 can experience file-watcher hangs during rapid saves in dev mode; document npm run dev troubleshooting step (--no-cache or chokidar polling) for developers to avoid confusion during onboarding.
+
+## 2026-04-12
+- tsup does not handle CSS Modules natively; the standard pattern (used by Puck) is a custom esbuild plugin that runs postcss + postcss-modules to extract the class name JSON map and emit scoped CSS as a separate chunk — copy this pattern for any React library with CSS Modules that uses tsup.
+- The `react-server` export condition in `package.json` exports map is how libraries ship RSC-safe entry points for Next.js App Router; pair it with a separate bundle entry (e.g., `bundle/rsc.tsx`) that only exports server-safe functions.
+- `lerna version --force-publish` (without `lerna publish`) is the correct pattern when you want synchronized versioning across all monorepo packages but want to control publishing separately (e.g., via a shell script or per-package npm publish).
+- GitHub Actions: `releases/**` branch trigger + `startsWith(github.event.head_commit.message, 'release: ')` commit message guard is the cleanest way to separate stable vs canary publishing in a single repo without separate workflow files per environment.
+- Canary versioning pattern: `{current-version}-canary.$(git rev-parse --short HEAD)` requires `fetch-depth: 0` in `actions/checkout` to have git history available for SHA resolution — omitting fetch-depth silently produces shallow clone with no history.
+- `git commit --allow-empty "ci: trigger build"` + `git push` in a GitHub Actions release workflow forces Vercel to create a distinct deployment for a release branch (useful for versioned docs preview URLs without modifying actual code).
+- The `$?` check pattern in GitHub Actions shell steps is unreliable — `$?` reflects the exit code of the LAST command executed, not the step command; if any `echo` or `if` block runs after the command being checked, `$?` is overwritten. Always use `set -e` or check inline rather than a separate "check for failures" step.
+- Yarn 1.x (classic) monorepos in 2024 lack hoisting controls and PnP; for new monorepos prefer pnpm which gives ~30% faster installs and explicit hoisting configuration.

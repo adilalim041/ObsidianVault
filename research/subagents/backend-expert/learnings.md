@@ -4,6 +4,20 @@
 
 ---
 
+## 2026-04-12
+- supabase-js PostgrestBuilder built-in retry works ONLY for GET/HEAD/OPTIONS (idempotent methods) — status codes 503 and 520. INSERT/UPDATE/DELETE never auto-retry. For critical write operations use p-retry externally.
+- supabase-js maybeSingle() works client-side: PostgREST returns an array, SDK converts to object/null in processResponse() — zero extra network overhead vs .single().
+- supabase-js auto-refresh ticker calls .unref() in Node.js to prevent the setInterval from blocking process exit during tests or graceful shutdown.
+- supabase-js Realtime channel.subscribe() auto-calls connect() if the WebSocket is not open — no need to manually call client.connect() first.
+- supabase-js `functions` property is a getter that creates a new FunctionsClient on every access — this is intentional since FunctionsClient is stateless.
+- supabase-js GLOBAL_JWKS cache is shared across all createClient() calls with the same storageKey — critical for serverless environments with asymmetric JWT to avoid repeated JWKS fetches.
+- supabase-js BroadcastChannel syncs auth session state between browser tabs automatically with no configuration — important for multi-tab dashboard applications.
+- supabase-js accessToken option (third-party auth) completely blocks supabase.auth via a Proxy that throws on any property access — intentional design to prevent auth mixing.
+- supabase-js fetchWithAuth wrapper fetches a fresh JWT on EVERY request via getAccessToken() — this means auth.getSession() is called per-request; in Node.js this is a memory lookup not a network call.
+- supabase-js _callRefreshToken uses a Deferred pattern to deduplicate concurrent refresh attempts — multiple callers waiting for refresh all receive the same Promise result.
+- supabase-js .in() with large arrays (200+ IDs) can hit URL length limits (default 8000 chars) causing AbortError — use .rpc() to pass large arrays server-side instead.
+- supabase-js processLock (Node.js/React Native) implements exclusive locking via Promise chaining — PROCESS_LOCKS[name] stores the last operation's promise, new operations await it before running.
+
 ## 2026-04-10
 - Per-channel credential resolution pattern: store `ig_user_id`/`ig_access_token` on a channel_profiles row; the publisher fetches them via a dedicated `/credentials` endpoint before the batch, then passes a `creds` object through the call chain (`graphRequest`, `getMediaInfo`, etc.) with `resolveCredentials(creds)` falling back to env vars when null. One Brain query per publish batch, not per article.
 - `maybeSingle()` in Supabase JS SDK returns `null` in `.data` when no row is found — use it instead of `.single()` which throws on missing rows.
@@ -523,3 +537,56 @@
 
 ## 2026-04-11
 - Custom exception hierarchies with specific error classes (DBOSMaxStepRetriesExceeded, DBOSWorkflowConflictIDError) enable precise error handling and better debugging experience than generic exceptions.
+
+## 2026-04-12 (pg-boss)
+- pg-boss uses `FOR UPDATE SKIP LOCKED` as its entire concurrency primitive — multiple workers on multiple nodes poll the same Postgres table safely, no Redis needed.
+- pg-boss retry + DLQ are a single 3-CTE SQL transaction: deleted_jobs → retried_jobs → failed_jobs → dlq_jobs. Atomically decides retry vs permanent fail vs dead letter copy.
+- pg-boss exponential backoff formula: `retryDelay * (2^min(16,retryCount)/2 + 2^min(16,retryCount)/2 * random())`. The `random()` is jitter to prevent retry storms.
+- pg-boss cron uses `singletonSeconds: 60` on an internal `__pgboss__send-it` queue — prevents duplicate cron fires when multiple nodes check the schedule simultaneously.
+- pg-boss advisory locks (`pg_advisory_xact_lock` keyed by sha224 of database+schema+key) protect schema creation and migrations — safe for concurrent multi-node startup.
+- pg-boss migration race is caught by intentional SQL: `SELECT version::int / (version::int - $target)` — raises 'division by zero' if already migrated. Application catches that specific error and ignores it.
+- All 6 pg-boss queue policies (standard/short/singleton/stately/exclusive/key_strict_fifo) are enforced by partial unique indexes only — no application-layer enforcement overhead.
+- pg-boss `localGroupConcurrency` is in-memory per node (no DB cost); `groupConcurrency` is DB-tracked via active count CTE (works across distributed deployments). Cannot use both simultaneously.
+- pg-boss `db` option accepts any `{ executeSql(text, values) }` object — enables transactional outbox pattern: enqueue job in same DB transaction as business write.
+- pg-boss `Bam` class runs heavy async DDL (index creation) from a `pgboss.bam` queue table in background — prevents startup timeout on large existing tables during migrations.
+- pg-boss `delay()` returns an `AbortablePromise` — `.abort()` immediately wakes sleeping workers. Used by `notifyWorker()` to skip the polling interval after a new job is known to exist.
+- pg-boss `job_state` ENUM is ordered numerically (created < retry < active < completed < cancelled < failed) — allows SQL range comparisons like `state < 'active'` for "queued" and `state > 'active'` for "done".
+- pg-boss `key_strict_fifo` policy blocks new jobs with the same singletonKey while any job with that key is active/retry/failed — guarantees per-key ordering (e.g. WhatsApp messages per contact JID).
+
+## 2026-04-12 (trycua/cua)
+- Registry decorator pattern for agent loop selection: `@register_agent(models=r"claude-.*", priority=10)` + `find_agent_config(model)` eliminates if/elif chains when routing to multiple LLM providers. Validated at decoration time (not call time) that required methods exist.
+- AsyncCallbackHandler with 15 lifecycle hooks (on_run_start/end, on_run_continue, on_llm_start/end, on_computer_call_start/end, on_function_call_start/end, on_api_start/end, on_text, on_usage, on_screenshot, on_responses) provides complete observability and control over agent loops. `on_run_continue()` returning False is the clean stop mechanism.
+- Image retention for long-running agents: must remove screenshot triples (reasoning + computer_call + computer_call_output) not individual messages — orphaned call items without outputs cause API errors. Keep only the N most recent.
+- Retry only at agent loop level, not inside individual API calls — LiteLLM has its own inner retries. Stacking them gives max_retries² attempts. Use `_is_retryable_error()` to filter: only RateLimitError, Timeout, ServiceUnavailableError, APIConnectionError — never retry validation or auth errors.
+- REST-first / WebSocket-fallback transport: REST POST to `/cmd`, catch "Request failed"/"malformed response" then escalate to WebSocket. WebSocket needs `asyncio.Lock` on recv to serialize concurrent callers — without it parallel commands receive each other's responses.
+- Screenshot coordinate scaling for LLM computer-use: downscale to 1024×768 before sending to model (LANCZOS), store `scale_x = new_w/orig_w`, `scale_y = new_h/orig_h`. Upscale returned coordinates with `int(round(coord / scale))` before executing pyautogui click.
+- WebSocket keep-alive task exponential backoff: start at 1s, double on each failure, cap at 30s. Log details only on first attempt and every 500th — prevents log flooding during extended outages without losing visibility.
+- MCP server `run_multi_cua_tasks` with `asyncio.gather(*coroutines, return_exceptions=True)` enables concurrent task execution with per-task exception isolation — failed tasks return error string instead of crashing the batch.
+
+## 2026-04-12 (Langfuse analysis)
+- BullMQ sharded queues: use `Map<shardIndex, Queue>` + SHA-256 consistent hashing on `projectId-eventBodyId` to distribute load across Redis shards. `getShardIndex(key, count)` = `parseInt(sha256(key).slice(0,8), 16) % count`.
+- BullMQ secondary queue pattern: when S3 SlowDown detected for a project, set Redis key with TTL (`langfuse:s3-slowdown:${projectId}`, "EX", N), check in processor and redirect job to lower-concurrency secondary queue. Fail-open: return false if Redis unavailable.
+- BullMQ WorkerManager pattern: centralize all `new Worker()` calls behind `WorkerManager.register(queueName, processor, opts)` which wraps every processor in a metric-collecting function — wait_time, processing_time, queue_length gauges all collected automatically.
+- S3-first ingestion pipeline for observability: upload events to S3 first (as staging), then add job to queue with `delay: 5000ms` to allow batching multiple updates. Worker lists all S3 files for the entity, downloads + merges by timestamp, writes single record to ClickHouse. Redis `recently-processed` cache (TTL 5 min) prevents duplicate processing.
+- ClickhouseWriter adaptive batch splitting: when JS string concatenation hits `Invalid string length` error, split batch in half recursively until single item, then truncate oversized fields (input/output/metadata capped at 1MB with `[TRUNCATED]` suffix). Prevents one huge LLM response from blocking entire batch.
+- Dual API key hashing migration: store both `hashedSecretKey` (bcrypt, legacy) and `fastHashedSecretKey` (SHA-256 with salt). On first use of old key, compute and save SHA-256. All subsequent checks use SHA-256 fast path. Sentinel value `"api-key-non-existent"` is cached in Redis to protect against enumeration attacks.
+- tRPC differentiated error logging: log NOT_FOUND/UNAUTHORIZED as `logger.info`, UNPROCESSABLE_CONTENT as `logger.warn`, all others as `logger.error`. Without this Railway logs get flooded with expected 404s and real errors are buried.
+- Deterministic trace sampling via SHA-256: `isInSample(traceId, rate)` = `parseInt(sha256(traceId).slice(0,8), 16) / 0xffffffff < rate`. Same traceId always gives same sampling decision — all spans of a trace are consistently sampled or dropped.
+- tRPC 4xx vs 5xx message exposure: `httpStatus >= 400 && httpStatus < 500` means error message is safe to expose to client; 5xx errors get "Internal error. We have been notified." to avoid leaking implementation details.
+- Winston OTel baggage format: inject `dd.trace_id`, `dd.span_id`, `trace_id`, `span_id` from active OTel span into every log entry via custom format. Also inject all OTel baggage entries (projectId, orgId, userId) — eliminates need to pass context explicitly to every logger call.
+- BullMQ DLQ cron retry: use `DeadLetterRetryQueue` with `repeat: { pattern: "0 */10 * * * *" }` to periodically call `queue.getFailed()` and `job.retry()` on specific queues. Track `dlq_retry_delay = now - job.timestamp` histogram to measure how long jobs stayed dead.
+- Zod-typed BullMQ jobs: define all payloads as Zod schemas, export `TQueueJobTypes` mapped type keyed by `QueueName` enum. Processor receives `Job<TQueueJobTypes[QueueName.X]>` — full TypeScript inference, no casts needed. Schema changes cause compile errors in all affected processors.
+- Event batch sort order: process `trace-create`/`span-create` BEFORE `span-update`/`generation-update` even if updates arrive in same batch. Sort: non-updates first (by timestamp asc), then updates (by timestamp asc). Prevents update being applied before create when SDK sends both in one call.
+- pg-boss clock skew detection: Timekeeper compares `SELECT round(date_part('epoch', now()) * 1000)` to `Date.now()` every 10 min, emits warning if delta > 60s. Cron uses `Date.now() + clockSkew` for fire decisions.
+
+## 2026-04-12
+- APScheduler MongoDBJobStore requires a synchronous PyMongo client (not async Motor) — use `pymongo.MongoClient` for the jobstore even if the rest of the app uses Motor for all other DB access.
+- APScheduler with MongoDBJobStore automatically detects and runs missed jobs on startup — no custom catch-up logic needed when the server restarts mid-schedule.
+- Selective per-platform retry: pass `retry_platforms: list[str] | None` to the publish job function — None signals first attempt (use all platforms), a list signals retry (only failed platforms). Prevents re-posting to successful platforms.
+- `replace_existing=True` + `id=post_id` in APScheduler `add_job()` makes rescheduling idempotent — editing a post just calls `schedule_post()` again and the old job is replaced automatically.
+- Twitter media upload still requires Tweepy v1 API (`api_v1.media_upload`) even when using v2 for posting (`client.create_tweet`) — you need both client instances simultaneously.
+- `secrets.compare_digest()` must be used instead of `==` for API key comparison — constant-time comparison prevents timing attacks where attackers enumerate key characters by measuring response time differences.
+- Fail-fast startup guard for required config: `if not settings.API_KEY: raise RuntimeError(...)` in config.py prevents the server from running silently with broken auth.
+- Double MIME validation for uploads: check `Content-Type` header (client claim) first, then `python-magic` magic bytes (server-side actual content) — prevents renamed executable files from passing as images.
+- Telegram `sendMediaGroup` requires `attach://{name}` protocol for local files in multipart requests; caption only goes on the first media item; GIFs must be typed as "photo" in media groups (not "animation").
+- `loop.run_in_executor(None, sync_fn, *args)` is the correct pattern for wrapping synchronous platform SDKs (tweepy, praw, requests) inside async FastAPI route handlers.

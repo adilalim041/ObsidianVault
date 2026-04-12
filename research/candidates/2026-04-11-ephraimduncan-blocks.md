@@ -7,6 +7,7 @@
 **For project:** Omoikiri.AI
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-11
+**Status:** studied
 
 ## What it does
 Blocks is a UI component registry that provides pre-built, accessible React components (login forms, dialogs, sidebars) that you can copy-paste into your app using a simple command. Think of it as an app store for shadcn/ui components with live previews at blocks.so.

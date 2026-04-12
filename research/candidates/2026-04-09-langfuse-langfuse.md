@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 Langfuse is an observability platform for AI applications that tracks every LLM call your product makes, manages prompt versions, and helps you debug when AI features break. Think of it as analytics for your AI features—you can see which prompts work best, catch API failures, and measure response quality across your entire system.

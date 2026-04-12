@@ -6,6 +6,7 @@
 **For project:** Omoikiri.AI
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 

@@ -6,6 +6,7 @@
 **For project:** Nexus.AI
 **Found by:** vault-research-agent, niche: saas-boilerplate
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Cua is a platform that lets AI agents control computer interfaces across different operating systems - clicking buttons, taking screenshots, typing text, and running commands. It provides sandboxed virtual environments where your AI can safely practice and execute tasks on Linux, macOS, Windows, and Android without affecting your real system.

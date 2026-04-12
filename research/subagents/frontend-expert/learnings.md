@@ -257,6 +257,39 @@
 ## 2026-04-10
 - Using external link detection in tab handlers (`if (tabId === 'help') { window.open(...) }`) prevents navigation state changes for documentation links while maintaining the tab interface pattern.
 
+## 2026-04-12 (studies UI)
+- When a detail page needs data from two independent hooks (useCandidates + useStudies), calling both at the top of the component and cross-referencing by filename is simpler than threading data through route state — both hooks use the shared cache so there's no extra network cost.
+- Lazy-loading tab content (trigger fetch on first render via a `loaded` ref pattern with `useState(false)`) avoids loading all markdown files upfront when only one tab is active at a time.
+- The `end` prop on NavLink for the root route (`to="/"`) prevents it from matching every path and staying "active" for all pages — easy to miss and causes visual bugs in sidebars.
+- A 5-column stat grid (`lg:grid-cols-5`) with uniform gap stays readable on desktop when adding a stat between existing ones; adding `sm:grid-cols-2` keeps it clean on tablet.
+
+## 2026-04-12
+- When extending a data layer with cross-referenced entity types (candidates + studies), loading both datasets in parallel with `Promise.all` and passing study folder names as a string array to the status resolver keeps the coupling minimal and avoids extra API calls per candidate.
+- For optional/new vault directories that may not exist yet, wrapping their fetch in `.catch(() => [])` prevents the entire hook from failing and allows the rest of the data to load gracefully.
+- Study folder naming convention `YYYY-MM-DD-owner-repo` can be parsed with a single regex to extract both the date and the repo slug, which doubles as the cross-reference key against candidate filenames.
+
+## 2026-04-12 (blocks study)
+- LEARNING: The `gap-px` + `bg-border` pattern on a grid container creates hairline borders between cards without any border management — cards use `border-0`, the gap itself becomes the border. First/last cards get `rounded-l-xl`/`rounded-r-xl` to preserve container rounding.
+- LEARNING: Tailwind named group scopes (`group/collapsible`, `group-data-[state=open]/collapsible:rotate-180`) let multiple independent collapsibles coexist in the same sidebar — no useState needed for the chevron animation.
+- LEARNING: The two-icon copy button pattern (scale transform between CopyIcon and CheckIcon: `scale-0 opacity-0` → `scale-100 opacity-100`) is smoother than conditional rendering and animates in both directions. Both icons exist in DOM simultaneously.
+- LEARNING: Badge status colors: `bg-green-500/15 text-green-700 hover:bg-green-500/25 dark:bg-green-500/10 dark:text-green-400` using opacity utilities works on any background and avoids hardcoded hex values.
+- LEARNING: Blocks' `Field` component family (Field, FieldLabel, FieldError, FieldGroup) is a major upgrade over raw Label+Input — `orientation="responsive"` uses container queries so forms inside modals reflow correctly, `FieldError errors={[]}` deduplicates react-hook-form error arrays.
+- LEARNING: The `Item` compound component (ItemMedia, ItemContent, ItemTitle, ItemDescription, ItemActions) is the right abstraction for any contact/chat/resource row. `ItemMedia` variant="icon" auto-sizes SVGs, `group-has-[description]` CSS auto-aligns icon with title.
+- LEARNING: Blocks registry pattern: flat `id→component` map in `blocks-components.tsx` + metadata array in `blocks-metadata.ts` + categoryIds enum in `declarations.ts`. Category counts computed automatically — no manual sync. Adopt for any internal component library.
+- LEARNING: Tailwind v4 `shadow-2xs` is a shadow step smaller than `shadow-xs`. Use on cards instead of `shadow-sm` for subtler elevation. All blocks cards use it.
+- LEARNING: `ring-4 ring-background` on timeline dots creates the appearance of a gap between dot and connecting line — no extra wrapper element, purely a ring that matches the background color.
+- LEARNING: `@tabler/icons-react` fills the gaps Lucide doesn't cover: `IconCircleCheckFilled` (filled check), `IconLoader2` (better spinner), `IconSparkles`/`IconWaveSine` for AI UIs. Add both libraries to projects that need filled icon variants.
+
+## 2026-04-12 (TailAdmin study)
+- Tailwind CSS v4 eliminates tailwind.config.js entirely — all design tokens go in a `@theme {}` block in CSS, dark mode is configured with `@custom-variant dark (&:is(.dark *))`, and custom utilities use `@utility name { @apply ... }` syntax instead of `@layer utilities`.
+- The sidebar hover-expand pattern (isExpanded + isHovered booleans in context, onMouseEnter/Leave on the aside element, CSS width transition) is the standard "mini sidebar" UX with zero dependencies — copy from TailAdmin directly.
+- Animated accordion submenus without CSS transitions on `height:auto` — read scrollHeight into state on open, set `style={{ height: Npx }}` inline, animate with `transition-all duration-300`. More reliable than max-height hacks.
+- The `dark:bg-white/[0.03]` pattern for dashboard cards on dark backgrounds (translucent white over dark bg) is more sophisticated than hardcoded gray values — gives cards a subtle lift that adapts to any dark bg color.
+- Dropdown click-outside detection needs `closest(".dropdown-toggle")` exclusion — without it, clicking the toggle button fires both the open handler and the close handler simultaneously, causing a double-toggle race condition.
+- `ring-1 ring-inset` for outline buttons is better than `border` because rings are drawn inside the element and don't shift layout.
+- The `animate-ping` Tailwind utility + static outer dot = CSS radar pulse notification badge. No extra CSS needed — entirely built-in Tailwind.
+- Two-effect ThemeProvider pattern: effect 1 reads localStorage and sets `isInitialized=true`, effect 2 applies class and persists only when `isInitialized` is true. Prevents premature side effects on mount.
+
 ## 2026-04-11
 - Admin dashboard projects often use nested route layouts with a shared AppLayout component wrapping protected routes, while auth routes remain outside the layout wrapper.
 
@@ -295,3 +328,25 @@
 
 ## 2026-04-11
 - Presence tracking with Supabase realtime uses `channel.presenceState()` and `Object.values(state).flat()` to extract active users from the presence state object.
+
+## 2026-04-12 (Puck visual editor analysis)
+- The PropsProvider + PuckProvider split pattern (separate context for static props vs dynamic state) prevents prop-drilling while ensuring the store is only initialized once — useful for any complex component that needs both static config and reactive state.
+- Overlay positioning via createPortal to document.body + getBoundingClientRect (not position:absolute in container) is the correct approach for editor overlays and tooltips that must escape overflow:hidden parents. Sync via ResizeObserver + coalesced rAF, not setInterval.
+- Page builder DnD with nested droppables requires a custom collision algorithm: elementsFromPoint() + depth sort to always resolve the deepest zone under cursor. Standard dnd-kit collision detection is not sufficient for this.
+- Preview-based drag (writing to a previewIndex store, not the real data tree) allows drag cancellation without rollback — only commit to real state on dragEnd. Better than optimistic updates for complex tree structures.
+- When passing a mixed-type prop object (part static, part reactive) to memoized components, use separate comparators: shallowEqual for most keys + deepEqual for the reactive prop object. See MemoizeComponent in Puck.
+- Zustand slice pattern: create each logical domain (history, nodes, permissions, fields) as a separate createXxxSlice(set, get) factory that returns a plain object, then spread all slices into a single createStore() call. This keeps code organized without multiple stores.
+- Two-store Zustand pattern (internal appStore + public usePuckStore) is an overcomplication for most cases. A single store with createUsePuck() factory and selectors achieves the same public API with less code.
+- iframe-based preview with style sync: use MutationObserver on parent document.head + cloneNode/inline CSS rules (for cross-origin) to keep iframe styles in sync with host. createPortal into iframe's #frame-root element is the React integration point.
+- walkAppState tree traversal with simultaneous index building (nodeIndex + zoneIndex) enables O(1) lookups everywhere else in the app — avoids traversing the component tree on every render.
+
+## 2026-04-12 (Tremor deep analysis)
+- Tremor's SVG dark mode trick: set `fill=""` and `stroke=""` as empty strings on Recharts SVG primitives (XAxis, YAxis, CartesianGrid). This overrides Recharts' injected inline styles, allowing Tailwind `fill-*` and `stroke-*` CSS classes (which use `currentColor`) to work. Without the empty strings, Recharts inline styles win over CSS classes.
+- `getColorClassNames(color, shade)` in Tremor returns all 12 color variants (bgColor, textColor, strokeColor, fillColor, hoverBgColor, borderColor, ringColor, etc.) at once. This function handles hex colors (`#abc`), CSS vars (`--token`), and standard Tailwind colors. Pass `colorPalette.text` (=500) for chart strokes/fills, `colorPalette.background` (=500) for fills, `colorPalette.border` (=500) for borders.
+- Tremor FunnelChart is pure SVG (no Recharts) — uses `useLayoutEffect` + `getBoundingClientRect` for responsive sizing, manual bar geometry math (`useMemo`), and `foreignObject` for HTML labels inside SVG. Touch tooltip uses `reduce` to find closest bar by pixel distance from `touch.pageX`.
+- `useInternalState<T>(defaultValue, valueProp)` hook: `isControlled = valueProp !== undefined`. If controlled, `setValue` is a no-op. This is the pattern for all Tremor input components to support both controlled and uncontrolled usage without duplicate code.
+- Tremor's `isIncreasePositive` prop on BadgeDelta flips the color semantics: for metrics where increase is bad (e.g. response time, churn rate), set `isIncreasePositive={false}`. The `mapInputsToDeltaType` util swaps increase↔decrease internally.
+- The SparkAreaChart uses `margin={{ top: 1, left: 1, right: 1, bottom: 1 }}` (1px on all sides) to prevent SVG clipping at edges. Regular AreaChart uses `top: 5` and dynamic bottom/left margins based on axis labels. Always add at least 1px margin to Recharts charts.
+- BarList uses `Math.max((item.value / maxValue) * 100, 2)` — minimum 2% width so zero-adjacent bars remain visible. The `Component = onValueChange ? "button" : "div"` pattern swaps the root element type based on interactivity — correct semantic HTML without conditional rendering.
+- Tremor's `tremorTwMerge` must be used (not plain `twMerge`) when merging classes that include Tremor design tokens like `rounded-tremor-default`, `shadow-tremor-card`, `text-tremor-metric`. Without the extension, tailwind-merge treats them as unknown and doesn't resolve conflicts correctly.
+- `node_modules/@tremor/**` MUST be in Tailwind `content` array. Tremor generates class names dynamically (e.g. `bg-red-500` from a `color="red"` prop), so without content scanning those classes get purged in production.
