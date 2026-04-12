@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Puck is a visual page builder that lets non-technical users create web pages by dragging and dropping components, while developers define what those components can do. Think of it as a Webflow-style editor that works with your existing React codebase instead of forcing you into a closed platform.
