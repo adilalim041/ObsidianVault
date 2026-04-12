@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: ai-new
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 R2R is a production-ready AI retrieval system that helps you build smart question-answering apps. It can ingest documents, images, and audio files, then let users ask complex questions that require multi-step reasoning and research across your knowledge base.

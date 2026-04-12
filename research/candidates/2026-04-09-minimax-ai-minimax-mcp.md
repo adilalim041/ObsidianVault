@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: content-automation
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 This is an official connector that lets Claude Desktop and other AI tools directly use MiniMax's powerful APIs for text-to-speech, voice cloning, video generation, and music creation. Think of it as a bridge that makes MiniMax's content creation tools instantly available inside your AI workspace without writing code.

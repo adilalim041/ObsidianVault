@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: content-automation
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 Turns RSS feeds from news sites, blogs, and other sources into clean JavaScript data that your AI can work with. Instead of dealing with messy XML, you get organized objects with titles, content, dates, and authors ready for processing.

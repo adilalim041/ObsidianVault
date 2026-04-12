@@ -6,6 +6,7 @@
 **For project:** Nexus.AI
 **Found by:** vault-research-agent, niche: python-agents
 **Date:** 2026-04-09
+**Status:** studied
 
 ## What it does
 A complete voice conversation system that listens to speech, converts it to text, processes it through AI language models, and speaks the response back naturally. Think of it as the full pipeline for voice assistants — it handles everything from "hearing" your voice to "speaking" AI responses using multiple high-quality voice engines.
