@@ -6,6 +6,7 @@
 **For project:** News.AI
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Extracts rich metadata from any web page - titles, descriptions, images, and social media cards (OpenGraph, Twitter). Think of it as the tool that creates those preview cards you see when you paste a link in Slack or Facebook.

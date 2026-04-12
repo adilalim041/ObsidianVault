@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: github-trending
 **Date:** 2026-04-10
+**Status:** studied
 
 ## What it does
 Converts any document format (PowerPoint, Word, PDFs, images, audio, HTML, even YouTube URLs) into clean Markdown that AI tools can actually understand. Think of it as a universal translator that makes messy documents ready for Claude or other LLMs to process.

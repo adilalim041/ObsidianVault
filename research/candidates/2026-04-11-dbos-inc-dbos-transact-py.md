@@ -7,6 +7,7 @@
 **For project:** General
 **Found by:** vault-research-agent, niche: devops-infra
 **Date:** 2026-04-11
+**Status:** studied
 
 ## What it does
 DBOS turns any Python function into a bulletproof workflow that survives crashes, network failures, and server restarts. Just add a decorator to your function, and it automatically checkpoints progress in PostgreSQL—if something breaks, it resumes exactly where it left off.
