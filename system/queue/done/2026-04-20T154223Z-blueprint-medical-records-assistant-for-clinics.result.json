@@ -1,0 +1,9 @@
+{
+  "id": "2026-04-20T154223Z-blueprint-medical-records-assistant-for-clinics",
+  "type": "blueprint",
+  "summary": "Merged architect + backend-dev + frontend-dev outputs into a full blueprint: problem/personas, MVP scope, data flow, ranked risks, 12-week roadmap, stack picks (Next.js + Supabase + graphile-worker + Anthropic), HIPAA posture (BAA map, PHI encryption via pgcrypto, audit log), API surface, data model, cost math, 6 clinician screens, UX patterns and accessibility. Includes Open Questions for Adil (BAA choice, pilot clinic, jurisdiction) and Provenance.",
+  "artifacts": [
+    "research/blueprints/medical-records-assistant-for-clinics.md"
+  ],
+  "error": null
+}
