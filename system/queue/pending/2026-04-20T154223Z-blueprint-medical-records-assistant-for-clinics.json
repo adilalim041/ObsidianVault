@@ -1,0 +1,18 @@
+{
+  "id": "2026-04-20T154223Z-blueprint-medical-records-assistant-for-clinics",
+  "type": "blueprint",
+  "created_at": "2026-04-20T15:42:23.822625Z",
+  "created_by": "nexus",
+  "user": "adil",
+  "payload": {
+    "idea": "medical records assistant for clinics",
+    "scaffold": false,
+    "target_project": null
+  },
+  "source": {
+    "nexus_chat_id": 417438841,
+    "nexus_message_id": 493
+  },
+  "priority": "normal",
+  "version": "1.0"
+}
