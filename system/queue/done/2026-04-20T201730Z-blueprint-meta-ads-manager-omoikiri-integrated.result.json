@@ -1,0 +1,13 @@
+{
+  "id": "2026-04-20T201730Z-blueprint-meta-ads-manager-omoikiri-integrated",
+  "type": "blueprint",
+  "summary": "Blueprint for SMB-focused Meta Ads manager with two killer features: (1) closed-loop CTWA attribution via Omoikiri WhatsApp using HMAC ref token embedded in prefilled text, (2) Meta Ads Library competitor analyst. Stack: Fastify + Zod env + Pino + graphile-worker (pg-native, port 5432) + separate Supabase project + HTTP webhook bridge to Omoikiri. Frontend: Next.js 14 App Router + shadcn/ui + Tremor + TanStack Table. Security: pgcrypto aes-256-gcm token storage, RLS-first multi-tenancy, Meta App Review v0 scope = ads_read only. 14-section doc with ASCII data-flow diagram, R1-R13 risks, Phase 0-3 roadmap, 12-table SQL schema, 9 endpoints, 7 screens, cost math ($0.40/SMB@100 → $0.12/SMB@1000), 6 open questions for Adil.",
+  "artifacts": [
+    "research/blueprints/meta-ads-manager-omoikiri-integrated.md",
+    "system/telemetry/agent_runs.jsonl"
+  ],
+  "agents_invoked": ["Plan", "backend-dev", "frontend-dev"],
+  "citations_captured": 3,
+  "missing_citations_count": 0,
+  "error": null
+}
