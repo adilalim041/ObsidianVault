@@ -1,43 +1,103 @@
 # Research — Index
 
+**Last rebuilt:** 2026-04-20 (switched from Python agent to CC subagents, subscription-based)
+
+## Architecture overview
+
+```
+/research daily           ← slash command или Windows Task Scheduler 13:00
+      ↓
+research-orchestrator     ← планирует, координирует, пишет отчёт
+      ↓
+research-scout            ← 6 каналов: GitHub API, Trending, HN, Reddit, Awesome, PH
+      ↓
+research-light-scorer     ← быстрый отсев (Haiku): метаданные + README + license
+      ↓
+[ research-architect  +  research-issue-detective  +  research-deps-analyst ]    ← ПАРАЛЛЕЛЬНО на каждом кандидате
+      ↓
+research-writer           ← сводит 3 drafts в итоговую карточку со score
+      ↓
+research/candidates/YYYY-MM-DD-{owner}-{repo}.md
+```
+
+- **Билинг:** подписка Claude Code, прямой API не используется
+- **Источник правды о параметрах:** [config.md](config.md) — ниши, каналы, лимиты, пороги
+- **Токен GitHub:** `C:/Users/User/.config/vault-research/.env` (вне vault, scope `public_repo`)
+
 ## Subfolders
 
 ### 📚 library/  — **Hand-curated, vetted, ready to use**
 
-The library is the **first place to look** before building any new feature. Every entry here is production-grade, permissively licensed, and recommended for at least one of Adil's projects.
+Первое куда смотреть перед постройкой нового. Каждая запись production-grade.
 
-- [library/_index.md](library/_index.md) — start here
-- [library/ui-components/](library/ui-components/_index.md) — shadcn, Radix, Tremor, TanStack Table, Mantine
-- [library/assets/](library/assets/_index.md) — Lucide, Phosphor, Heroicons, Tabler, unDraw, Storyset, Google Fonts, Kenney
-- [library/backend-libs/](library/backend-libs/_index.md) — p-retry, p-queue, BullMQ, graphile-worker, Pino, Zod, Drizzle, Sharp
-- [library/ai-libs/](library/ai-libs/_index.md) — LiteLLM, Vercel AI SDK, instructor-js, OpenAI/Anthropic/Gemini SDKs, retry-and-fallback pattern
-- [library/python-libs/](library/python-libs/_index.md) — aiogram, PyAutoGUI, pywinauto, ChromaDB, LanceDB, Ollama, smolagents, faster-whisper, Piper TTS, instructor
+- [library/_index.md](library/_index.md)
+- [library/ui-components/](library/ui-components/_index.md)
+- [library/assets/](library/assets/_index.md)
+- [library/backend-libs/](library/backend-libs/_index.md)
+- [library/ai-libs/](library/ai-libs/_index.md)
+- [library/python-libs/](library/python-libs/_index.md)
 
-**Workflow:** when you ask Claude for a new feature, the first step is to check this library. If a card exists for the problem, **use it** instead of rebuilding from scratch. Stop drawing boxes and circles.
+### 🤖 candidates/ — свежие находки ресёрч-цикла
 
-### 🤖 candidates/ — *(empty for now)*
+Каждый `/research daily` добавляет сюда 0-15 карточек. Читать глазами, промотить в `library/` после ручного теста.
 
-Where the future autonomous research agent will drop new GitHub findings for review. Currently inactive.
+- `candidates/YYYY-MM-DD-{owner}-{repo}.md` — RECOMMEND (score >= 7.5) или CONSIDER (6.5-7.4)
+- `candidates/.rejected/` — ниже порога, с причиной
+- `candidates/.drafts/` — временные файлы пайплайна (удаляются writer'ом)
 
-### 🧪 tested/ — *(empty for now)*
+### 🧪 studies/ — deep-dive разборы конкретных репо
 
-Where vetted candidates will go after manual approval and testing.
+Старые ручные studies. Новая pipeline встроена в candidates (через architect/issues/deps), отдельной папки не требует. Оставлены как архив.
 
-### ✅ integrated/ — *(empty for now)*
+### 📝 runs/ — отчёты каждого прогона
 
-Where successfully adopted tools graduate to. From here they may be promoted to `library/` proper or referenced in `knowledge/` patterns.
+`runs/YYYY-MM-DD_HHMM.md` — план, результаты, rejected с причинами, ошибки.
+
+### 🧠 subagents/ — память каждой роли
+
+После прогона каждый агент дописывает `learnings.md`:
+- `subagents/orchestrator/learnings.md`
+- `subagents/scout/learnings.md`
+- `subagents/scorer/learnings.md` (light-scorer)
+- `subagents/structure-scanner/learnings.md` (architect пишет сюда)
+- `subagents/issue-detective/learnings.md`
+- `subagents/deps-expert/learnings.md`
+- `subagents/writer/learnings.md`
+- `subagents/backend-expert/learnings.md` (общий для backend-dev + research)
+- `subagents/frontend-expert/learnings.md` (общий для frontend-dev + research)
+
+Deleted / unused: `subagents/readme-reader/` (роль объединена в light-scorer).
+
+## Workflow
+
+### Автоматический (daily)
+
+Windows Task Scheduler → `C:\Users\User\Desktop\_research-runner\run.cmd` → `claude -p "/research daily"` в 13:00.
+
+Если ноут выключен — догонит при следующем включении (флаг "run after missed" в Task).
+
+См. `_research-runner/README.md` для setup.
+
+### Ручной
+
+В чате: `/research daily` | `/research quick` | `/research {niche}`
+
+### После прогона
+
+1. Открыть последний `runs/YYYY-MM-DD_HHMM.md` — посмотреть что найдено
+2. Просмотреть новые карточки в `candidates/`
+3. Для RECOMMEND — решить: тестить, отложить, промотить в `library/`
+4. Для CONSIDER — "worth watching", вернёмся через 1-2 месяца
+
+## Rules
+
+- Все записи в vault — без секретов (hook блокирует)
+- `research/.dedup.json` — не удалять, это TTL-кэш "seen repos"
+- Старый Python-агент `vault-research-agent/` — архивирован, **не запускать**
+- Новый pipeline использует подписку CC, а не ANTHROPIC_API_KEY
 
 ## What's NOT in research
 
-- **Real secrets** — never. The vault hook blocks them.
-- **Random unverified GitHub repos** — those go to `candidates/`, not `library/`.
-- **Project-specific code** — that lives in the projects themselves, not here.
-
-## Constraints when (and if) the autonomous agent is activated
-
-- Write access **only** to `vault/research/`
-- No `npm install` / `pip install` of arbitrary packages without manual approval
-- No git push, no remote operations
-- No access to project `.env` files
-- Reads README + WebSearch only — does not execute foreign code
-- Outputs proposals → Adil approves → only then does any clone/install happen
+- Секреты (.env, tokens) — никогда
+- Project-specific код — он в проектах
+- Random репо которые кто-то упомянул — сначала `/research {niche}` и pipeline решит

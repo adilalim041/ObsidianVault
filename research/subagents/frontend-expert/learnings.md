@@ -361,6 +361,15 @@
 - Tremor's `tremorTwMerge` must be used (not plain `twMerge`) when merging classes that include Tremor design tokens like `rounded-tremor-default`, `shadow-tremor-card`, `text-tremor-metric`. Without the extension, tailwind-merge treats them as unknown and doesn't resolve conflicts correctly.
 - `node_modules/@tremor/**` MUST be in Tailwind `content` array. Tremor generates class names dynamically (e.g. `bg-red-500` from a `color="red"` prop), so without content scanning those classes get purged in production.
 
+## 2026-04-15 (wa-dashboard white-label color refactor)
+- CSS `color-mix(in srgb, var(--color-accent) 12%, transparent)` is the correct way to produce brand-tinted rgba-equivalents from a CSS custom property. Works in all modern browsers (Chrome 111+, Firefox 113+, Safari 16.2+). Use `transparent` as the second argument to get alpha channel effects.
+- For dark theme bubble gradients: `color-mix(in srgb, var(--color-accent) 40%, black)` gives a dark shade of the accent, 70% gives mid, 100% = the accent itself. Creates a visually rich gradient from one base variable.
+- For light theme bubble gradients: use `color-mix(in srgb, var(--color-accent) 25%/40%/55%, white)` — mixing with white produces pastel tints appropriate for light backgrounds.
+- Recharts `stroke` and `fill` props accept CSS custom property strings (`"var(--color-accent)"`) when passed as JSX string values. No special handling needed.
+- JS `COLORS = ['var(--color-accent)', 'var(--color-primary)', ...]` arrays work correctly when the values are assigned to `background` or `color` CSS properties via React inline styles (e.g. `style={{ background: color }}`). CSS var() resolution happens at paint time.
+- Template literal CSS in a `style.textContent = \`...\`` block can still use CSS `color-mix()` because it's written directly to a `<style>` tag and is parsed by the browser CSS engine (not by JavaScript). No escaping needed.
+- When doing a full brand color refactor, keep the JS env-var defaults hardcoded (`|| '#C8102E'`) — those are intentional fallbacks for the original client. The CSS layer derived from them should use `var(--color-*)` throughout.
+
 ## 2026-04-12 (hackertab study)
 - The card registry pattern (`SUPPORTED_CARDS: SupportedCardType[]` with a `component` field + `lazyImport`) is the correct architecture for multi-source news dashboards. Adding a source = one array entry + one component. Zero changes to layout, routing, or state.
 - `useLazyListLoad` — 15-line hook using IntersectionObserver with `observer.unobserve` on first intersection + TanStack Query `enabled: isVisible`. Prevents N parallel fetches on load for horizontal-scroll card layouts. Copy verbatim.
@@ -370,3 +379,19 @@
 - dnd-kit reorder: add/remove a CSS class (`snapDisabled`) on the scroll container during `onDragStart`/`onDragEnd` to disable CSS `scroll-snap` — without this, snap fighting DnD pointer causes jitter. The drag handle is injected via a `knob` prop so the card component itself is DnD-unaware.
 - `React.lazy` doesn't support named exports natively. The `lazyImport` utility (Object.create + `.then(module => ({ default: module[name] }))`) wraps it to support named exports with full TypeScript type safety. 12 lines.
 - `useShallow` from Zustand is required when subscribing to multiple store keys in one selector — without it, every store update triggers a re-render even if the subscribed keys didn't change.
+
+## 2026-04-20 (Omoikiri Wave 8 — PDF export)
+- `@react-pdf/renderer`: use `pdf(<Document/>).toBlob()` (not `PDFDownloadLink`) when you need to get the blob imperatively before sending it to an API. `PDFDownloadLink` only works for direct browser download — it cannot give you a base64 string.
+- To convert a PDF blob to base64 for an API call: `new FileReader()` + `readAsDataURL()` → split on `','` to strip `data:application/pdf;base64,` prefix. The backend expects clean base64 without the data URI prefix.
+- `@react-pdf/renderer` fonts: avoid custom fonts in PDF unless you explicitly register them with `Font.register()`. Default `Helvetica` family (Helvetica, Helvetica-Bold, Helvetica-Oblique) works out of the box with no registration needed.
+- Retry pattern for modal data-fetch: use an integer `retryCount` state in the `useEffect` dependency array instead of a boolean flag. Incrementing `retryCount` forces re-fetch while keeping the effect clean. A `fetchedForRef` approach is fragile with React StrictMode double-invocation.
+- `readOnly` pattern for disabled forms: `pointer-events: none; opacity: 0.7; user-select: none` on the wrapper div is cleaner than threading `disabled={readOnly}` through every individual input/button. Use a BEM modifier class `.panel--readonly` and apply the CSS rule once.
+- For full-width pages in a layout with sidebar, maintain a single `isFullWidth` computed boolean (list of page names) rather than checking `currentPage` in multiple places. Extending to new pages = add one string to the array.
+
+## 2026-04-17 (Omoikiri Phase B — JWT migration)
+- `supabase.auth.getSession()` reads from localStorage — no network request if token is fresh. Safe to call on every `fetch` without performance concern. Supabase auto-refreshes in background via `onAuthStateChange`.
+- 401 one-shot retry pattern: on first 401, call `supabase.auth.refreshSession()`, retry once. If still 401 — call `supabase.auth.signOut()` and throw. This handles the race window where the token expired between `getSession()` and the server check. Do NOT loop; loop = infinite cycle on truly expired sessions.
+- `requestWithRetry` must skip retries when error is "Session expired" — otherwise it loops through all retries and delays before the user sees the login redirect.
+- WebSocket URL cannot carry `Authorization` header (WS handshake is an HTTP GET, but browser `new WebSocket()` API exposes no header control). Pass JWT as `?access_token=<token>` query param instead. Legacy fallback: `?apiKey=`.
+- WebSocket + TOKEN_REFRESHED: subscribe to `supabase.auth.onAuthStateChange` inside `createWSConnection`. On `TOKEN_REFRESHED`, close the current WS (triggers `onclose` → reconnect) so the new connection picks up fresh `?access_token=` in the URL. Unsubscribe in `close()` cleanup to prevent memory leaks.
+- The `onAuthStateChange` subscription inside `createWSConnection` (not a React component) still works correctly — Supabase manages it globally. The subscription is cleaned up by calling `authSub.unsubscribe()` in the returned `close()` function, which `useWebSocket.js` calls in its `useEffect` cleanup.

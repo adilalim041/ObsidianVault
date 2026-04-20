@@ -172,6 +172,15 @@
 ## 2026-04-11
 - Vite@^6.1.0 on Windows 10 can experience file-watcher hangs during rapid saves in dev mode; document npm run dev troubleshooting step (--no-cache or chokidar polling) for developers to avoid confusion during onboarding.
 
+## 2026-04-16
+- Nexus.AI audit: router.py embeds raw user_text directly into Gemini classification prompt at line 168 with only triple-quote delimiters — insufficient to stop adversarial injection. Pattern: always add a `[USER INPUT]` section header AND strip/escape triple-quote characters from user_text before interpolation.
+- Nexus.AI audit: web_parser.py has zero SSRF protection — parse_website() and _fallback_parse_website() accept arbitrary URLs including localhost/169.254.*/10.* with no validation; add ipaddress-based blocklist before any outbound HTTP call.
+- Nexus.AI audit: media_providers.py has no concurrency cap on video generation (Veo/Luma both run in to_thread per call). 20 parallel /generate_video intents = 20 simultaneous 900s polling loops. Add asyncio.Semaphore (max 2–3) at the caller level.
+- Nexus.AI audit: generate_image() in media_providers.py has no retry logic, no timeout, no error handling beyond the outer caller — a single network blip raises an unhandled exception. Wrap in _request_with_retry pattern or try/except with logging.
+- Nexus.AI audit: vault_qa.py line 165 inserts raw {question} into Gemini prompt without any section separation beyond a === QUESTION === header — web content fetched by vault files could inject instructions if markdown is treated as prompts by Gemini.
+- Nexus.AI audit: No per-user or global rate limiting on any Gemini/Anthropic call. Every Telegram message triggers at minimum one LLM call. Cost DoS exposure is unlimited.
+- Nexus.AI audit: router.py line 196 logs full exception `exc` via logging.error — if exc includes API response bodies it can leak key fragments; prefer `logging.error("Gemini API error: %s", type(exc).__name__)` for non-debug logging.
+
 ## 2026-04-12
 - tsup does not handle CSS Modules natively; the standard pattern (used by Puck) is a custom esbuild plugin that runs postcss + postcss-modules to extract the class name JSON map and emit scoped CSS as a separate chunk — copy this pattern for any React library with CSS Modules that uses tsup.
 - The `react-server` export condition in `package.json` exports map is how libraries ship RSC-safe entry points for Next.js App Router; pair it with a separate bundle entry (e.g., `bundle/rsc.tsx`) that only exports server-safe functions.
