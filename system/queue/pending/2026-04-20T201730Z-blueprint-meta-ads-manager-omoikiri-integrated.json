@@ -1,0 +1,29 @@
+{
+  "id": "2026-04-20T201730Z-blueprint-meta-ads-manager-omoikiri-integrated",
+  "type": "blueprint",
+  "created_at": "2026-04-20T20:17:30Z",
+  "created_by": "adil-manual",
+  "user": "adil",
+  "payload": {
+    "idea": "Meta Ads manager for SMB with Omoikiri WhatsApp integration and Meta Ads Library competitor analytics",
+    "scope": {
+      "platforms_v0": ["meta"],
+      "platforms_later": ["google", "tiktok"],
+      "target_user": "small and mid-size business (SMB) running their own ads, NOT agencies, NOT solo freelancers",
+      "killer_features": [
+        "Close the loop: Meta Ads → lead lands in WhatsApp → Omoikiri tracks the conversation → we attribute revenue back to ad creative/audience/campaign. Most SMB ads tools stop at ROAS/CPA — this one actually ties to sales confirmed in WhatsApp.",
+        "Meta Ads Library competitor analyst: scan competitors' active ads, cluster by theme/hook/format, surface what's working in SMB's niche before SMB launches own campaign."
+      ],
+      "creative_generation_v0": false,
+      "notes_to_architects": "Omoikiri.AI is Adil's existing Railway service — Node.js + Supabase + Baileys WhatsApp + React dashboard. See projects/omoikiri/architecture.md. Integration should be tight: either shared Supabase project with proper RLS isolation, or clean API boundary. Decide with rationale."
+    },
+    "scaffold": false,
+    "target_project": null
+  },
+  "source": {
+    "channel": "conversation",
+    "note": "Adil asked for a demo example of the blueprint flow during Block 5 work"
+  },
+  "priority": "normal",
+  "version": "1.0"
+}
