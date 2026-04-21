@@ -58,6 +58,49 @@ Nexus reads the local ObsidianVault directly from disk via `vault_reader.py`:
 
 Requires `VAULT_PATH` env var (defaults to `C:\Users\User\Desktop\ObsidianVault`).
 
+## Ideas dual-write (Phase 2, added 2026-04-21)
+
+Every confirmed idea is now written to two stores simultaneously:
+
+1. **Supabase** (`nexus_ideas` table via `memory.add_idea`) — primary source of truth.
+2. **ObsidianVault GitHub repo** (`projects/nexus-ai/ideas/YYYY-MM-DD-HHMM-slug.md`) — human-readable backup with frontmatter.
+
+### New files
+
+| File | Role |
+|---|---|
+| `idea_vault.py` | `save_idea_to_vault()` — builds Markdown + writes via vault_github. `make_slug()` — Cyrillic-safe slug generator (unidecode). |
+| `voice_transcribe.py` | `transcribe_voice(audio_path)` — Gemini Files API transcription with 2x retry on 429/500. |
+
+### Flow
+
+1. User sends voice message (≥3 sec) or text.
+2. Voice → `transcribe_voice()` converts to text before `analyze_intent`.
+3. Intent classified as `save_idea` → confirmation screen.
+4. On confirm → `memory.add_idea()` (Supabase) → `save_idea_to_vault()` (GitHub).
+5. If vault write fails → log WARNING, idea still saved in Supabase, user sees no error.
+6. If vault write succeeds → "Открыть в vault" button with GitHub URL shown to user.
+
+### Failure modes
+
+- Transcription fails → bot replies "Не удалось распознать голосовое", returns early.
+- Vault write fails → None returned, idea safe in Supabase, no error shown to user.
+- Supabase write fails → exception propagates normally (existing behavior).
+
+### vault_github.py retry (added Phase 2)
+
+`write_vault()` now retries on 429/502/503/504 with exponential backoff (1s, 2s, 4s, max 3 attempts). 409 sha conflict triggers a sha re-fetch + single retry. Other 4xx fail immediately.
+
+### Dependencies added
+
+- `unidecode>=1.3.8` — Cyrillic transliteration for slug generation.
+
+### Env vars required
+
+- `VAULT_WRITE_TOKEN` — fine-grained PAT, scope ObsidianVault/Contents=R/W (already used by heartbeat).
+- `VAULT_REPO` — defaults to `adilalim041/ObsidianVault`.
+- `VAULT_BRANCH` — defaults to `main`.
+
 ## Security hardening (2026-04-09 audit, 22 issues fixed)
 
 - `is_admin()` — single unified auth check everywhere (was 3 different patterns)
