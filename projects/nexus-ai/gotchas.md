@@ -73,4 +73,12 @@ Telegram voice messages приходят в контейнере `.ogg` (Opus co
 
 ---
 
+### 2026-04-21 — vault_summary: asyncio.run() внутри asyncio.to_thread()
+
+`build_morning_summary()` — синхронная обёртка для `asyncio.to_thread()` из планировщика — внутри вызывает `asyncio.run()`. В `asyncio.to_thread` это работает, потому что `to_thread` запускает функцию в отдельном потоке без event loop. Если же вызывать `build_morning_summary()` напрямую из async контекста — это сломается (`asyncio.run()` не работает когда уже есть running loop). Решение: из async контекста всегда использовать `build_morning_summary_async()`, а из `_morning_checkin` (job в APScheduler) — через `asyncio.to_thread(build_morning_summary, ...)`.
+
+### 2026-04-21 — carry_over_yesterday_tasks вызывается при создании нового плана, НЕ в cron
+
+Функция `carry_over_yesterday_tasks()` встроена в `handle_daily_plan()` — она пометит вчерашние задачи как `carried_over` только тогда, когда пользователь создаёт план на следующий день. Не нужна отдельная cron job в 23:30. Это intentional: если пользователь не создаёт план — перенос не нужен.
+
 > Add new entries as they come up.

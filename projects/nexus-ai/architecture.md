@@ -101,6 +101,62 @@ Every confirmed idea is now written to two stores simultaneously:
 - `VAULT_REPO` — defaults to `adilalim041/ObsidianVault`.
 - `VAULT_BRANCH` — defaults to `main`.
 
+## Daily Task Tracker (Phase 3, added 2026-04-21)
+
+**Status:** Implemented. Feature-flagged via `DAILY_TRACKER_ENABLED=true`.
+
+### New files
+
+| File | Role |
+|---|---|
+| `daily_tracker.py` | APScheduler jobs, DB helpers, intent handlers (daily_plan / task_done_text / task_status / rest_day), carry-over logic, AI task parsing |
+| `vault_summary.py` | Builds morning vault digest via GitHub Contents API (list_vault). Works on Railway (no local path needed). |
+| `migrations/2026-04-21_nexus_daily_tasks.sql` | Schema: nexus_daily_tasks + nexus_daily_state |
+
+### New Supabase tables
+
+| Table | Purpose |
+|---|---|
+| `nexus_daily_tasks` | One row per task. Fields: user_id, task_date, title, status (pending/done/skipped/carried_over), source (voice/text/carried_over/manual), done_at |
+| `nexus_daily_state` | One row per (user, date). Tracks is_rest_day, morning_asked_at, plan_received_at, last_pulse_at |
+
+### Scheduler jobs (UTC, Railway = UTC, Astana = UTC+5)
+
+| UTC | Astana | Job |
+|---|---|---|
+| 04:00 | 09:00 | Morning check-in + vault digest |
+| 07:00 | 12:00 | Pulse 1 |
+| 09:00 | 14:00 | Pulse 2 |
+| 11:00 | 16:00 | Pulse 3 |
+| 13:00 | 18:00 | Pulse 4 |
+| 15:00 | 20:00 | Pulse 5 |
+| 17:00 | 22:00 | Pulse 6 |
+| 19:00 | 00:00 | Pulse 7 (end-of-day) |
+
+### New intents in router.py
+
+- `daily_plan` — user dictates/writes plan for today
+- `task_done_text` — user says they finished something
+- `task_status` — user asks what's left
+- `rest_day` — user says no tasks today
+
+### Carry-over logic
+
+Незакрытые задачи помечаются `status='carried_over'` при вызове `carry_over_yesterday_tasks()` в момент когда пользователь создаёт новый план на следующий день (NOT в отдельной cron job). Вызов встроен в `handle_daily_plan()`.
+
+### Env vars
+
+```
+ADIL_USER_ID=<telegram numeric id>
+DAILY_TRACKER_ENABLED=true
+```
+
+### Scheduler wiring
+
+Использует **существующий** `core.scheduler` (AsyncIOScheduler). `register_daily_tracker_jobs(scheduler)` вызывается в `bot.py` после `scheduler.start()`. Второго экземпляра планировщика нет.
+
+---
+
 ## Security hardening (2026-04-09 audit, 22 issues fixed)
 
 - `is_admin()` — single unified auth check everywhere (was 3 different patterns)

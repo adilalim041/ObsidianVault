@@ -30,6 +30,12 @@
 - [gotchas.md](gotchas.md)
 - [backlog.md](backlog.md)
 
+## Recent phases
+
+- **Phase 1A/1B** (2026-04-21): Semantic memory via Supabase + pgvector. See `architecture.md`.
+- **Phase 2** (2026-04-21): Ideas dual-write to Vault via GitHub API. See `architecture.md`.
+- **Phase 3** (2026-04-21): Proactive daily task tracker. See `architecture.md` section "Daily Task Tracker". New files: `daily_tracker.py`, `vault_summary.py`. New tables: `nexus_daily_tasks`, `nexus_daily_state`. Migration: `migrations/2026-04-21_nexus_daily_tasks.sql`.
+
 ## Source-of-truth checklist
 
 - This project uses a **local SQLite DB with real user data**. Do NOT delete it, do NOT commit it.
