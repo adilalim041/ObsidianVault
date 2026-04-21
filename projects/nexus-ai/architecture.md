@@ -86,6 +86,59 @@ Requires `VAULT_PATH` env var (defaults to `C:\Users\User\Desktop\ObsidianVault`
 5. Memory read/written via `memory.py` (SQLite WAL mode)
 6. Result returned to Telegram
 
+## Semantic memory (Phase 1A, 2026-04-21)
+
+**Status:** Foundation built, NOT integrated into main_handler yet. Integration = Phase 1B.
+
+### Schema — two-table design
+
+| Table | Purpose |
+|---|---|
+| `nexus_conversations` | Lightweight message store (user_id, role, content, tokens_est, created_at). Read often. No vectors. |
+| `nexus_conversation_embeddings` | vector(768) per message. Separate table to avoid bloating reads that don't need vectors. Joined only on semantic search. |
+
+**Why split:** `get_recent` and `save_message` SELECT run frequently without needing embeddings. Keeping vectors in a separate table keeps row width ~100 bytes vs ~3100 bytes. HNSW index on embedding table only.
+
+### Embedding model
+
+- **Gemini text-embedding-004** — 768 dimensions, free quota 1500 req/day (sufficient for single-user).
+- Content truncated to 8000 chars before embedding (~2048 tokens in Russian).
+- Embedding is **fire-and-forget**: `save_message` returns immediately after DB INSERT, embedding runs in `asyncio.create_task`. If it fails → warn log, message still accessible via `get_recent`.
+
+### Search index
+
+- **HNSW** (Hierarchical Navigable Small World) with `vector_cosine_ops`.
+- Parameters: m=16, ef_construction=64 (balanced accuracy/memory for 768-dim).
+- Cosine distance: 0 = identical, 2 = opposite. Threshold for relevance = 0.5 (configurable constant in `semantic_memory.py`).
+
+### RPC: nexus_search_conversations
+
+Supabase function that joins both tables and returns top-K messages by cosine distance. Supports optional `p_since` time-window filter (e.g., last 30 days).
+
+```sql
+nexus_search_conversations(p_user_id, p_query_embedding, p_match_count, p_since)
+→ TABLE (conversation_id, content, role, created_at, distance)
+```
+
+### Python layer: semantic_memory.py
+
+```python
+save_message(user_id, role, content) -> int      # INSERT + fire embedding task
+search_similar(user_id, query, k, since_days)    # embed query → RPC → filter by threshold
+get_recent(user_id, limit)                       # cheap SELECT, newest first
+```
+
+- Reuses `_get_supabase()` singleton from `memory.py` — no second Supabase client.
+- All Supabase calls sync → wrapped in `asyncio.to_thread()`.
+- RLS DISABLED on both tables (service-only, no user JWT access).
+
+### Migration
+
+Apply `supabase_nexus_conversations.sql` in Supabase SQL Editor (project: nexus) before deploying Phase 1B.
+See `MIGRATIONS.md` in Nexus repo for full apply order.
+
+---
+
 ## How to verify this file
 
 - `ls *.py handlers/*.py` — confirm file structure matches
