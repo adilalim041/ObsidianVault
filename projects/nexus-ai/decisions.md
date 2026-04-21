@@ -40,6 +40,31 @@
 - If the machine dies, the memory dies with it (unless backed up)
 - Cannot be a multi-user product as-is — would need migration to cloud DB if productized
 
+**SUPERSEDED 2026-04-21 by decision below** — Nexus на Railway (ephemeral FS) фактически использует Supabase Omoikiri project. SQLite остался только как fallback для локального запуска.
+
+---
+
+## 2026-04-21 — Nexus делит Supabase project с Omoikiri
+
+**Context:** `SUPABASE_URL` / `SUPABASE_SERVICE_KEY` в Railway env указывают на **Omoikiri Supabase project**. Отдельного "Nexus" project не существует. Обнаружено при попытке применить миграцию под Phase 1A.
+
+**Decision:** Оставить shared project. Все Nexus-таблицы обязательно с префиксом `nexus_*`.
+
+**Why:** Free tier Supabase даёт 2 бесплатных project'а. У Adil'а они уже заняты (Omoikiri + News.AI). Создавать третий — $25/мес или удалять существующий. Shared model работает (префикс + DISABLE RLS на nexus-таблицах), данные изолированы по именам.
+
+**Consequences:**
+- **НИКОГДА не переименовывать / удалять таблицы из Omoikiri project без проверки префикса `nexus_*`**. Если таблица `nexus_X` — это Nexus. Если без префикса или `uora_*` / `wa_*` — это Omoikiri.
+- Миграции Nexus (`supabase_nexus_*.sql`) применяются в Omoikiri Supabase project.
+- Nexus worker service_role теоретически имеет доступ к Omoikiri таблицам. Не security-проблема (обе системы у Adil'а), но при мультиюзер продуктизации Nexus — надо разводить project'ы.
+- pgvector extension — если уже включена для Omoikiri, повторный `CREATE EXTENSION IF NOT EXISTS` безопасен.
+
+**Миграционный путь если захочется разделить:**
+1. Создать новый Supabase "nexus" project
+2. pg_dump всех `nexus_*` таблиц из Omoikiri project
+3. Restore в новый project
+4. Обновить Railway env `SUPABASE_URL` на Nexus service
+5. После верификации — DROP `nexus_*` таблиц из Omoikiri project
+
 ---
 
 ## 2026-04-09 — Vault integration via local filesystem read, not API
