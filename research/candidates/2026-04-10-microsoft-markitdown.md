@@ -5,6 +5,8 @@
 **Score:** 7.3/10
 **Category:** ai-tool
 **For project:** General
+**Usage type:** tool
+**Tags:** #ai #data #mcp
 **Found by:** vault-research-agent, niche: github-trending
 **Date:** 2026-04-10
 **Status:** studied

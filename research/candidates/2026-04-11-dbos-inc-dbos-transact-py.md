@@ -5,6 +5,8 @@
 **Score:** 7.8/10
 **Category:** infrastructure
 **For project:** General
+**Usage type:** library
+**Tags:** #backend #infra #data
 **Found by:** vault-research-agent, niche: devops-infra
 **Date:** 2026-04-11
 **Status:** studied

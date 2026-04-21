@@ -4,6 +4,8 @@
 **License:** MIT
 **Score:** 7.8/10
 **For project:** News.AI
+**Usage type:** library
+**Tags:** #backend #data
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-10
 **Status:** studied

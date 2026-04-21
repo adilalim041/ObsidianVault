@@ -4,6 +4,8 @@
 **License:** MIT
 **Score:** 8.1/10
 **For project:** Omoikiri.AI
+**Usage type:** library
+**Tags:** #frontend #design
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-09
 **Status:** studied

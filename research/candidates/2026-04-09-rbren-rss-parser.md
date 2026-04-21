@@ -4,6 +4,8 @@
 **License:** Unknown (not specified)
 **Score:** 7.2/10
 **For project:** News.AI
+**Usage type:** library
+**Tags:** #backend #data
 **Found by:** vault-research-agent, niche: content-automation
 **Date:** 2026-04-09
 **Status:** studied

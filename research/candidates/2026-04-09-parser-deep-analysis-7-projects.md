@@ -1,5 +1,7 @@
 # Deep analysis of 7 research agent projects for custom parser
 
+**Usage type:** reference
+**Tags:** #agents #ai
 **Date:** 2026-04-09
 **Status:** Analysis complete, awaiting decision
 **Purpose:** Find existing code and patterns we can reuse when building a custom vault research agent for Adil.

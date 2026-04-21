@@ -5,6 +5,8 @@
 **Score:** 6.4/10
 **Category:** ui-component
 **For project:** Omoikiri.AI
+**Usage type:** library
+**Tags:** #frontend #data
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-10
 **Status:** studied

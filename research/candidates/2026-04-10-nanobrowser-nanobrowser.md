@@ -5,6 +5,8 @@
 **Score:** 6/10
 **Category:** ai-tool
 **For project:** General
+**Usage type:** product-idea
+**Tags:** #agents #ai
 **Found by:** vault-research-agent, niche: saas-boilerplate
 **Date:** 2026-04-10
 **Status:** studied

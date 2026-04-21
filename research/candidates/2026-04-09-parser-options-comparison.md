@@ -1,5 +1,8 @@
 # Parser options — WebSearch research, 2026-04-09
 
+**Usage type:** reference
+**Tags:** #agents #ai
+
 > **Source:** Live WebSearch + WebFetch pass done on 2026-04-09 during Claude session.
 > **Purpose:** Instead of building a research agent from scratch, find existing open-source solutions and pick one to extend.
 > **Key finding:** Multiple mature projects already exist for what we want to build. We should NOT rewrite from scratch.

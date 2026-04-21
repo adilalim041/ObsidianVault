@@ -1,5 +1,7 @@
 # Architecture decision: research agent as Claude Code skill, not Python project
 
+**Usage type:** reference
+**Tags:** #agents #ai
 **Date:** 2026-04-09
 **Status:** Proposed, awaiting Adil's approval
 **Author:** Claude (based on web research pass)

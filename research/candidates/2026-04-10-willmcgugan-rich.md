@@ -5,6 +5,8 @@
 **Score:** 6.1/10
 **Category:** developer-tool
 **For project:** General
+**Usage type:** library
+**Tags:** #backend
 **Found by:** vault-research-agent, niche: hn-trending
 **Date:** 2026-04-10
 **Status:** skipped

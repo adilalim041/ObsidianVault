@@ -3,6 +3,8 @@
 **URL:** https://github.com/PrefectHQ/fastmcp
 **Discovered:** 2026-04-20
 **Niche:** mcp-servers
+**Usage type:** library
+**Tags:** #mcp #ai #backend #agents
 **Found via:** github-search:mcp-servers:mcp+server+stars:>100
 **Stars:** 24,670 (1,935 forks)
 **License:** Apache-2.0

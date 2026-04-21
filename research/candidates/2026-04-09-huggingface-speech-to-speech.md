@@ -4,6 +4,8 @@
 **License:** unknown
 **Score:** 7.2/10
 **For project:** Nexus.AI
+**Usage type:** pattern
+**Tags:** #ai #media
 **Found by:** vault-research-agent, niche: python-agents
 **Date:** 2026-04-09
 **Status:** studied

@@ -4,6 +4,8 @@
 **License:** MIT (verified in repository)
 **Score:** 7.8/10
 **For project:** News.AI
+**Usage type:** product-idea
+**Tags:** #ai #observability #backend
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-09
 **Status:** studied

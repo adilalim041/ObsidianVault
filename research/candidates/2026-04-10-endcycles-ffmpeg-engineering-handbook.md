@@ -5,6 +5,8 @@
 **Score:** 6.2/10
 **Category:** developer-tool
 **For project:** General
+**Usage type:** reference
+**Tags:** #media #backend
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-10
 **Status:** skipped

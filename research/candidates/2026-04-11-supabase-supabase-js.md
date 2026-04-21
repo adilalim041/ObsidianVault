@@ -5,6 +5,8 @@
 **Score:** 6.2/10
 **Category:** infrastructure
 **For project:** Omoikiri.AI
+**Usage type:** library
+**Tags:** #backend #auth #realtime #data
 **Found by:** vault-research-agent, niche: devops-infra
 **Date:** 2026-04-11
 **Status:** studied

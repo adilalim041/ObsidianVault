@@ -4,6 +4,8 @@
 **License:** MIT
 **Score:** 9.2/10
 **For project:** Nexus.AI
+**Usage type:** library
+**Tags:** #agents #ai #infra
 **Found by:** vault-research-agent, niche: saas-boilerplate
 **Date:** 2026-04-10
 **Status:** studied

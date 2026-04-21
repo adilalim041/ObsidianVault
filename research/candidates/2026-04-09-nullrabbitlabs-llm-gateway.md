@@ -4,6 +4,8 @@
 **License:** unknown
 **Score:** 8.2/10
 **For project:** News.AI
+**Usage type:** tool
+**Tags:** #ai #backend #infra
 **Found by:** vault-research-agent, niche: ai-reliability
 **Date:** 2026-04-09
 **Status:** studied

@@ -5,6 +5,8 @@
 **Score:** 7.2/10
 **Category:** ai-tool
 **For project:** General
+**Usage type:** pattern
+**Tags:** #backend #ai #agents
 **Found by:** vault-research-agent, niche: python-tools
 **Date:** 2026-04-10
 **Status:** studied

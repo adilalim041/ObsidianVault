@@ -4,6 +4,8 @@
 **License:** unknown
 **Score:** 6.5/10
 **For project:** News.AI
+**Usage type:** library
+**Tags:** #frontend #observability #ai
 **Found by:** vault-research-agent, niche: ai-tools
 **Date:** 2026-04-10
 **Status:** studied

@@ -5,6 +5,8 @@
 **Score:** 8.2/10
 **Category:** ui-component
 **For project:** General
+**Usage type:** library
+**Tags:** #frontend #design
 **Found by:** vault-research-agent, niche: frontend-ui
 **Date:** 2026-04-10
 **Status:** studied

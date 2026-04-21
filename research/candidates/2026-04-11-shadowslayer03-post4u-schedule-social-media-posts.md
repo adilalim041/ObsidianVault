@@ -5,6 +5,8 @@
 **Score:** 7.2/10
 **Category:** full-app
 **For project:** General
+**Usage type:** product-idea
+**Tags:** #backend #telegram
 **Found by:** vault-research-agent, niche: content-media
 **Date:** 2026-04-11
 **Status:** studied

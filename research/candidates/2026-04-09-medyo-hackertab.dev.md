@@ -4,6 +4,8 @@
 **License:** Apache-2.0
 **Score:** 6.7/10
 **For project:** News.AI
+**Usage type:** product-idea
+**Tags:** #frontend #data
 **Found by:** vault-research-agent, niche: trending-tools
 **Date:** 2026-04-09
 **Status:** studied

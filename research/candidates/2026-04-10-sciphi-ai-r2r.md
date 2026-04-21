@@ -5,6 +5,8 @@
 **Score:** 6.8/10
 **Category:** ai-tool
 **For project:** General
+**Usage type:** tool
+**Tags:** #rag #ai #backend
 **Found by:** vault-research-agent, niche: ai-new
 **Date:** 2026-04-10
 **Status:** studied
