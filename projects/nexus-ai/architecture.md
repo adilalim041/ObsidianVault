@@ -86,9 +86,76 @@ Requires `VAULT_PATH` env var (defaults to `C:\Users\User\Desktop\ObsidianVault`
 5. Memory read/written via `memory.py` (SQLite WAL mode)
 6. Result returned to Telegram
 
-## Semantic memory (Phase 1A, 2026-04-21)
+## Semantic memory (Phase 1B integrated, 2026-04-21)
 
-**Status:** Foundation built, NOT integrated into main_handler yet. Integration = Phase 1B.
+**Status:** Fully integrated into main_handler. Bot saves every exchange and retrieves semantic context on each message.
+
+### Phase 1B — Integration points
+
+**Save points in `handlers/messages.py`:**
+- Immediately after receiving user text (incl. voice transcript), before `analyze_intent` → `save_message(user_id, 'user', text)`
+- After each bot response (every intent branch that sends text) → `_persist_assistant(user_id, reply_text)`
+- Both are best-effort: exceptions are logged as WARNING, bot continues without persistence
+- FSM multi-step flows (Contact/Reminder/VideoGen) save the final outcome, not intermediate confirmation steps
+
+**Semantic retrieval flow:**
+1. Before `analyze_intent`, call `search_similar(user_id, query, k=3, since_days=None)`
+2. Deduplicate against in-memory `chat_history[-8:]` via `dedupe_with_chat_history()`
+3. Pass `semantic_ctx` to `analyze_intent(..., semantic_context=semantic_ctx)`
+4. `router.py` formats semantic_ctx into prompt block (only if non-empty), placed between Global memory and Recent conversation
+
+**Prompt structure in `router.py`:**
+```
+Global memory about the user:
+{global_context}
+
+Relevant memories from past conversations (semantic search top-3, ordered by relevance):
+  1. [Nд назад, role=user]: <content truncated to 300 chars>
+  2. ...
+
+Recent conversation (last 8 messages, chronological):
+{chat_history}
+
+Current local date/time: ...
+User input: ...
+```
+
+**Logging for diagnostics:**
+```
+[semantic] user=X query="first 50 chars..." hits=3 avg_distance=0.23
+```
+Visible in Railway logs. If hits=0 or avg_distance is high — retrieval is weak.
+
+**Performance:** ~250-500ms per message added (Gemini embed ~200-400ms + Supabase RPC ~50-100ms). "Думаю..." spinner already showing, UX not impacted.
+
+**Graceful degradation:** If Supabase is down:
+- `save_message` fails silently (WARNING log), bot works without persistence
+- `search_similar` returns `[]`, bot works with in-memory history only
+- No crash, no user-visible error
+
+### Commands added in Phase 1B
+
+**`/memory stats`** — diagnostics:
+```
+Семантическая память:
+342 сохранённых сообщения (321 с embedding).
+Самое старое сообщение от 2026-03-15.
+Pending embeddings: 21.
+```
+
+**`/clear`** — clears in-memory session only (as before) + shows hint about `/clear all`
+
+**`/clear all`** — clears BOTH in-memory session AND persistent semantic memory (DELETE from both Supabase tables for this user_id). Returns count of deleted rows.
+
+### New public API in `semantic_memory.py`
+
+```python
+clear_user(user_id) -> int                        # DELETE both tables for user, returns rows deleted
+dedupe_with_chat_history(similar, chat_history)   # filter similar by content match with chat_history
+get_memory_stats(user_id) -> dict                 # {total_messages, embedded_count, oldest_date}
+```
+
+### Phase 1A — Foundation (unchanged)
 
 ### Schema — two-table design
 
