@@ -1,11 +1,11 @@
 {
   "service": "omoikiri",
-  "updated_at": "2026-04-27T11:43:04.327Z",
+  "updated_at": "2026-04-27T11:48:04.328Z",
   "status": "healthy",
   "details": {
-    "uptime_h": 0.59,
+    "uptime_h": 0.67,
     "baileys_connected": true,
-    "last_message_processed_at": "2026-04-27T11:39:37.937Z",
+    "last_message_processed_at": "2026-04-27T11:47:57.691Z",
     "supabase_ok": true,
     "queue_depth": 0
   },
