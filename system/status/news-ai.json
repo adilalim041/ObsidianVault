@@ -1,12 +1,12 @@
 {
   "service": "news-ai",
-  "updated_at": "2026-05-10T04:50:03.946Z",
+  "updated_at": "2026-05-10T04:55:04.605Z",
   "status": "degraded",
   "details": {
-    "uptime_h": 470.44,
+    "uptime_h": 470.52,
     "last_article_published_at": "2026-04-02T10:30:00+00:00",
     "articles_today": 0,
-    "queue_depth": 7014,
+    "queue_depth": 7015,
     "error_rate_1h": null
   },
   "version": "1.0"
