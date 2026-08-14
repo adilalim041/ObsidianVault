@@ -1,9 +1,9 @@
 {
   "service": "omoikiri",
-  "updated_at": "2026-08-14T23:41:14.883Z",
+  "updated_at": "2026-08-14T23:46:14.883Z",
   "status": "healthy",
   "details": {
-    "uptime_h": 133.51,
+    "uptime_h": 133.59,
     "baileys_connected": true,
     "last_message_processed_at": "2026-08-14T19:22:43.378Z",
     "supabase_ok": true,
