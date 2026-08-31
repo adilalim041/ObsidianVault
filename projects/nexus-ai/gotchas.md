@@ -82,3 +82,16 @@ Telegram voice messages приходят в контейнере `.ogg` (Opus co
 Функция `carry_over_yesterday_tasks()` встроена в `handle_daily_plan()` — она пометит вчерашние задачи как `carried_over` только тогда, когда пользователь создаёт план на следующий день. Не нужна отдельная cron job в 23:30. Это intentional: если пользователь не создаёт план — перенос не нужен.
 
 > Add new entries as they come up.
+
+### 2026-08-31 - Railway must be the only Telegram polling owner
+
+BridgeMind DeviceNodes execute local commands but must not run Neo's Telegram
+poller. Running Railway `nexus-ai` and local `python bot.py` with the same bot
+token causes a continuous `TelegramConflictError` loop. Keep Railway as the
+single update-stream owner and start only `python -m local_agent_v2.service`
+on laptops. The local `bot.py` launch was removed from
+`BridgeMind-Local.vbs`; do not restore it.
+
+Verified after the DeviceNode migration: Railway returned online, the office
+laptop advertised Adil Space, Neo, Local Agent, Omoikiri, and Mempalace, and a
+targeted `local_echo` command completed with matching target/executing device.
