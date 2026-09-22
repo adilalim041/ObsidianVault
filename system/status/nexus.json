@@ -1,9 +1,9 @@
 {
   "service": "nexus",
-  "updated_at": "2026-09-22T10:49:00.402915Z",
+  "updated_at": "2026-09-22T10:54:01.445908Z",
   "status": "healthy",
   "details": {
-    "uptime_h": 72.88,
+    "uptime_h": 72.964,
     "last_command_at": null,
     "mempalace_ok": true,
     "active_users": null
